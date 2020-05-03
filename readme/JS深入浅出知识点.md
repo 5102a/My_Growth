@@ -413,6 +413,51 @@ console.timeEnd('start') // 耗时73ms
 
 ## <span id="3">三、原型与原型链</span>
 
+为了方便后续讲解，这里先介绍几个知识点：
+
+**一、`__proto__`属性**
+
+> 对象的`__proto__`属性并非ECMAScript标准，由于早期无法获取对象原型即对象内部[[Prototype]]属性，各大浏览器厂家对Object.prototype通过访问描述符实现`__proto__`的getter与setter来达到访问调用对象的[[Prototype]]，[[Prototype]]属性属于对象内部属性无法直接访问，此属性指向对象原型。
+
+`__proto__`大致实现
+
+```proto
+Object.defineProperty(Object.prototype,'__proto__',{
+  get: function(){
+    return Object.getPrototypeOf(this)  // 获取引用对象的[[Prototype]]
+  },
+  set: function(o){
+    Object.setPrototypeOf(this,o) // 设置引用对象[[Prototype]]属性关联的原型为o
+    return o
+  }
+})
+```
+
+所以本质上是通过访问器属性来获取与设置对象关联的原型，可以理解通过`__proto__`能获取与设置原型的引用
+
+这里先把**普通对象的`__proto__`属性就称呼为对象原型**，以便接下来的讲解
+
+**二、函数的prototype属性**
+
+>所有函数都有的prototype属性，js中函数也属于对象的子类型，所以函数也具备对象的`__proto__`与普通对象类似都指向其原型。而这里的prototype属性，是函数独有的。当函数使用new关键字修饰时，我们可以理解为此函数被当作构造函数使用也就是构造器。当函数被用作构造函数调用时，其prototype发挥了作用，使得由构造器new出来对象的`__proto__`指向构造函数的prototype。
+
+以下演示函数prototype属性在实例化时的作用
+
+```prototype属性作用
+function Foo(){} // 定义构造函数
+console.dir(Foo.prototype) // 定义Foo构造函数时，自动创建的“干净的实例原型”，在原型链第二幅图的左下角有体现
+
+const obj = new Foo() //创建一个实例对象
+
+console.dir(obj.__proto__===Foo.prototype) // true，表名实例关联的原型即为构造函数的prototype指向的原型对象
+```
+
+为了便于讲解，这里把**函数的prototype称呼为构造器原型**，以便接下来的讲解。这里要区分函数的`__proto__`属性是作为对象时，关联的原型(即对象原型)，函数的`prototype`作为构造函数调用时关联的原型(即构造器原型)，这里要先弄清楚其中的区别，以便接下来的讲解
+
+**三、各类方法与属性的统称**
+
+>构造函数中定义的方法，我们统称为**静态方法**，构造函数中定义的属性我们统称为**静态属性**。在原型中定义的属性，我们统称为**原型属性**，在原型中定义的方法，我们统称为**原型方法**。实例中的属性以及方法，我们也就称呼为**实例属性/方法**。当然方法也属于属性，只是我们通常把定义在对象中的函数称为方法
+
 ### 原型
 
 - 只有对象类型才有原型概念
@@ -445,12 +490,87 @@ console.timeEnd('start') // 耗时73ms
 
 ### 继承
 
-- 所谓继承一般说的是原型继承，一个原型上面定义的方法一般都是基于其实例的用途来定义的，也就是说，原型的方法应该是实例经常用到的通用方法，而构造器方法一般是特定情况下可能会用到的方法，可按需调用，原型方法只能供其实例来使用
+- js中的继承一般分为三部分：原型属性继承、静态属性继承、实例属性继承，一个原型上面定义的方法一般都是基于其实例的用途来定义的，也就是说，原型的方法应该是实例经常用到的通用方法，而构造器方法一般是特定情况下可能会用到的方法，可按需调用，原型方法只能供其实例来使用
 - 继承可以让原型链丰富，根据需求定制不同的原型链，不会存在内存浪费的情况，原型只会保留一份，用到的时候调用就行，还能节省空间
+
+### 原型继承
 
 ![原型继承](./img/原型继承.png)
 
 - 可以看出原型一般是一些共有的特性，实例是特有的特性，继承的越多越具体，原型链的最顶端是最抽象的，越底端越具体，这样一来我们可以根据需求在恰当位置继承来实现个性化的定制属性，统一而又有多样化
+
+原型之间的继承
+
+```原型继承
+function Parent(){} // 定义父类构造器
+function Children(){} // 定义子类构造器
+
+let ChildPrototype = Children.prototype // 构造器原型
+let ChildPrototypeProto = Children.prototype.__proto__ // 构造器原型的对象原型
+
+// 方法一
+ChildPrototypeProto = Parent.prototype // 父类构造器原型作为子类构造器原型(ChildPrototype)的对象原型(ChildPrototypeProto)
+
+//方法二
+ChildPrototype = Object.create(Parent.prototype) // Object.create返回一个对象，其__proto__指向传入的参数，也就实现返回的对象继承参数对象
+
+//方法三
+Object.setPrototypeOf(ChildPrototype, Parent.prototype) // 直接设置参数1的原型(__proto__)为参数2
+```
+
+以上仅实现了原型之间的继承
+
+### 静态属性继承
+
+- 静态属性的继承，意味着父构造器中定义的静态属性，在子构造器中可以直接调用。不仅实例可以通过对象原型实现继承，构造器也可以通过对象原型继承。之前提到过函数有`prototype`与`__proto__`，其中`prototype`是给实例用的，而`__proto__`是给自己用的。
+- 默认的构造函数的对象原型都指向原始函数构造器原型(即Function.prototype)，可以理解所有函数都是由原始函数构造器生成
+- 通过构造函数自身的对象原型(`__proto__`)，来实现静态属性继承
+
+```构造器静态属性继承
+function Parent() {} // 定义父构造函数
+function Children() {} //定义子构造函数
+
+// 定义父构造函数的静态方法
+Parent.foo = function () {
+  console.log(this.name)
+}
+
+// 方法一
+Children.__proto__ = Parent // 子构造函数的对象原型指向父构造函数，也就实现继承
+
+// 方法二
+Object.setPrototypeOf(Children, Parent) // 同原型继承
+
+console.log(Children.foo) // function(){ console.log(this.name) } ,实现继承
+```
+
+以上即为构造函数之间通过对象原型继承静态属性，注：函数也是对象
+
+### 实例属性继承
+
+- 实例自带的属性是由构造函数实例化时默认生成的，那么要实现实例属性的继承，势必要实现子构造函数中调用父构造函数，这样才能实现子构造函数实例化出来的对象也具备父构造函数给予的默认属性
+- 在class语法糖的constructor中的super()函数就是实现这个继承
+
+```super
+// 定义父构造函数
+function Parent(name) {
+  this.name = name
+}
+
+//定义子构造函数
+function Children(name,age) {
+  Parent.call(this,name)  // 这里调用父构造器，实现实例属性继承
+  this.age = age
+}
+
+const obj = new Children('tom', 5)
+
+console.log(obj) // {name: 'tom', age: 5} ，实现实例属性继承
+```
+
+通过实例属性继承，可以把父构造器中默认生成的实例属性追加到子构造器实例化出来的对象上
+
+综合以上继承，现在实现真正的继承
 
 ### 继承的实现
 
@@ -458,52 +578,121 @@ console.timeEnd('start') // 耗时73ms
 - 手动实现原型继承
 
 ```继承
-//貌似这个方法就能实现原型继承，不过由于使用__proto__访问器是不推荐的
-function foo(v) {
-  this.v = v
+// 定义父构造函数，功能：初始化实例name属性
+function Parent(name) {
+  'use strict'
+  this.name = name
 }
-function boo(v) {
-  this.vv = v
+// 定义父构造函数的静态方法，功能：设置调用对象的name属性
+Parent.setName = function setName(obj, name) {
+  obj.name = name
 }
-boo.prototype.__proto__ = foo.prototype
-const b = new boo(3)
-------------------------------------------------
-//采用这种方式可以实现原型的继承，也是直接修改原型
-function foo(v) {
-  this.v = v
+// 定义父构造器原型(prototype)的方法，功能：获取调用对象的name属性
+Parent.prototype.getName = function getName() {
+  return this.name
 }
-function boo(v) {
-  this.vv = v
+
+/*-----以上已定义父类的原型方法(获取name)，父类静态方法(设置name)，以及构造器默认初始化的属性name------*/
+
+// 定义子构造函数，功能：初始化实例age属性，以及通过父构造器初始化实例name属性
+function Children(name, age) {
+  'use strict'
+  Parent.call(this, name) // 调用父构造器，初始化name属性
+  this.age = age // 子构造器初始化age属性
 }
-boo.prototype = Object.create(foo.prototype, {
+// 定义子构造函数的静态方法，功能：设置调用对象的age属性
+Children.setAge = function setAge(obj, age) {
+  obj.age = age
+}
+
+// 原型继承
+// 设置Children.prototype['[[Prototype]]']= Parent.prototype，此处的'[[Prototype]]'与设置__proto__相同
+Children.prototype = Object.create(Parent.prototype)
+// 注意此处原型继承之后，不带有constructor属性，应该手动指明为Children
+Object.defineProperty(Children.prototype, 'constructor', {
+  value: Children,
+  writable: true, // 可写
+  enumerable: false, // 不可枚举
+  configurable: true, // 可配置
+})
+//以上2句可以直接写成一句
+/*
+Children.prototype = Object.create(Parent.prototype, {
   constructor: {
-    value: boo,
-    enumerable: false,
-    writable: true,
-    configurable: true
+    value: Children,
+    writable: true, // 可写
+    enumerable: false, // 不可枚举
+    configurable: true, // 可配置
   }
 })
-const b = new boo(3)
------------------------------------------------
-//借助一个空构造器来实现原型继承
-function foo(v) {
-  this.v = v
+*/
+
+// 由于子构造器原型方法必须在继承之后再定义，否则会被继承覆盖
+// 定义子构造器原型(prototype)的方法，功能：获取调用对象的age属性
+Children.prototype.getAge = function getAge() {
+  return this.age
 }
-function boo(v) {
-  this.vv = v
+
+// 构造函数(继承静态属性)继承
+// 设置Children.__proto__ = Parent，注意此处不能使用Children = Object.create(Parent)，因为Object.create返回的是一个对象不能替换构造函数
+Object.setPrototypeOf(Children, Parent)
+
+// 测试父级
+const obj = new Parent('tom') // 实例化父级实例
+console.log(obj.getName()) // tom
+Parent.setName(obj, 'jerry') // 通过父级静态方法设置name
+console.log(obj.getName()) // jerry
+console.log(obj instanceof Parent) // true
+
+// 测试子级
+const obj1 = new Children(null, 5) // 实例化子级实例
+console.log(obj1.getAge()) // 5
+Children.setAge(obj1, 8) // 通过子级静态方法设置age
+console.log(obj1.getAge()) // 8
+console.log(obj1 instanceof Parent) // true
+console.log(obj1 instanceof Children) // true
+
+// 完整测试继承
+const test = new Children('tom', 5) // 实例化子级实例,name='tom',age=5
+console.log(test.getName()) // tom
+Parent.setName(test, 'jerry') // 通过父级静态方法设置name=jerry
+console.log(test.getName()) // jerry
+
+console.log(test.getAge()) // 5
+Children.setAge(test, 8) // 通过子级静态方法设置age=8
+console.log(test.getAge()) // 8
+
+class P {
+  constructor(name) {
+    this.name = name
+  }
+  static setName(obj, name) {
+    obj.name = name
+  }
+  getName() {
+    return this.name
+  }
 }
-function o() {}
-o.prototype = foo.prototype
-boo.prototype = new o()
-boo.prototype.constructor = boo
-const b = new boo(3)
-------------------------------------------------
-//class的extends会将子类的__proto__设置为父类
-如果实现类似extends的继承还需加上
-boo.__proto__ = foo
+class C extends P {
+  constructor(name, age) {
+    super(name)
+    this.age = age
+  }
+  static setAge(obj, age) {
+    obj.age = age
+  }
+  getAge() {
+    return this.age
+  }
+}
+
+// 这里就不带测试了，可以自行验证，比对一下有什么区别
+console.dir(Children)
+console.dir(C)
+
 ```
 
-实现构造器原型的继承，无非就是父构造器原型赋值给子构造器原型的原型，还有需要保证子构造器原型不能含有父构造器的属性
+实现继承，需要对原型、构造器、实例属性都加以实现继承
 
 ## <span id="5">五、实现class与extends</span>
 
@@ -534,7 +723,7 @@ const Class = (function () {
 const i = new Class('我是实例')
 ```
 
-实现class语法糖，只需封装一层函数。
+实现class语法糖，只需封装一层函数，可参考继承小节代码演示。
 
 - 返回的Constructor就是实例的构造器，其prototype是个空白的对象这是由于Function造成的
 - new后面调用的函数必须是一个构造器函数，用于构造实例，此构造器的this指向实例
