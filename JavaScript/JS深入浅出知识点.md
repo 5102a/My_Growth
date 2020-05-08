@@ -125,7 +125,7 @@ console.log([5,6]=='5,6',['5','6']=='5,6')
 
 如下为toString与valueOf转换
 
-![ ToPrimitive转换](JStoString与valueOf.png)
+![ ToPrimitive转换](./img/JStoString与valueOf.png)
 
 #### 对于===的判断
 
@@ -479,7 +479,7 @@ console.dir(obj.__proto__===Foo.prototype) // true，表名实例关联的原型
 - 构造器也是函数，也是被Function实例化出来的，所以构造器的`__proto__`就是Function，但是构造器的prototype属性指向的原型，是此构造器实例化出来的实例所指向的原型；简单说构造器的prototype就是作为它的实例的原型
 
 看看函数的原型链
-![函数原型链](函数原型链.png)
+![函数原型链](./img/函数原型链.png)
 
 - 在js中函数有多重身份，函数可以作为类就是构造器使用，定义静态方法，作为普通函数调用，
 - 只有由原始函数构造器(Function)实例化的函数才拥有直接使用函数原型(Function.prototype)上面的内置方法，创建函数只能通过原始函数构造器生成，
@@ -941,7 +941,7 @@ console.dir(wm) // 保存了对象a与其值1
 ## <span id="7">七、this</span>
 
 先看一张图
-![函数this](this指向.png)
+![函数this](./img/this指向.png)
 
 - this的绑定在创建执行上下文时确定
 - 大多数情况函数调用的方式决定this的值，this在执行时无法赋值
@@ -967,10 +967,10 @@ foo.call(5)
 严格与非严格模式下的this指向是不同的，非严格总是指向一个对象，严格模式可以为任意值
 
 执行前
-![this演示1](this演示1.png)
+![this演示1](./img/this演示1.png)
 
 执行后
-![this演示2](this演示2.png)
+![this演示2](./img/this演示2.png)
 
 以上2图可以使用chrome开发工具来进行查看程序执行时的相关数据，可以看到严格模式下简单调用的函数内部的this指向undefined
 
@@ -1361,11 +1361,11 @@ foo.Bind(obj, obj.age)(2)
 
 以下展示的是事件循环大致流程
 
-![事件循环](事件循环1.png)
+![事件循环](./img/事件循环1.png)
 
 以下为主线程判断逻辑
 
-![事件判断](事件判断.png)
+![事件判断](./img/事件判断.png)
 
 ### 前端异步的场景
 
@@ -1512,7 +1512,7 @@ window.location.href = 'http://www.baidu.com'
 
 先看下其拥有的属性
 
-![location属性](location属性.png)
+![location属性](./img/location属性.png)
 这里补充一个**origin**属性，`返回URL协议+服务器名称+端口号 (location.origin == location.protocol + '//' + location.host)`
 
 - 可以通过上述属性来获取URL中的指定部分，或者修改href于hash达到重新定位与跳转
@@ -1525,7 +1525,7 @@ window.onhashchange = funcRef;
 ```
 
 location方法
-![location方法](location方法.png)
+![location方法](./img/location方法.png)
 
 - `assign(url)`,通过调用`window.location.assign`方法来打开指定url的新页面`window.location.assign('http://www.baidu.com')`在当前页面打开百度，可回退
 - `replace(url)`,在当前页面打开指定url，不可回退
@@ -1924,7 +1924,7 @@ function ajax() {
 - session 表示服务器与客户端的一次会话过程，session对象存储特定用户的属性及配置信息
 - 当用户在应用程序的 Web 页之间跳转时，存储在session 对象中的变量将不会丢失，而是在整个用户会话中一直存在下去。当客户端关闭会话，或者 session 超时失效时会话结束
 
-![session](session.png)
+![session](./img/session.png)
 
 - 用户第一次请求服务器的时候，服务器根据用户提交的相关信息，创建创建对应的 session ，请求返回时将此 session 的唯一标识信息 sessionID 返回给浏览器，浏览器接收到服务器返回的 sessionID 信息后，会将此信息存入到 Cookie 中，同时 Cookie 记录此 sessionID 属于哪个域名
 - 当用户第二次访问服务器的时候，请求会自动判断此域名下是否存在 Cookie 信息，如果存在自动将 Cookie 信息也发送给服务端，服务端会从 Cookie 中获取 sessionID，再根据 sessionID 查找对应的 session 信息，如果没有找到说明用户没有登录或者登录失效，如果找到 session 证明用户已经登录可执行后面操作
@@ -1995,7 +1995,7 @@ localStorage：始终有效，窗口或浏览器关闭也一直保存，本地�
   - localStorage在所有同源窗口中都是共享的；也就是说只要浏览器不关闭，数据仍然存在
   - cookie: 也是在所有同源窗口中都是共享的.也就是说只要浏览器不关闭，数据仍然存在
 
-![storage](storage.png)
+![storage](./img/storage.png)
 
 ## <span id="19">十九、跨域</span>
 
@@ -2226,11 +2226,11 @@ server {
 - 此方法只执行一次，可以使用`clearTimeout(id)`清除定时器来取消回调
 - 看一下setTimeout的延迟执行机制
 
-![setTimeout](setTimeout.png)
+![setTimeout](./img/setTimeout.png)
 
 - 以上使用嵌套setTimeout来实现循环调用，可以从中看出setTimeout计时是从上一个setTimeout回调执行之后开始的，看看代码效果
 
-![setTimeout代码演示](setTimeout代码演示.png)
+![setTimeout代码演示](./img/setTimeout代码演示.png)
 
 - 上图计算的是2次调用回调之间的间隔，不包括回调执行时间，可以看出在开启定时器之后到执行回调的时间确实是参数2所设置的值，延迟时间与回调函数执行时间无关；
 - 简单来讲setTimeout的延迟时间不包括自身回调所占用的时间
@@ -2243,15 +2243,15 @@ server {
 - 不同于setTimeout，此定时器的延迟执行机制有所不同
 - `setInterval(func|code, [delay], [arg1], [arg2], ...)`，参数列表同setTimeout，参数2为每次循环时间
 
-![setInterval](setInterval.png)
+![setInterval](./img/setInterval.png)
 
 - 从上图可以先得出结论，setInterval的延迟执行时间包含自身回调执行所占用的时间，看看代码效果
 
-![setInterval代码演示](setInterval代码演示.png)
+![setInterval代码演示](./img/setInterval代码演示.png)
 
 - 上图计算的是2次调用回调之间的间隔，不包括回调执行时间，可以看出setInterval在2次执行之间的延迟受到了回调的影响，再验证一下
 
-![setInterval代码演示1](setInterval代码演示1.png)
+![setInterval代码演示1](./img/setInterval代码演示1.png)
 
 - 此次我把回调执行时间也算在计时之内，现在看来setInterval的定时时间确实包含了自身回调所占用的时间
 
@@ -2270,7 +2270,7 @@ server {
 - 如果使用定时器进行js动画操作，那么首先将会导致动画更新与浏览器每次重绘时机不匹配，造成卡顿，其次过于频繁的更新动画还会导致不必要的性能开销，且并非能够达到更好的效果
 - 简单说使用requestAnimationFrame更新的动画与浏览器保持同步，不会掉帧，除非浏览器掉帧或者，js主线程阻塞导致浏览器无法正常渲染，使用定时器更新动画，如果频率高了会影响性能，且达不到更好的效果，如果频率低了将会有不连贯的感觉
 
-![requestAnimationFrame](requestAnimationFrame.png)
+![requestAnimationFrame](./img/requestAnimationFrame.png)
 
 - 从上图可以看出确实是每帧执行一次，不过要注意，调用一次requestAnimationFrame只会执行一次，如果需要持续执行需要在回调函数内继续调用
 
@@ -2302,7 +2302,7 @@ document.getElementById("btn").onclick = function () {}
   3. bubbling阶段，即事件冒泡阶段，在目标元素处理完成之后，此事件还会向上冒泡，回传到Document，此阶段与捕获阶段相反
 - 以上就是事件在触发之后的传播过程，可以配合下图理解
 
-![事件传递](事件传递.png)
+![事件传递](./img/事件传递.png)
 
 - DOM2 注册事件，可以通过`addEventListener(eventName,callback,isCapturing)`方法为元素设置事件监听器，参数1为注册事件名不带on开头的string类型，参数2为触发事件的回调函数，接受一个事件对象参数，参数3为是否在捕获阶段触发，默认为false
 - 通过`removeEventListener(eventName,callback,isCapturing)`方法移除指定事件名、回调、是否捕获的事件，匿名回调无法删除
