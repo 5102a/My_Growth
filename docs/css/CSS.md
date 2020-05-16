@@ -3,12 +3,12 @@
 ## 书写方式
 
 - 嵌入式，嵌入到 html 代码中单独一块
-  - `<style type="text/css"></style>`html5 可不写，一般放 head 里
+- `<style type="text/css"></style>`html5 可不写，一般放 head 里
 - 行内式，直接写到标签内当作标签属性设置 style="css 代码（直接写属性：值；）不用选择器"通用属性
 - 外链式，用文件包含.css 文件`<link rel="stylesheet" href="xx.css">`rel 的 stylesheet 为样式表类型 。css 只能写选择器：{语句 1；语句 2}；css 代码
 - @import url(css 文件目录)，通过这种方式在 css 中引入其他 css 样式
 
-### css 属性
+## css 属性
 
 - css 代码：选择器：{语句 1；语句 2}；
 - color 文本颜色#f00==#ff0000
@@ -17,23 +17,23 @@
 - height 高度
 - 注释`/*注释内容*/`不能用 html 注释
 
-### 选择器
+## 选择器
 
-#### 基本选择器
+### 基本选择器
 
 - \*{属性：值}，为通用选择器，\*表示全部
 - 标签名 {属性：值}标签选择器
 - .class 名 {}类选择器，使用.类名 来选择；p .class 表示层层选择到指定为 class 类的标签
 - #id 名 {} id 选择器，使用#id 来选择；id 唯一，给特定标签设置样式
 
-#### 复合选择器
+### 复合选择器
 
 - 多元素选择器：p,h1,h2 {属性：值} 同时匹配多个标签或类、id 等，多个选择器之间用逗号隔开
 - 后代选择器：#id p {属性;值} 匹配所有属于#id 下的全部 p 标签，父子带之间用空格隔开
 - 子元素选择器：.class>p {属性：值} 匹配.class 下一层中全部的孩子，不包括孙子及以下
 - 相邻元素选择器：div1+div2 {属性：值} 匹配同级紧跟 div1 后的元素 div2，之间用+号连接，条件同级元素，之间没有其他元素，且 div2 在 div1 下面
 
-#### 伪类选择器
+### 伪类选择器
 
 - 根据 a 或者其他的超级链接不同状态设置用:状态名 设置
 - input:focus,鼠标焦点
@@ -46,7 +46,7 @@
 - :active 鼠标放在元素上面，点击时的样式，即点击瞬间的样式
 - 一般超级链接 正常与访问过的状态一样，鼠标放上时设置另一个颜色，激活状态一般不设置时间太短了
 
-#### 属性选择器
+### 属性选择器
 
 - 属性选择器通过属性名和属性值来匹配元素
   - [attr] 匹配所有具有 attr 属性的元素 eg：h1[align][size]{}
@@ -57,14 +57,14 @@
   - [attr~="val"] 匹配元素中 attr 属性中指定值为一个整体（一个单词独立整体）的所有元素 eg：font[color~="00"]
   - [attr|="val"] 匹配元素中 attr 属性以指定值开头（以及值后跟-）所有元素 eg：font[color|="#ff"]
 
-#### 结构选择器
+### 结构选择器
 
 - div span p{}div的后代span的后代p,后代用空格
 - div>span{}div的孩子span，父子级用>
 - div h1~h2{}div的后代中h1的兄弟h2以及之后的
 - div h1+h2{}div的后代中紧挨h1的兄弟h2
 
-#### 尺寸样式属性
+## 尺寸样式属性
 
 - height auto、length 使用 px 定义
 - width 同上
@@ -73,7 +73,7 @@
 - 自动由内容设置weight、height：fit-content
 - width、height：min-content、max-content，由内容最大最小适应尺寸
 
-#### 文本属性
+## 文本属性
 
 - color 设置文本颜色，十进制没有兼容性问题
 - text-align 值 left、center、right 设置文本水平对齐方向
@@ -99,7 +99,7 @@
 - text-overflow：ellipsis溢出...
 - text-indent：1em首行缩进
 
-#### 列表样式属性
+## 列表样式属性
 
 - 无序列表和有序列表
 - list-style-type 值 none 将列表前面的小圆点去掉、disc 实心圆、square 实心方块、circle 空心圆，设置列表前面符号的类型
@@ -107,7 +107,7 @@
 - list-style-image 值 url 图像路径，将图像设置为列表项标记
 - list-style 值 square inside url（xx.png），在一个声明中设置所有列表属性
 
-### 继承性
+## 继承性
 
 - 外层元素身上的样式会被内层元素继承，子继父
 - 如果内层元素的样式与外层元素样式一致时，优先渲染内层样式
@@ -116,7 +116,7 @@
 
 - 一般直接给 body 标签设置字体大小和样式，body 为最外层元素
 
-### 优先级
+## 优先级
 
 > **行内样式>id 选择器>类选择器>标签选择器>**
 
@@ -130,7 +130,7 @@
 - ！important 提升**属性**优先级，使用此关键字，权重无限大，为最高级；需写在值的后面不能有分号需要空格，不能提升继承过来的权重，即只增加自己属性的权重，不增加孩子的权重
 - 同权重谁后出现谁优先
 
-#### 一个标签可以有多个类名
+## 一个标签可以有多个类名
 
 - 类名直接用空格隔开 eg：class="show head"
 - 快捷生成 div.div${哈哈\$}\*2
@@ -142,7 +142,7 @@
 
 - 如果多个类名的样式一样，则会冲突，优先使用优先级高的，即写的越近的 css 样式，谁越后写谁优先级高和 class 写的顺序无关
 
-#### 背景样式属性
+## 背景样式属性
 
 - bakcground-color 值#ffffff 等，设置背景色
 - background-image 值 url 图像路径，设置背景图
@@ -152,7 +152,7 @@
 - background 值 url no-repeat center center，设置背景的简写形式
 - background-clip：content-box背景按内容裁切
 
-#### 标准文档流
+## 标准文档流
 
 - html 文档从左至右、从上至下
 
@@ -162,7 +162,7 @@
 2. 高矮不齐，底部对齐
    - 高度不齐时，只有底部对齐
 
-#### 浮动流
+## 浮动流
 
 - 实现多个块元素在同一行，并且设置高宽
 - 有行内元素特性、有块级元素特性
@@ -173,7 +173,7 @@
 - 行内元素浮动之后会成为块元素
 - 浮点影响后面的元素
 
-#### 清除浮动
+## 清除浮动
 
 - 为什么要清除浮动：浮动元素会影响下面元素的排版布局，父元素不会包裹浮动元素
 - 清除浮动就不会邮箱之后排版，父元素会在视觉上包裹浮动元素
@@ -183,20 +183,20 @@
   2. 使用清除浮动的样式 clear，专门清除浮动；clear：left、right、both 都清，一般用在最后一个浮动元素下再建一个 div 放上清除浮动属性，::after{clear:both;content:'';display:block}追加元素
   3. 使用 overflow：hidden 属性清除浮动，溢出隐藏，父元素设置，BFC计算浮动元素高度
 
-#### 盒子模型
+## 盒子模型
 
 - 盒子=内容 content+内填充 padding+边框 border+外边距 margin
 - 盒子主要属性：width、height、padding、border、margin
 - width、height 为内容的宽度
 - 盒子高宽为内容+内填充+边框大小，一般不设置盒子宽高
 
-##### 内填充 padding
+## 内填充 padding
 
 - padding-top、-left、-right、-bottom，设置指定方向的内填充
 - padding 简写属性为，上右下左顺序填写大小
 - 一值为全部，二值为上下、左右，三值为上、左右、下，四值为分开设置
 
-##### margin 外边距
+## margin 外边距
 
 - 上右下左同上设置
 - margin 有塌陷现象，在标准文档流中，竖直方向上的 margin 不会叠加，它会取较大的值
@@ -210,7 +210,7 @@
 - 父元素没设置边框，父元素设置 padding，撑开子元素，推荐使用
 - margin 用于描述兄弟之间的关系，父子关系用 padding
 
-##### border 边框
+## border 边框
 
 - 边框 3 要素，粗细、颜色、线条
 - border：粗细 线型 颜色；border:1px solid red;颜色不写为黑色，其他值不能不写，否则无效
@@ -219,7 +219,7 @@
 - shape-outside：border-box文字环绕边框，值也可以是clip-path的值、url（图片.png）
 - clip-path：circle（大小 at 圆心x，圆心y），形状、ellipse、polygon绘制形状
 
-##### display 转换元素体现类型
+## display 转换元素体现类型
 
 - 显示元素属性
 - 值为 inline 行内元素、block 块级元素、none 不显示、inline-block 行内块元素，转换之后具有各类型属性
@@ -227,7 +227,7 @@
 - visibility：hidden会保留空间位
 - opacity：0透明度
 
-#### position
+## position
 
 - position 值 fixed 固定定位、relative 相对、absolute 绝对
 - 定位需配合定位坐标使用 left、right、top、bottom 离各方向距离
@@ -256,16 +256,16 @@
 
 4. sticky粘性定位，吸附作用，left：0px，吸附定位顶部，同级不会移走会覆盖，非同级会移走
 
-#### z-index 层级
+## z-index 层级
 
 - 只有定位元素才有 z-index 属性
 - 没有单位，默认值为 0 ，如果都没设置，则后写的会覆盖早写的元素
 - z-index 值越大，层级越高，越后渲染，则显示越前面
 - 固定导航条为最高层，则不会被覆盖
 
-### CSS3=CSS2+新语法
+## CSS3=CSS2+新语法
 
-#### 结构伪类选择器
+### 结构伪类选择器
 
 - div：first-child 匹配第一个孩子
 - div：last-child 匹配最后一个孩子
@@ -280,13 +280,13 @@
 - input:disabled、input:enabled、input:checked、input:require、input:optional、input:valid、input:invalid
 - p::first-letter、p::first-line、span::after、
 
-#### border-collapse 合并表格边框线
+### border-collapse 合并表格边框线
 
 - 表格各边框相交处只留一个边框
 - 轮廓线outline-style：double
 - box-sizing：border-box盒子不会向外面撑开，固定大小
 
-#### 伪元素（选择器）
+### 伪元素（选择器）
 
 - :first-letter 操作当前元素中第一个
 - :first-line 操作当前元素中第一行
@@ -300,7 +300,7 @@
   }
   ```
 
-#### 文本阴影
+### 文本阴影
 
 - text-shadow 值可为多个，用逗号隔开
 - 值 h-shadow 必须，水平阴影位置可负，正为右
@@ -309,7 +309,7 @@
 - color 可选，阴影的颜色
 - text-shadow：3px 3px 3px red；分别为水平、垂直、距离颜色，可设置多组用逗号分隔shap
 
-#### 盒子阴影
+### 盒子阴影
 
 - box-shadow 值为多个顺序：水平方向、垂直方向、阴影清晰度、阴影大小、阴影颜色、阴影位置（inset outset 默认）
 - h-shadow、v-shadow 必须
@@ -346,7 +346,7 @@
   - order：1排列顺序数值越大越后面
 - 弹性不影响绝对定位，相对定位影响后面布局
 
-#### 栅格系统
+### 栅格系统
 
 - display：grid栅格容器，块级
 - grid-template-row：repeat（5，20%）画行、columns列，repeat（auto-fill，100px）、（3，1fr）按份分（2，minmax（50px，100px））
@@ -365,7 +365,7 @@
 - justify/align-self控制自己对齐
 - place-items同时控制、place-self
 
-#### 变形透视
+### 变形透视
 
 - x水平，y垂直，z纵深不能%
 - transform:translateX（200px）x移动，%，translate（x，y），可以把元素定在中心用动画，translate3d（x，y，z），scaleX（2，.5）缩放,perspective(900px)透视，rotateX（45deg）、rotate（）、rotate3d（x,y,z,deg）旋转，scaleZ（5）z轴拉长，scale3d（x,y,z），skew(xdeg,ydeg)倾斜
@@ -381,7 +381,7 @@
 - perspective-origin:-100px 200px视角移动
 - backface-visibility:hidden背面不可见
 
-#### 过渡
+### 过渡
 
 - transform：2s过渡时间,可以继承，可以单独设置状态的过渡
 - transition-property:col，width（默认all）过渡属性
@@ -390,7 +390,7 @@
 - transition-delay:1s延迟过渡（2s,3s）可分别设置属性过渡延迟，时间不够不显示
 - transition：过渡属性 过渡方式 过渡时间 延迟时间，组合设置过渡，也可每个属性独立设置
 
-#### 帧动画
+### 帧动画
 
 - 定义帧动画，定义顺序无关,不会覆盖过渡变换，多个动画可以同时作用
 - animation-name:帧动画名
@@ -430,7 +430,7 @@
 }
 ```
 
-#### 响应式布局
+### 响应式布局
 
 - 不同屏幕上有不同布局
 - media="screen"设备属性print打印设备all，link标签，css中使用@import url（print.css) print，media=“screen and (min-width:760px) and (max-width:1000px) and (orientation:landscape横屏),screen and (min-width:760px)”，用逗号表示或，逻辑非not写在最前面，only浏览器支持则使用
