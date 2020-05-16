@@ -48,6 +48,10 @@ module.exports = [ // 导航栏，导航
     ]
   },
   {
+    text: '目录引导',
+    link: '/guide/'
+  },
+  {
     text: '读书记',
     link: '/reading/'
   },
