@@ -1,6 +1,6 @@
 MyPress
 node_modules
-docs/.vuepress/dist
+docs
 deploy.sh
 package.json
 CNAME
