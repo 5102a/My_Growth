@@ -20,12 +20,13 @@ module.exports = [{
     ]
   },
   {
-    title: '浏览器', // 必要的
+    title: '浏览器&操作系统', // 必要的
     path: '/guide/sidebar3/', // 可选的, 标题的跳转链接，应为绝对路径且必须存在
     collapsable: true, // 可选的, 默认值是 true,
     sidebarDepth: 1, // 可选的, 默认值是 1
     children: [
-      '/browser/'
+      '/browser/',
+      '/operating-system/'
     ]
   },
   {

@@ -26,6 +26,10 @@ module.exports = [
         link: '/browser/',
       },
       {
+        text: '操作系统',
+        link: '/operating-system/',
+      },
+      {
         text: '网络',
         link: '/network/',
       },

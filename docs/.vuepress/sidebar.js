@@ -10,5 +10,6 @@ module.exports = {
   '/network/': ['','net'],
   '/others/': ['','PHP','mysql','echart'],
   '/reading/': ['','advanced-programming/note'],
-  '/security/': ['','secure']
+  '/security/': ['','secure'],
+  '/operating-system/': ['','OS']
 }
