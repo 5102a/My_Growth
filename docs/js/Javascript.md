@@ -337,7 +337,7 @@ for(var i=0;i<arr.length;i++){
 * 对象.\_\_proto\_\_设置原型，也可以查看（非标准）如果右边是对象可以赋值其他无效，访问器
 
 * 对象原型Object.prototype的Object.prototype.\__proto__指向null
-![img](./img/原型链.png)
+![img](./img/25.png)
 
 * 用 set/getPrototypeOf（）创建查看原型
 
