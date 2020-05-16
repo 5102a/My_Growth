@@ -1,9 +1,9 @@
-module.exports = {
+module.exports = {  // 主配置文件
   /* ------------- base ------------ */
   // string，网页标题，它将显示在导航栏
   title: '5102的技术文档',
   // string，网站的描述，它将会以 <meta> 标签渲染到当前页面的 HTML 中
-  description: 'Just playing around',
+  description: '欧里给!!!',
   // string，站点基础路径
   base: '/My_Growth/',
   // Array，额外的需要被注入到当前页面的 HTML <head> 中的标签

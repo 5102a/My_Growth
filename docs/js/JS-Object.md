@@ -1,4 +1,4 @@
-# JS对象方法——速记小本子
+# JS对象方法
 
 ### 对象检测方法
 1. **obj.hasOwnProperty(prop)返回boolean**，prop：要检测的属性的 String 字符串形式表示的名称，或者 Symbol。指示对象自身属性中是否具有指定的属性（也就是，是否有指定的键）

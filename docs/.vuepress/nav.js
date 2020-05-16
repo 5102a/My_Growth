@@ -1,9 +1,9 @@
-module.exports = [
+module.exports = [ // 导航栏，导航
   {
     text: '目录',
     items: [{
         text: 'HTML',
-        link: '/html/',
+        link: '/html/', // 文件夹
       },
       {
         text: 'CSS',
@@ -53,7 +53,7 @@ module.exports = [
   },
   {
     text: '掘金',
-    link: 'https://juejin.im/user/5e699b39f265da573550658c'
+    link: 'https://juejin.im/user/5e699b39f265da573550658c' // 外链
   },
   {
     text: 'GitHub',
