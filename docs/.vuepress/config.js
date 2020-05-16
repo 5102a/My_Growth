@@ -25,7 +25,7 @@ module.exports = {
   // 指定 cache 的路径，设置为 false 来在每次构建之前删除 cache
   // cache: true,
   // Array，指定额外的需要被监听的文件，文件变动将会触发 vuepress 重新构建
-  extraWatchFiles: ['../README.md'],
+  // extraWatchFiles: [],
   // Array，默认解析的文件
   patterns: ['**/*.md', '**/*.vue'],
 

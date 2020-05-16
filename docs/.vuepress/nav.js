@@ -1,9 +1,4 @@
 module.exports = [
-  // { text: '前端三剑客', link: '/guide/' },
-  // { text: '算法&数据结构', link: '/' },
-  // { text: '浏览器', link: '/' },
-  // { text: '网络&安全', link: '/' },
-  // { text: '设计模式', link: '/' },
   {
     text: '目录',
     items: [{
