@@ -27,7 +27,7 @@ module.exports = {
   // Array，指定额外的需要被监听的文件，文件变动将会触发 vuepress 重新构建
   extraWatchFiles: ['../README.md'],
   // Array，默认解析的文件
-  patterns: ['**/*.md', '**/*.vue','**/*.jpg','**/*.png','**/*.gif'],
+  patterns: ['**/*.md', '**/*.vue'],
 
   /* -------------- Styling -----------*/
   // 定义一些变量，外部样式变量

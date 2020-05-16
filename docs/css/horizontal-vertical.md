@@ -115,11 +115,11 @@
 
 left与right强制设置为0，加上margin的auto，导致margin自动补全左右距离使其满足left与right为0
 
-![margin与定位对齐](img/margin与定位对齐.png)
+![margin与定位对齐](img/2.png)
 
 上图为left与right时margin的自动填充，橘黄色位置即为margin，可以看到填充了很多。接下来我调整一下lefr与right的值
 
-![margin与定位对齐1](img/margin与定位对齐1.png)
+![margin与定位对齐1](img/3.png)
 
 上图中我把left与right都设置为50px，可见margin也是相对左右位置开始填充，所以只要保证left与right的值相等即可使用margin对齐。当然也可以是负值，只不过margin填充更多而已
 
@@ -316,7 +316,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 </div>
 ```
 
-![文字垂直居中](./img/文字垂直居中.png)
+![文字垂直居中](./img/6.png)
 
 基线画的不是很整齐，但是能看出test与1的底线对齐，即最高文字的基线对齐，这就是文字默认的基线对齐。加`display: inline-block;`的原因就是形成BFC，不让子元素与父元素的border重叠，如果去掉则边框会重叠，子元素会向上移动边框宽度
 
@@ -341,7 +341,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 }
 ```
 
-![文字垂直居中1](./img/文字垂直居中1.png)
+![文字垂直居中1](./img/7.png)
 
 设置完之后，会发现，文字以其垂直方向上的中心线对齐，没错这就是设置`vertical-align: middle;`的效果。可以这么理解，块级元素中的基线(即默认`vertical-align: baseline;`)以行内元素中字体高度最高的那个文字的底线作为基线，所有的vertical-align属性都是以最高的那个文字作为参照
 
@@ -380,7 +380,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 最终效果，此方法兼容性较好也适应IE7
 
-![文字垂直居中2](img/文字垂直居中2.png)
+![文字垂直居中2](img/8.png)
 
 ### 元素垂直居中
 
