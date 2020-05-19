@@ -2,7 +2,7 @@
 
 canvas原生js实现简单画板
 
-## [在线测试画板](https://1015355299.github.io/My_Growth/html/Canvas.html)
+## [在线测试画板](https://1015355299.github.io/My_Growth/html/CanvasOnline.html)
 
 ![预览](./img/photo.png)
 
