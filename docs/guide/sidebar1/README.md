@@ -12,6 +12,8 @@
 
 - ### [特别属性](../../html/special)
 
+- ### [Canvas原生JS画板](../../html/Canvas)
+
 ## [二、CSS系列](../../css/)
 
 - ### [CSS基础用法](../../css/CSS)
