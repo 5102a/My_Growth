@@ -1,4 +1,4 @@
-# canvas原生js画板
+# Canvas原生js画板
 
 canvas原生js实现简单画板
 
