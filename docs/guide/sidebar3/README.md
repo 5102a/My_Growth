@@ -4,6 +4,8 @@
 
 ## [一、浏览器系列](../../browser/)
 
+### [刨析浏览器工作原理](../../browser/Browser)
+
 ## [二、操作系统系列](../../operating-system/)
 
 - ### [操作系统常见词汇了解](../../operating-system/OS)
