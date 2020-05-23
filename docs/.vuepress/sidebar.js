@@ -4,7 +4,7 @@ module.exports = { // 侧边栏，路由
   '/css/': ['', 'CSS', 'BFC', 'horizontal-vertical', 'Layout','Unit','Bootstrap'],
   '/js/': ['', 'JavaScript', 'JS-Array', 'JS-Object', 'JS-String', 'JS-Depth'],
   '/algorithm/': ['', 'top10sort', 'dichotomy', 'dp', 'greedy'],
-  '/browser/': ['','Browser'],
+  '/browser/': ['','Browser','Process'],
   '/data-structure/': ['', 'ds', 'link', 'tree'],
   '/design-pattern/': ['', 'd-p'],
   '/network/': ['', 'net'],
