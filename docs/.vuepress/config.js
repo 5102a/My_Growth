@@ -54,6 +54,8 @@ module.exports = {  // 主配置文件
     lastUpdated:'上次更新',
     // // 多语言模式
     // locales:require('./languages')
+    // 深度
+    sidebarDepth:3
   },
 
   /* -------------- Pluggable -----------*/
