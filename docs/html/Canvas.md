@@ -2,7 +2,7 @@
 
 canvas原生js实现简单画板
 
-## [在线测试画板](./CanvasBoard.html)
+## [在线测试画板](/CanvasBoard.html)
 
 ![预览](./img/photo.png)
 
