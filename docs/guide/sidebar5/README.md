@@ -4,6 +4,6 @@
 
 ## [一、设计模式](../../design-pattern/)
 
-- ### [JS的十几种设计模式](../../design-pattern/d-p)
+- ### [JS的十几种设计模式](../../design-pattern/d-p.html)
 
 ## [二、代码优化](../../optimization/)

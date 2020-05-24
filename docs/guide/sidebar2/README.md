@@ -4,18 +4,18 @@
 
 ## [一、算法系列](../../algorithm/)
 
-- ### [十大排序算法](../../algorithm/top10sort)
+- ### [十大排序算法](../../algorithm/top10sort.html)
 
-- ### [二分法查找](../../algorithm/dichotomy)
+- ### [二分法查找](../../algorithm/dichotomy.html)
 
-- ### [动态规划](../../algorithm/dp)
+- ### [动态规划](../../algorithm/dp.html)
 
-- ### [贪心算法](../../algorithm/greedy)
+- ### [贪心算法](../../algorithm/greedy.html)
 
 ## [二、数据结构系列](../../data-structure/)
 
-- ### [几种常见数据结构](../../data-structure/ds)
+- ### [几种常见数据结构](../../data-structure/ds.html)
 
-- ### [链表](../../data-structure/link)
+- ### [链表](../../data-structure/link.html)
 
-- ### [各种树](../../data-structure/tree)
+- ### [各种树](../../data-structure/tree.html)

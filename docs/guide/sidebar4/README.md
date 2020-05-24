@@ -4,8 +4,8 @@
 
 ## [一、网络](../../network/)
 
-- ### [计算机网络](../../network/net)
+- ### [计算机网络](../../network/net.html)
 
 ## [二、安全](../../security/)
 
-- ### [前端网络安全](../../security/secure)
+- ### [前端网络安全](../../security/secure.html)
