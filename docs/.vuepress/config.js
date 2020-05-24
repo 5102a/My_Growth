@@ -76,10 +76,10 @@ module.exports = { // 主配置文件
     // },
     // Object，这个键值对将会作为特性被增加到是外部链接的 <a> 标签上，默认的选项将会在新窗口中打开一个该外部链接
     // 打开a外部链接会额外打开的选项
-    // externalLinks: {
-    //   target: '_blank',
-    //   rel: 'noopener noreferrer'
-    // },
+    externalLinks: {
+      target: '_blank',
+      rel: 'https://docs.5102it.cn/CanvasBoard.html'
+    },
     // Object，markdown-it-table-of-contents 的选项
     // toc: {
     //   includeLevel: [2, 3]
