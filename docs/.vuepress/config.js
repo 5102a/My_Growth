@@ -1,11 +1,11 @@
-module.exports = {  // 主配置文件
+module.exports = { // 主配置文件
   /* ------------- base ------------ */
   // string，网页标题，它将显示在导航栏
   title: '5102的技术文档',
   // string，网站的描述，它将会以 <meta> 标签渲染到当前页面的 HTML 中
   description: '欧里给!!!',
   // string，站点基础路径
-  base: '/My_Growth/',
+  base: '/',
   // Array，额外的需要被注入到当前页面的 HTML <head> 中的标签
   // [tagName, { attrName: attrValue }, innerHTML?]
   head: [],
@@ -47,15 +47,15 @@ module.exports = {  // 主配置文件
     // 导航栏
     nav: require('./nav'),
     // 导航栏logo
-    logo:'/logo.png',
+    logo: '/logo.png',
     // 侧边栏
     sidebar: require('./sidebar'),
     // 最后更新时间
-    lastUpdated:'上次更新',
+    lastUpdated: '上次更新',
     // // 多语言模式
     // locales:require('./languages')
     // 深度
-    sidebarDepth:3
+    sidebarDepth: 3
   },
 
   /* -------------- Pluggable -----------*/
