@@ -4,38 +4,38 @@
 
 ## [一、HTML系列](../../html/)
 
-- ### [HTML基础用法](../../html/HTML)
+- ### [HTML基础用法](../../html/HTML.html)
 
-- ### [HTML5新特性](../../html/HTML5)
+- ### [HTML5新特性](../../html/HTML5.html)
 
-- ### [meta标签](../../html/meta)
+- ### [meta标签](../../html/meta.html)
 
-- ### [特别属性](../../html/special)
+- ### [特别属性](../../html/special.html)
 
-- ### [Canvas原生JS画板](../../html/Canvas)
+- ### [Canvas原生JS画板](../../html/Canvas.html)
 
 ## [二、CSS系列](../../css/)
 
-- ### [CSS基础用法](../../css/CSS)
+- ### [CSS基础用法](../../css/CSS.html)
 
-- ### [BFC、浮动、清除浮动](../../css/BFC)
+- ### [BFC、浮动、清除浮动](../../css/BFC.html)
 
-- ### [水平垂直布局方式](../../css/horizontal-vertical)
+- ### [水平垂直布局方式](../../css/horizontal-vertical.html)
 
-- ### [CSS常见布局](../../css/Layout)
+- ### [CSS常见布局](../../css/Layout.html)
 
-- ### [CSS单位](../../css/Unit)
+- ### [CSS单位](../../css/Unit.html)
 
-- ### [Bootstrap框架](../../css/Bootstrap)
+- ### [Bootstrap框架](../../css/Bootstrap.html)
 
 ## [三、JavaScript系列](../../js/)
 
-- ### [JavaScript基础用法](../../js/JavaScript)
+- ### [JavaScript基础用法](../../js/JavaScript.html)
 
-- ### [深入JavaScript](../../js/JS-Depth)
+- ### [深入JavaScript](../../js/JS-Depth.html)
 
-- ### [JS数组方法](../../js/JS-Array)
+- ### [JS数组方法](../../js/JS-Array.html)
 
-- ### [JS对象方法](../../js/JS-Object)
+- ### [JS对象方法](../../js/JS-Object.html)
 
-- ### [JS字符串方法](../../js/JS-String)
+- ### [JS字符串方法](../../js/JS-String.html)
