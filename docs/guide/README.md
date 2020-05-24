@@ -40,4 +40,4 @@
 
 **总览**
 
-![前端知识体系](/docs/.vuepress/public/knowledge.png)
+![前端知识体系](/knowledge.png)
