@@ -37,3 +37,7 @@
 - ### [JavaScript高级程序设计](../reading/advanced-programming/)
 
 ## [七、其他](./sidebar6/)
+
+**总览**
+
+![前端知识体系](/docs/.vuepress/public/knowledge.png)

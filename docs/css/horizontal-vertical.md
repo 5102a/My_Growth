@@ -47,7 +47,9 @@
 
 此处讨论的是块级元素水平居中，非块级元素水平居中，相当于文字居中
 
-#### **一、定宽+`margin:auto`或`margin:0 auto`**对给定宽度的块级元素水平居中
+#### 一、定宽+`margin:auto`或`margin:0 auto`
+
+对给定宽度的块级元素水平居中
 
 ```元素水平居中1
 .align1 {
@@ -64,7 +66,9 @@
 
 使其水平居中需定宽，当margin-left与margin-right为auto时，浏览器将会自动居中元素，所以`margin:auto或者margin:0 auto、margin-left:auto;margin-right:auto;`都能实现水平居中
 
-#### **二、定宽+定位+`left:50%`+`margin:-50%*宽`**这种方法也很常见，块级元素都要定宽，再居中才有意义，定位的可以调整其距离4个方向上的位置，再通过margin调整多移动的位置
+#### 二、定宽+定位+`left:50%`+`margin:-50%*宽`
+
+这种方法也很常见，块级元素都要定宽，再居中才有意义，定位的可以调整其距离4个方向上的位置，再通过margin调整多移动的位置
 
 ```元素水平居中2
 .align1 {
@@ -81,7 +85,9 @@
 
 定位方式还包括`absolute、fixed`
 
-#### **三、定宽+定位+`left:50%`+`transform:translate3d(-50%,0,0)`**原理同方法二，不同的是通过transform偏移，效率更高，如果采用3d偏移，浏览器将调用GPU启动3d硬件加速
+#### 三、定宽+定位+`left:50%`+`transform:translate3d(-50%,0,0)`
+
+原理同方法二，不同的是通过transform偏移，效率更高，如果采用3d偏移，浏览器将调用GPU启动3d硬件加速
 
 ```元素水平居中3
 .align1 {
@@ -95,7 +101,9 @@
 }
 ```
 
-#### **四、定宽+定位+`left:0`+`right:0`+`margin:auto`或`margin:0 auto`**原理类似方法一，主要是利于定位的特性
+#### 四、定宽+定位+`left:0`+`right:0`+`margin:auto`或`margin:0 auto`
+
+原理类似方法一，主要是利于定位的特性
 
 方法一是不局限位置，通过margin的自动对齐方式。此方法也是通过margin自动对齐，注意基于w3c标准盒模型left的值为margin最左到文档最左的距离，不是border到文档最左的距离
 
@@ -123,7 +131,9 @@ left与right强制设置为0，加上margin的auto，导致margin自动补全左
 
 上图中我把left与right都设置为50px，可见margin也是相对左右位置开始填充，所以只要保证left与right的值相等即可使用margin对齐。当然也可以是负值，只不过margin填充更多而已
 
-#### **五、父元素:`display:flex`+`justify-content:center`**此方法设置子元素再其父元素内居中
+#### 五、父元素:`display:flex`+`justify-content:center`
+
+此方法设置子元素再其父元素内居中
 
 ```元素水平居中5-1
 .align1 {
@@ -177,7 +187,9 @@ left与right强制设置为0，加上margin的auto，导致margin自动补全左
 
 flex布局实现居中的方式很多，但是大同小异，主副轴对调、给父元素设置内容对齐、单独对子元素设置对齐。总之flex就是"花里胡哨"，但不得不说确实好用
 
-#### **六、父元素`display:grid`+`justify-content:center`**此方法很少用，我也是找资料才知道
+#### 六、父元素`display:grid`+`justify-content:center`
+
+此方法很少用，我也是找资料才知道
 
 ```元素水平居中6
 .align1 {
@@ -198,7 +210,7 @@ flex布局实现居中的方式很多，但是大同小异，主副轴对调、�
 
 用法也类似flex，具体用法待补充
 
-#### **七、`width:fit-content`+`margin:auto`或者`margin:0 auto`**实现居中
+#### 七、`width:fit-content`+`margin:auto`或者`margin:0 auto`
 
 fit-content只支持Chrome 和 Firefox浏览器
 
@@ -217,7 +229,7 @@ fit-content只支持Chrome 和 Firefox浏览器
 
 fit-content就是实现元素收缩效果的同时，保持原本的block水平状态，配合margin实现自动水平居中。如果width不设置，那么块级元素自动会拉满宽度，当设置fit-content后，宽度就由内容决定
 
-#### **手动定位，这个方法最无脑，给个定位，计算left距离写死**
+#### 手动定位，这个方法最无脑，给个定位，计算left距离写死
 
 ### 水平居中先讲到这里，待补充。。。
 
@@ -386,7 +398,9 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 这里讲的是块级元素垂直居中，行内元素上述已经说明
 
-#### **一、父元素:定宽+`display:flex`+`align-items:center`**这个方法与水平居中类似，其子元素垂直居中，主副轴对调又是一种方法，不多赘述
+#### 一、父元素:定宽+`display:flex`+`align-items:center`
+
+这个方法与水平居中类似，其子元素垂直居中，主副轴对调又是一种方法，不多赘述
 
 ```元素垂直居中1
 .align1 {
@@ -401,7 +415,9 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 还有，子元素直接设置`align-self: center`实现垂直居中
 
-#### **二、父元素:定位+定高+子元素:`position:absolute`+`top:50%`+`margin-top:-50%高度`+定高**这与水平实现方式类似
+#### 二、父元素:定位+定高+子元素:`position:absolute`+`top:50%`+`margin-top:-50%高度`+定高
+
+这与水平实现方式类似
 
 ```元素垂直居中2
 .align1 {
@@ -427,7 +443,9 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 这里的`margin-top:-50%高度`可以改为使用`transform:translate(0,-50%)`
 
-#### **三、父元素:浮动+定高+子元素:`position:relative`+`top:50%`+`transform: translate3d(0,-50%,0)`**其中translate3d还是2d都行，建议使用3d，如果换成margin-top则需要计算自身高度，所以需要设置height(具体值)，transform则不需要
+#### 三、父元素:浮动+定高+子元素:`position:relative`+`top:50%`+`transform: translate3d(0,-50%,0)`
+
+其中translate3d还是2d都行，建议使用3d，如果换成margin-top则需要计算自身高度，所以需要设置height(具体值)，transform则不需要
 
 ```元素垂直居中3
 .align1 {
@@ -450,7 +468,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 </div>
 ```
 
-#### **手动定位就不讲了，大家都知道，给个能设置top、bottom、left、right的定位都行**
+#### 手动定位就不讲了，大家都知道，给个能设置top、bottom、left、right的定位都行
 
 ### 其他垂直居中待补充。。。
 
@@ -458,7 +476,9 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 文字水平垂直居中要么是转成行内块元素，要么是使用伪元素，这里同一归为块级元素来说明
 
-### **一、父元素:定位+定宽高+子元素:定宽高+`position:absolute`+4个方向:0+`margin:auto`**此方式同之前讲的左右为0，用margin自动填补，这里的4个方向的值只要都一样即可，margin自动向4周均等填充，也就实现居中
+### 一、父元素:定位+定宽高+子元素:定宽高+`position:absolute`+4个方向:0+`margin:auto`
+
+此方式同之前讲的左右为0，用margin自动填补，这里的4个方向的值只要都一样即可，margin自动向4周均等填充，也就实现居中
 
 ```水平垂直居中1
 .align1 {
@@ -487,7 +507,9 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 </div>
 ```
 
-### **二、父元素:`display:flex`+定宽高+`justify-content:center`+`align-items:center`**此方法就是利于flex盒模型实现，是不是发现flex哪都有它，没错flex就是这么强，推荐使用
+### 二、父元素:`display:flex`+定宽高+`justify-content:center`+`align-items:center`
+
+此方法就是利于flex盒模型实现，是不是发现flex哪都有它，没错flex就是这么强，推荐使用
 
 ```水平垂直居中2
 .align1 {
@@ -512,7 +534,9 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 如果父元素使用flex布局，那么子元素的排列方式可不止这些
 
-### **三、`position:absolute`+定宽高+`top:50%`+`left:50%`+`transform:translate3d(-50%,50%,0)`**这里的transform可以改成margin形式的写法，使用position使需要祖先中有定位，如果都没有那么相对于body居中
+### 三、`position:absolute`+定宽高+`top:50%`+`left:50%`+`transform:translate3d(-50%,50%,0)`
+
+这里的transform可以改成margin形式的写法，使用position使需要祖先中有定位，如果都没有那么相对于body居中
 
 ```水平垂直居中3
 .align1 {
@@ -533,7 +557,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 ## 总结
 
-### **水平居中**
+### 水平居中
 
 - 文字水平居中:
   - **`text-align: center`**
@@ -547,7 +571,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
   - **`width:fit-content`+`margin:auto`或者`margin:0 auto`**
   - 待补充
 
-### **垂直居中**
+### 垂直居中
 
 - 文字垂直居中:
   - **定高+`line-height:父级/自身高度`**
@@ -559,7 +583,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
   - **父元素:浮动+定高+子元素:`position:relative`+`top:50%`+`transform: translate3d(0,-50%,0)`**
   - 待补充
 
-### **水平垂直都居中**
+### 水平垂直都居中
 
 - **父元素:定位+定宽高+子元素:定宽高+`position:absolute`+4个方向:0+`margin:auto`**
 - **父元素:`display:flex`+定宽高+`justify-content:center`+`align-items:center`**
