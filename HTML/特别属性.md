@@ -42,7 +42,7 @@
 
 - label的for属性的值与其关联控件的id一样，这样当点击label时就会关联到控件
 
-```label的for属性
+```js label的for属性
 显式的联系：
 <label for="SSN">Social Security Number:</label>
 <input type="text" name="SocSecNum" id="SSN" />

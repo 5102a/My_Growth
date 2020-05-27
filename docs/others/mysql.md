@@ -11,7 +11,7 @@
 - 创建数据库
 `create database 数据库名`;
 - 关键字用反引号``包裹
-``` `number` ```
+```js  `number` ```
 - 创建时设置数据库的默认编码格式不支持-，原数据不会改变编码
 `create database my_project charset utf8`;
 - 修改数据库字符集，对已有数据无效
@@ -23,7 +23,7 @@
 
 - 创建数据表，需先指定数据库
 
-```创建数据表
+```js 创建数据表
 create table my_table(
 字段名 字段类型[字段属性],
 字段名 字段类型[字段属性],
@@ -41,7 +41,7 @@ create table my_project.my_table(...);
 `use 数据库名`;
 - 表选项：`存储引擎 engine[=]InnoDB`;
 
-```设置默认字符集
+```js 设置默认字符集
 create table mmy_project(
 name varchar(10),
 age int

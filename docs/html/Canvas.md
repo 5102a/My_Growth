@@ -8,7 +8,7 @@ canvas原生js实现简单画板
 
 代码如下
 
-```canvas画板
+```js canvas画板
 <!DOCTYPE html>
 <html lang="zh-CN">
 

@@ -15,7 +15,7 @@
 
 代码演示
 
-```单向链表
+```js 单向链表
 // 创建节点
 class CreateNode {
   constructor(data) {
@@ -127,7 +127,7 @@ console.log(list)
 
 ![双向链表2](./img/25.png)
 
-```双向链表
+```js 双向链表
 // 创建节点
 class LinkNode {
   constructor(value) {
@@ -278,7 +278,7 @@ console.log(list);
 
 实现一下双向循环链表操作
 
-```双向循环链表操作
+```js 双向循环链表操作
 // 双向循环链表，基于构造函数
 // 创建双向节点
 function CreateNode(data = null, pre = null, next = null) {
@@ -450,7 +450,7 @@ console.log(loopList)
 
 代码实现(以下使用到的一些方法来自单向链表的示范代码)
 
-```原位反转
+```js 原位反转
 reverse(node=this.searchNode(0,0).cur, preNode=null) {
   // 判断拐点,最后一个节点的next指向null
   if (node.next === null) { //最后一个节点
@@ -472,7 +472,7 @@ reverse(node=this.searchNode(0,0).cur, preNode=null) {
 
 ![直接反转](./img/36.png)
 
-```正向反转
+```js 正向反转
 reverseByFor(node = this.searchNode(0, 0).cur) {
   let next
   for (let pre = node; true; node = next) {
@@ -500,7 +500,7 @@ reverseByFor(node = this.searchNode(0, 0).cur) {
 
 创建单向链表并生成环
 
-```单向链表
+```js 单向链表
 // 创建单向链表
 const list = new LinkList()
 let node1 = new CreateNode('1')
@@ -523,7 +523,7 @@ node6.next = node3
 
 一、通过Set保存遍历节点，判断每个节点是否保存过，如果保存过则说明是环
 
-```判断环
+```js 判断环
 // 判断环
 function isRing(link) {
   // 获取链表头
@@ -548,7 +548,7 @@ console.log(isRing(list)) // true
 
 二、通过设置快慢指针，当快指针与慢指针重合则说明，快指针绕了个环跑到后面了，快指针一次二格，慢指针一次一格
 
-```判断环
+```js 判断环
 // 判断环
 function isRing(link) {
   // 获取头指针
@@ -585,7 +585,7 @@ console.log(isRing(list)) // true
 
 代码实现
 
-```链表判断环入口
+```js 链表判断环入口
 // 判断环入口节点
 function isRing(link) {
   const head = link.head

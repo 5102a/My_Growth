@@ -8,7 +8,7 @@
 
 #### 块级元素，文字居中
 
-```文字水平居中1
+```js 文字水平居中1
 .align1 {
   text-align: center;
 
@@ -26,7 +26,7 @@
 
 转为**块级元素+定宽**
 
-```文字水平居中2
+```js 文字水平居中2
 // 行内块元素需要给定宽度才会撑开，否则宽度以内容为标准
 .align1 {
   text-align: center;
@@ -51,7 +51,7 @@
 
 对给定宽度的块级元素水平居中
 
-```元素水平居中1
+```js 元素水平居中1
 .align1 {
   width: 100px;
   margin: auto;// 或margin:0 auto;
@@ -70,7 +70,7 @@
 
 这种方法也很常见，块级元素都要定宽，再居中才有意义，定位的可以调整其距离4个方向上的位置，再通过margin调整多移动的位置
 
-```元素水平居中2
+```js 元素水平居中2
 .align1 {
   width: 100px; //定宽
   position: relative; //定位
@@ -89,7 +89,7 @@
 
 原理同方法二，不同的是通过transform偏移，效率更高，如果采用3d偏移，浏览器将调用GPU启动3d硬件加速
 
-```元素水平居中3
+```js 元素水平居中3
 .align1 {
   width: 100px;
   position: fixed;
@@ -107,7 +107,7 @@
 
 方法一是不局限位置，通过margin的自动对齐方式。此方法也是通过margin自动对齐，注意基于w3c标准盒模型left的值为margin最左到文档最左的距离，不是border到文档最左的距离
 
-```元素水平居中4
+```js 元素水平居中4
 .align1 {
   width: 100px;
   position: fixed;
@@ -135,7 +135,7 @@ left与right强制设置为0，加上margin的auto，导致margin自动补全左
 
 此方法设置子元素再其父元素内居中
 
-```元素水平居中5-1
+```js 元素水平居中5-1
 .align1 {
   display: flex;  //父元素为弹性盒
   justify-content: center;  //设置其主轴(x水平轴)内容对齐
@@ -154,7 +154,7 @@ left与right强制设置为0，加上margin的auto，导致margin自动补全左
 
 如下，同理**设置y轴为主轴，再设置`align-items:center`**对齐，效果一致
 
-```元素水平居中5-2
+```js 元素水平居中5-2
 .align1 {
   display: flex;
   flex-direction: column; //主轴为y垂直轴
@@ -167,7 +167,7 @@ left与right强制设置为0，加上margin的auto，导致margin自动补全左
 
 如下，**父元素设置`display:flex`+`flex-direction:colum`,子元素设置`align-self:center`**，此方法单独给子元素设置水平对齐
 
-```元素水平居中5-3
+```js 元素水平居中5-3
 .align1 {
   display: flex;
   flex-direction: column;
@@ -191,7 +191,7 @@ flex布局实现居中的方式很多，但是大同小异，主副轴对调、�
 
 此方法很少用，我也是找资料才知道
 
-```元素水平居中6
+```js 元素水平居中6
 .align1 {
   display: grid;  // 网格
   justify-content: center;  //主轴对齐
@@ -214,7 +214,7 @@ flex布局实现居中的方式很多，但是大同小异，主副轴对调、�
 
 fit-content只支持Chrome 和 Firefox浏览器
 
-```元素水平居中7
+```js 元素水平居中7
 .align1 {
   // width: -moz-fit-content;
   // width: -webkit-fit-content;
@@ -241,7 +241,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 **定高+`line-height:父级/自身高度`** 通过设置行高与父元素高度或自身高度一致，即可实现文字垂直方向的居中
 
-```文字垂直居中
+```js 文字垂直居中
 .align1 {
   height: 100px;
   line-height: 100px;
@@ -274,7 +274,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 **父元素:定高+`display:table`+子元素`display:table-cell`+`vertical-align:middel`**此方法设置子元素内的文字垂直居中
 
-```表格文字垂直居中
+```js 表格文字垂直居中
 .align1 {
   display: table;
   height: 100px;
@@ -302,7 +302,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 当块级元素内的文字高度不一时，以文字最高的基线作为所有文字的基线，先看如下
 
-```行内块元素垂直居中
+```js 行内块元素垂直居中
 .align1 { // 父元素只给高度
   height: 100px;
 
@@ -334,7 +334,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 再看下添加`vertical-align: middle;`效果，先说明这个属性是设置行内元素在其父元素内的垂直对齐方式
 
-```行内块元素垂直居中1
+```js 行内块元素垂直居中1
 .align1::after {
   vertical-align: middle; // 垂直居中
   display: inline-block;
@@ -361,7 +361,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 这么一来就明白了其效果，那么可以设置一个伪元素，让其内容为''，且其高度为100%，再设置文字为`vertical-align: middle;`，这么一来就使所有的文字相对于父元素垂直居中，其实是基于最高行内元素的垂直中心线对齐
 
-```行内块元素垂直居中2
+```js 行内块元素垂直居中2
 .align1 {
   height: 100px;
 
@@ -402,7 +402,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 这个方法与水平居中类似，其子元素垂直居中，主副轴对调又是一种方法，不多赘述
 
-```元素垂直居中1
+```js 元素垂直居中1
 .align1 {
   display: flex;
   height: 100px;
@@ -419,7 +419,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 这与水平实现方式类似
 
-```元素垂直居中2
+```js 元素垂直居中2
 .align1 {
   height: 100px;
   position: relative;
@@ -447,7 +447,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 其中translate3d还是2d都行，建议使用3d，如果换成margin-top则需要计算自身高度，所以需要设置height(具体值)，transform则不需要
 
-```元素垂直居中3
+```js 元素垂直居中3
 .align1 {
   float: left;
   height: 100px;
@@ -480,7 +480,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 此方式同之前讲的左右为0，用margin自动填补，这里的4个方向的值只要都一样即可，margin自动向4周均等填充，也就实现居中
 
-```水平垂直居中1
+```js 水平垂直居中1
 .align1 {
   position: relative;
   height: 200px;
@@ -511,7 +511,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 此方法就是利于flex盒模型实现，是不是发现flex哪都有它，没错flex就是这么强，推荐使用
 
-```水平垂直居中2
+```js 水平垂直居中2
 .align1 {
   display: flex;
   width: 100px;
@@ -538,7 +538,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 这里的transform可以改成margin形式的写法，使用position使需要祖先中有定位，如果都没有那么相对于body居中
 
-```水平垂直居中3
+```js 水平垂直居中3
 .align1 {
   position: absolute;
   width: 100px;

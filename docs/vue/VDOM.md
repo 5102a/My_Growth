@@ -21,7 +21,7 @@
 
 以上这种简单得html结构，可以用以下这种虚拟DOM来表示
 
-```js
+```js js
 const app = {
   tag: 'div',
   props: {
@@ -57,7 +57,7 @@ const app = {
 - vue的组件模板编译生成成render之后，当挂载完成后会生成vnode，此时数据已经是响应式的，之后如果需要更新将会对新旧vnode进行diff算法算出区别，并且在更新之后，把只需要更新的部分生成真实DOM替换掉旧DOM，这样就可以以最小的开销来更新DOM，这就很类似浏览器对每次重排的优化一样
 - 这里不介绍如何使用正则匹配template的内容生成ast过程，通过对template解析生成ast，再对ast进行静态节点优化等，接着进行generate生成一个render字符串，如下结构
 
-```js
+```js js
 with(this){
     return (isShow) ? 
     _c(
@@ -81,7 +81,7 @@ with(this){
 
 vnode构造函数
 
-```js
+```js js
 // 构造一个vnode
 function Element(tagName,props,children){
   this.tagName=tagName
@@ -109,7 +109,7 @@ function createElement(tagName,props,children){
 
 接下来看看如何把vnode还原成真实DOM，这里只演示简单的通过vnode还原成真实DOM
 
-```js
+```js js
 const app = {
   tag: 'div',
   props: {
@@ -206,7 +206,7 @@ console.log(createDOM(app));
 
 代码如下
 
-```js
+```js js
 if (oldCh && ch && (oldCh !== ch)) {
     updateChildren(elm, oldCh, ch);
 } else if (ch) {

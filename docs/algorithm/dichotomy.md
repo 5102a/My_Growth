@@ -7,7 +7,7 @@
 
 代码实现
 
-```二分法
+```js js 二分法
 const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 // 基于递归的二分法查找
 function search(arr, target, l = 0, r = arr.length - 1) {
@@ -58,7 +58,7 @@ console.log(search(array, 6)) // -1
 
 代码实现
 
-```二分法查找重复值的索引
+```js js 二分法查找重复值的索引
 function search(arr, target, l = 0, r = arr.length - 1) {
   let mid, res = []
   // 超限跳出

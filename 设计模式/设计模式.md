@@ -8,7 +8,7 @@
 
 静态方法获取单例
 
-```通过静态方法获取单例
+```js 通过静态方法获取单例
 // 创建单例
 const Singleton = function (name) {
   this.name = name
@@ -30,7 +30,7 @@ console.log(Singleton.getInstance() === Singleton.getInstance()) // true
 
 通过闭包创建单例模式
 
-```闭包单例
+```js 闭包单例
 //单例构造函数
 const Singleton = function (name) {
   this.name = name
@@ -52,7 +52,7 @@ console.log(Singleton.getInstance('h') === Singleton.getInstance('hh'))
 
 基于代理的单例模式
 
-```代理单例
+```js 代理单例
 // 基于代理的单例模式
 // 单例构造函数-只构造单例
 function Singleton(element, html) {
@@ -81,7 +81,7 @@ console.log(ele1 === ele2) //true
 
 // js终极单例模式
 
-```单例模式
+```js 单例模式
 // js之单例模式
 // 创建元素构造函数
 const CreateElement = function (ele, fn) {
@@ -140,7 +140,7 @@ document.querySelector('button').addEventListener('click', () => {
 
 基于原型的策略模式，不变的算法实现与变化的输入数据分开
 
-```基于原型的策略模式
+```js 基于原型的策略模式
 //策略模式
 // 定义不同等级算法
 const Level1 = function () {}
@@ -193,7 +193,7 @@ console.log(s2.getTotalSalary()) // 30000=6000*5
 
 js策略模式，输入的不同等级执行对应的算法，每个算法单独封装在一个集合里，通过输入执行对应算法
 
-```策略模式
+```js 策略模式
 // 等级对应的薪资算法
 const compute = {
   1(salary) {
@@ -219,7 +219,7 @@ console.log(totalSalary(6000, 4)) // 30000
 
 基于js策略模式的表单验证
 
-```表单验证
+```js 表单验证
 <form action="" method="POST" id="registerForm">
   <input type="text" name="username" />
   <input type="text" name="password" />
@@ -329,7 +329,7 @@ console.log(totalSalary(6000, 4)) // 30000
 
 代理模式之图片懒加载，分开写是为了遵循单一职责
 
-```图片懒加载
+```js 图片懒加载
 // img标签
 const loadImg = (function () {
   // 添加img标签到body，等需要加载src的时候调用方法设置src
@@ -365,7 +365,7 @@ proxyLoadImg.setSrc('2.png') // 设置加载完成后的图片
 - 代理与本体对外接口应该保持一致，即代理的方法属性与本体一致，这样代理和本体可以互换，当哪天不需要代理就可以直接删除，本体上的接口与代理一样，直接兼容
 - 如果代理对象和本体对象都为一个函数（函数也是对象），函数必然都能被执行，则可以认为它们也具有一致的“接口”
 
-```定时发送文件列表
+```js 定时发送文件列表
 // 单次向服务器发送
 const sendFile = function (id) {
   console.log('发送文件名：' + id)
@@ -401,7 +401,7 @@ btn.onclick = function () {
 
 缓存代理，通过代理实现判断缓存读取操作，挺实用，异步数据用回调
 
-```缓存代理
+```js 缓存代理
 const compute = function () {
   let sum = 1
   for (let i = 0; i < arguments.length; i++) {
@@ -431,7 +431,7 @@ proxyCompute(1, 2, 3, 6) // 缓存读取
 
 缓存代理工厂，通过代理实现对不同函数的代理
 
-```缓存代理工厂
+```js 缓存代理工厂
 // 缓存代理工厂函数
 const compute1 = function () {
   let sum = 1
@@ -486,7 +486,7 @@ Plus(2, 3, 5, 5) // 从缓存读取
 
 简单实现filter的内部迭代器
 
-```filter
+```js filter
 // 内部迭代器
 const filter = function (arr, fn, thisArg = arr) {
   const result = []
@@ -505,7 +505,7 @@ console.log(res) // [6,8,7,9]
 
 外部迭代器
 
-```外部迭代器
+```js 外部迭代器
 // 构造迭代器函数
 const Iterator = function (obj) {
   const keys = Reflect.ownKeys(obj)
@@ -541,7 +541,7 @@ console.log(iter1.next()) // 3
 
 生成迭代器对象
 
-```迭代器对象
+```js 迭代器对象
 // 实现对象的迭代
 const createIterable = function (obj) {
   if (obj.hasOwnProperty(Symbol.iterator)) return obj[Symbol.iterator]
@@ -593,7 +593,7 @@ while (!iter.isDone()) {
 
 迭代模式应用
 
-```迭代模式应用
+```js 迭代模式应用
 const func1 = function (arg) {
   if (typeof arg == 'string') {
     console.log('处理字符串 ' + arg)
@@ -644,7 +644,7 @@ console.log(isFit(5, func1, func2, func3))
 
 观察者模式之事件监听触发
 
-```事件模式
+```js 事件模式
 // 定义发布者
 const release = {}
 // 订阅者队列
@@ -816,7 +816,7 @@ event.trigger('move', '触发移动') // 不触发
 - 命令模式中的命令（command）指的是一个执行某些特定事情的指令
 - 命令模式最常见的应用场景是：有时候需要向某些对象发送请求，但是并不知道请求的接收者是谁，也不知道被请求的操作是什么。此时希望用一种松耦合的方式来设计程序，使得请求发送者和请求接收者能够消除彼此之间的耦合关系
 
-```命令模式
+```js 命令模式
 // 设置命令
 const setCommand = function (ele, command) {
   // 给对应的元素添加点击事件
@@ -852,7 +852,7 @@ setCommand(btn, btnCommand)
 
 通过命令执行动作
 
-```动作命令
+```js 动作命令
 // 定义动作
 const action = {
   attack() {
@@ -917,7 +917,7 @@ btn.addEventListener('click', () => {
 
 扫描文件夹
 
-```扫描文件夹
+```js 扫描文件夹
 // 组合模式
 // 实现文件夹类
 const folder = function (name) {
@@ -959,7 +959,7 @@ folder1.scan()
 
 移除文件夹/文件
 
-```文件移除操作
+```js 文件移除操作
 // 组合模式
 // 实现文件夹类
 const folder = function (name) {
@@ -1043,7 +1043,7 @@ folder1.scan()
 
 模板方法模式
 
-```模板方法模式
+```js 模板方法模式
 // 模板方法模式
 // 定义一个抽象类
 const Beverage = function () {}
@@ -1087,7 +1087,7 @@ coffee.init() // 煮水、泡、倒入杯中、添加调料
 
 增加钩子和判断是否实现子类方法
 
-```模板方法模式
+```js 模板方法模式
 // 模板方法模式
 // 定义一个抽象类
 const Beverage = function () {}
@@ -1160,7 +1160,7 @@ coffee.init() // 煮水、泡、倒入杯中、添加调料
 
 享元模式之模特拍照
 
-```享元模式
+```js 享元模式
 // 享元模式
 // 定义模特性别
 const Model = function (sex) {
@@ -1195,7 +1195,7 @@ for (let i = 1; i <= 50; i++) {
 
 对象池，把每次不用的对象压入对象池，等要用的时候直接拿出来，不需要再创建
 
-```对象池
+```js 对象池
 // 创建对象池工厂函数
 const objectPoolFactory = function (createObjFn) {
   // 保存的对象池
@@ -1254,7 +1254,7 @@ setTimeout(() => {
 
 职责链模式
 
-```职责链模式
+```js 职责链模式
 // 职责链模式
 const order500 = function (orderType, pay, stock) {
   // 匹配类型
@@ -1322,7 +1322,7 @@ od500.request(1, false, 0)
 
 中介模式之玩家分队玩法
 
-```中介模式
+```js 中介模式
 // 中介模式
 // 玩家
 const player = function (name, color) {
@@ -1466,7 +1466,7 @@ player3.die()
 
 装饰者模式之飞机开火
 
-```装饰者模式
+```js 装饰者模式
 // 装饰者模式
 // 飞机
 const Plane = function () {}
@@ -1509,7 +1509,7 @@ plane.fire() // 开火、导弹、原子弹
 
 装饰函数
 
-```装饰函数
+```js 装饰函数
 let a = function () {
   console.log(1)
 }
@@ -1523,7 +1523,7 @@ a()
 
 基于AOP封装函数
 
-```基于AOP封装函数
+```js 基于AOP封装函数
 // 装饰调用前
 Function.prototype.before = function (beforeFn) {
   // 这是原函数的引用,必须保存，只有第一次调用的时候是原函数
@@ -1583,7 +1583,7 @@ afterFn()
 
 通过状态机改变灯的状态
 
-```状态模式
+```js 状态模式
 // 状态模式
 const Light = function () {
   this.state = 'off'
@@ -1617,7 +1617,7 @@ light.init()
 
 通过封装状态类来切换状态，在状态类中已经定义好了规则
 
-```状态模式
+```js 状态模式
 // 封装 3个状态类
 // 关灯状态
 const offLight = function (light) {
@@ -1687,7 +1687,7 @@ light.init()
 
 状态机
 
-```状态机
+```js 状态机
 const Light = function () {
   // 状态机
   this.currentState = FSM.off
@@ -1744,7 +1744,7 @@ light.init()
 
 适配器模式
 
-```适配器模式
+```js 适配器模式
 // 适配器模式
 const googleMap = {
   show() {

@@ -5,7 +5,7 @@
 - XSS跨站脚本攻击，对于前端来说一般是指js代码注入攻击
 - 比如页面中创建了一个input输入框用于保存评论，当提交表单的时候，将会把输入框的内容提交保存在服务器。如果保存的是一段注入的js代码，那么当别人访问这个评论的时候就会被攻击
 
-```xss
+```js xss
 ------------------注入端----------------------
 // 用户输入的数据都会被转成value的值
 <input type="text" value="">
@@ -27,7 +27,7 @@
 - 由于jquery的append是将添加dom变为fragment，如果添加的内容包含标签，那么会再执行一遍eval，而且append使用的方式也是通过innerHTML插入内容，innerHTML会将unicode码转成字符实体
 - 那么我们就可以通过jquery的append插入带有unicode表示的<>如\u003c、\u003e,从而使标签生效
 
-```xss
+```js xss
 // 原网页这有这段代码
 <p>添加的内容</p>
 <input type="text">

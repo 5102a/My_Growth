@@ -424,13 +424,13 @@ css样式：
 
 3.  初始化echarts实例对象
 
-```js
+```js js
 var myChart = echarts.init(document.getElementById('main'));
 ```
 
 4. 指定配置项和数据(option)
 
-```js
+```js js
 var option = {
     xAxis: {
         type: 'category',
@@ -448,7 +448,7 @@ var option = {
 
 5. 将配置项设置给echarts实例对象
 
-```js
+```js js
 myChart.setOption(option);
 ```
 
@@ -999,7 +999,7 @@ data:[702, 350, 610, 793, 664],
 
 需求1： 修改折线图大小，显示边框设置颜色：#012f4a，并且显示刻度标签。
 
-```js
+```js js
     // 设置网格样式
     grid: { 
       top: '20%',
@@ -1014,7 +1014,7 @@ data:[702, 350, 610, 793, 664],
 
 需求2： 修改图例组件中的文字颜色 #4c9bfd， 距离右侧 right 为 10%
 
-```javascript
+```js javascript
  // 图例组件
     legend: {
       textStyle: {
@@ -1031,7 +1031,7 @@ data:[702, 350, 610, 793, 664],
 - 剔除x坐标轴线颜色（将来使用Y轴分割线)
 - 轴两端是不需要内间距 boundaryGap
 
-```javascript
+```js javascript
     xAxis: {
       type: 'category',
       data: ["周一", "周二"],
@@ -1054,7 +1054,7 @@ data:[702, 350, 610, 793, 664],
 - 字体颜色：#4c9bfd
 - 分割线颜色：#012f4a
 
-```javascript
+```js javascript
     yAxis: {
       type: 'value',
       axisTick: {
@@ -1076,7 +1076,7 @@ data:[702, 350, 610, 793, 664],
 - 颜色分别：#00f2f1  #ed3f35
 - 把折线修饰为圆滑 series 数据中添加 smooth 为 true
 
-```js
+```js js
     color: ['#00f2f1', '#ed3f35'],
 	series: [{
       name:'新增粉丝',
@@ -1094,14 +1094,14 @@ data:[702, 350, 610, 793, 664],
 
 需求6： 配置数据
 
-```js
+```js js
 // x轴的文字
 xAxis: {
   type: 'category',
   data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
 ```
 
-```js
+```js js
 // 图标数据
     series: [{
       name:'新增粉丝',
@@ -1551,25 +1551,25 @@ color: [
 
 - 需求1：颜色设置
 
-```js
+```js js
 color: ['#006cff', '#60cda0', '#ed8884', '#ff9f7f', '#0096ff', '#9fe6b8', '#32c5e9', '#1d9dff'],
 ```
 
 - 需求2：修改饼形图大小 ( series对象)
 
-```javascript
+```js javascript
 radius: ['10%', '70%'],
 ```
 
 - 需求3： 把饼形图的显示模式改为 半径模式
 
-```javascript
+```js javascript
  roseType: "radius",
 ```
 
 - 需求4：数据使用更换（series对象 里面 data对象）
 
-```js
+```js js
           { value: 20, name: '云南' },
           { value: 26, name: '北京' },
           { value: 24, name: '山东' },
@@ -1584,7 +1584,7 @@ radius: ['10%', '70%'],
 
   饼图图形上的文本标签可以控制饼形图的文字的一些样式。   label 对象设置
 
-```javascript
+```js javascript
 series: [
       {
         name: "面积模式",
@@ -1605,7 +1605,7 @@ series: [
   - 连接图表 6 px
   - 连接文字 8 px
 
-```diff
+```js diff
 +        // 文字调整
 +        label:{
 +          fontSize: 10
@@ -1624,7 +1624,7 @@ series: [
 
 - 需求6：浏览器缩放的时候，图表跟着自动适配。
 
-```javascript
+```js javascript
 // 监听浏览器缩放，图表对象调用缩放resize函数
 window.addEventListener("resize", function() {
     myChart.resize();

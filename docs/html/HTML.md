@@ -172,7 +172,7 @@
 - frame 框架页--小窗口--单边标签
 - 使用框架页面 frameset 时它就可以替代 body 功能
 
-  ```框架
+  ```js 框架
   <frameset>
     <frame/>
     <frame/>
@@ -252,7 +252,7 @@
 
 - select 列表，option 选项，select 选中项
 
-  ```下拉列表
+  ```js 下拉列表
   <select name="名称">
     <option value="值" select="select"></option>
     <option ></option>
@@ -324,7 +324,7 @@
 
 > HTML5 文档定义
 
-```基本框架
+```js 基本框架
 <!--文档定义-->
 <!DOCTYPE html>
 <!--中文编码来解析-->
@@ -381,7 +381,7 @@
 
   - 多选几种格式
 
-  ```兼容性
+  ```js 兼容性
   <video controls>
     <source src="xx.mp4">
     <source src="xx.ogg">

@@ -62,7 +62,7 @@ CSS中到处都需要使用单位，各类属性也离不开单位，通过不�
 
 ![em](img/em.png)
 
-```em
+```js em
 <style>
   *{
     margin: 0;
@@ -106,7 +106,7 @@ CSS中到处都需要使用单位，各类属性也离不开单位，通过不�
 
 ![rem](img/rem.png)
 
-```rem
+```js rem
 <style>
   *{
     margin: 0;

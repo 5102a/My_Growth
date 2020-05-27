@@ -47,7 +47,7 @@
 
 代码演示
 
-```二叉查找树
+```js 二叉查找树
 //构造节点
 class Node {
   constructor(value, left = null, right = null) {
@@ -242,7 +242,7 @@ console.log(tree.Layer()) // [8, 3, 10, 1, 6, 14, 4, 7, 13]
 
 初始化平衡二叉树
 
-```平衡二叉树
+```js 平衡二叉树
 // 平衡二叉树
 // 创建节点
 class CreateNode {
@@ -366,7 +366,7 @@ console.log(tree.maxDepth() - tree.minDepth()) // 1
 
 ![LL插入节点](./img/4.png)
 
-```左左插入LL
+```js 左左插入LL
 // 插入节点，失衡
 tree.insert(new CreateNode(1))
 console.log(tree.Layer()) // [10, 5, 15, 2, 1]
@@ -376,7 +376,7 @@ console.log(tree.maxDepth() - tree.minDepth()) // 2  失去平衡
 
 左左旋实现
 
-```左左旋实现
+```js 左左旋实现
 // 左左旋
 LL(node) {
   // 取失衡节点左孩子
@@ -411,7 +411,7 @@ console.log(tree.maxDepth() - tree.minDepth()) // 0  恢复平衡
 
 ![RR插入节点](./img/7.png)
 
-```RR插入节点
+```js RR插入节点
 // 插入节点，失衡
 tree.insert(new CreateNode(16))
 tree.insert(new CreateNode(17))
@@ -423,7 +423,7 @@ console.log(tree.maxDepth() - tree.minDepth()) // 2  失去平衡
 
 右右旋实现
 
-```右右旋实现
+```js 右右旋实现
 // 右右旋
 RR(node) {
   // 取右孩子
@@ -458,7 +458,7 @@ console.log(tree.maxDepth() - tree.minDepth()) // 0  恢复平衡
 
 ![LR插入节点](./img/5.png)
 
-```LR插入节点
+```js LR插入节点
 // 插入节点，失衡
 tree.insert(new CreateNode(6))
 tree.insert(new CreateNode(7))
@@ -469,7 +469,7 @@ console.log(tree.maxDepth() - tree.minDepth()) // 2  失去平衡
 
 左右旋实现
 
-```左右旋实现
+```js 左右旋实现
 // 左右旋
 LR(node) {
   node.left = this.RR(node.left)
@@ -489,7 +489,7 @@ console.log(tree.maxDepth() - tree.minDepth()) // 0  恢复平衡
 
 ![RL插入节点](./img/6.png)
 
-```RL插入节点
+```js RL插入节点
 // 插入节点，失衡
 tree.insert(new CreateNode(12))
 tree.insert(new CreateNode(14))
@@ -501,7 +501,7 @@ console.log(tree.maxDepth() - tree.minDepth()) // 2  失去平衡
 
 右左旋实现
 
-```右左旋实现
+```js 右左旋实现
 // 右左旋
 RL(node) {
   node.right = this.LL(node.right)
@@ -517,7 +517,7 @@ console.log(tree.maxDepth() - tree.minDepth()) // 0  恢复平衡
 
 #### 全部代码
 
-```平衡二叉树
+```js 平衡二叉树
 // 平衡二叉树
 // 创建节点
 class CreateNode {
@@ -752,7 +752,7 @@ console.log(tree.maxDepth() - tree.minDepth()) // 1
 
 代码实现
 
-```前序遍历
+```js 前序遍历
 /*
       A
     /  \
@@ -819,7 +819,7 @@ console.log(DLR(tree)) // ["A", "B", "D", "E", "C", "F"]
 
 代码实现
 
-```中序遍历
+```js 中序遍历
 /*
       A
     /  \
@@ -887,7 +887,7 @@ console.log(LDR(tree)) // ["D", "B", "E", "A", "F", "C"]
 
 代码实现
 
-```后序遍历
+```js 后序遍历
 /*
       A
     /  \
@@ -957,7 +957,7 @@ console.log(LRD(tree)) // ["D", "E", "B", "F", "C", "A"]
 
 ![树的遍历](./img/22.png)
 
-```构建二叉树
+```js 构建二叉树
 /*
       A
     /  \
@@ -1015,7 +1015,7 @@ Node.setLeft(nodeC, nodeF)
 
 代码实现
 
-```前序遍历
+```js 前序遍历
 // 前序遍历
 DLR(node = this.root, arr = []) {
   if (node) { // 判断当前节点是否存在
@@ -1032,7 +1032,7 @@ DLR(node = this.root, arr = []) {
 
 代码实现
 
-```中序遍历
+```js 中序遍历
 LDR(node = this.root, arr = []) {
   if (node) { // 判断当前节点是否存在
     this.LDR(node.left, arr) // 左遍历
@@ -1048,7 +1048,7 @@ LDR(node = this.root, arr = []) {
 
 代码实现
 
-```后序遍历
+```js 后序遍历
 // 后序遍历
 LRD(node = this.root, arr = []) {
   if (node) { // 判断当前节点是否存在
@@ -1065,7 +1065,7 @@ LRD(node = this.root, arr = []) {
 
 代码实现
 
-```层次遍历
+```js 层次遍历
 // 层次遍历
 Layer(queue = [this.root], arr = []) {
   const node = queue.shift() // 取队列头
@@ -1083,7 +1083,7 @@ Layer(queue = [this.root], arr = []) {
 
 全部代码
 
-```全部代码
+```js 全部代码
 /*
       A
     /  \

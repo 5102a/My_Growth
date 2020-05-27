@@ -13,7 +13,7 @@
 - 初始化事件initEvents，如_events等，用于事件操作对象
 - 在初始化一些内部属性之后，就会调用beforeCreate钩子
 
-```js
+```js js
 const vm=new Vue({
   el:'#app',
   data:{

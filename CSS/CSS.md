@@ -135,7 +135,7 @@
 - 类名直接用空格隔开 eg：class="show head"
 - 快捷生成 div.div${哈哈\$}\*2
 
-  ```快捷生成
+  ```js 快捷生成
   <div class="div1">哈哈1</div>
   <div class="div2">哈哈2</div>
   ```
@@ -293,7 +293,7 @@
 - ::before 在之前插入，在盒子内部的最前面插入
 - ::after 在之后插入，在盒子内部的最后面插入
 
-  ```插入
+  ```js 插入
   .box::before{
     /*插入内容写在content中*/
     content:"哈哈";
@@ -410,7 +410,7 @@
 - animation-fill-mode:backwards延迟的初始状态为起始帧，forwards定格结尾帧、both两者都、normal
 - 组合animation:hd 模式 运行时间 延迟
 
-``` 帧动画
+```js  帧动画
 @keyframes 帧动画名{
   form{
     起始

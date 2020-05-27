@@ -99,7 +99,7 @@
 
 有些浏览器不支持js？所以为了不让不支持的浏览器显示js代码只需如下操作
 
-```不支持js
+```js 不支持js
 <script><!-- 
  function sayHi(){ 
  alert("Hi!"); 
@@ -127,7 +127,7 @@ XHTML 包含外部文件的语法是相同的。
 
 标准模式开启方式，重点记忆html5的标准模式
 
-```文档模式
+```js 文档模式
 <!-- HTML 4.01 严格型 --> 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 "http://www.w3.org/TR/html4/strict.dtd"> 
@@ -141,7 +141,7 @@ XHTML 包含外部文件的语法是相同的。
 
 准标准模式
 
-```文档模式1
+```js 文档模式1
 <!-- HTML 4.01 过渡型 --> 
 <!DOCTYPE HTML PUBLIC 
 "-//W3C//DTD HTML 4.01 Transitional//EN" 
@@ -190,7 +190,7 @@ XHTML 包含外部文件的语法是相同的。
 
 以下注释同多行注释，不过如下注释可增强可读性，一般在大企业有规定此方式来注释说明，一些函数参数等描述
 
-```注释
+```js 注释
 /*
  * 这是一个多行
  * （块级）注释
@@ -226,7 +226,7 @@ XHTML 包含外部文件的语法是相同的。
 - 函数内的var声明的变量为局部变量，var声明的变量只有函数内与全局环境下的作用域
 - 可以不用关键字声明变量，其会默认定义成全局变量，不论在哪里定义，不推荐，严格模式下，此方式定义会报错
 
-```隐式全局变量
+```js 隐式全局变量
 function test(){
  message = "hi"; // 全局变量
 }
@@ -287,7 +287,7 @@ alert(message); // "hi"
 - 用isNaN()来检测一是否为NaN，所以的NaN与自身都不等
 - 任何数除以0都为NaN，NaN/10也为NaN
 
-```NaN
+```js NaN
 alert(isNaN(NaN)); //true 
 alert(isNaN(10)); //false（10 是一个数值）
 alert(isNaN("10")); //false（可以被转换成数值 10）
@@ -315,7 +315,7 @@ alert(isNaN(true)); //false（可以被转换成数值 1）
   - 一元操作符+与Number()功能相同
 - parseInt(),转化字符串为数值，忽略前面的空格转成整数
   
-```parseInt
+```js parseInt
 var num1 = parseInt("1234blue"); // 1234 
 var num2 = parseInt(""); // NaN 
 var num3 = parseInt("0xA"); // 10（十六进制数）
@@ -329,7 +329,7 @@ var num7 = parseInt("0xf"); // 15（十六进制数）
 - parseInt('af',16),有基数可以省略进制格式，没基数不能省略进制格式即0x，前导0等，推荐传入基数
 - parseFloat()类似，只是会只是会解析为十进制的小数形式，如果可用用整数体现那就用整数形式
 
-```parseFloat
+```js parseFloat
 var num1 = parseFloat("1234blue"); //1234 （整数）
 var num2 = parseFloat("0xA"); //0 
 var num3 = parseFloat("22.5"); //22.5 
@@ -351,7 +351,7 @@ var num6 = parseFloat("3.125e7"); //31250000
 - 每个字符串都是独立的，不能在原字符串上修改，都是返回新的字符串，在拼接字符串时会场景新字符串，最后赋值给变量，销毁之前的字符串
 - 其他类型转成字符串，一般调用toString()返回对应形式的字符串，在数值时toString可以传入一个参数，表示要转换成多少进制的字符串形式数值,其参数也类似parse的基数，默认转成10进制
 
-```toString
+```js toString
 var num = 10; 
 alert(num.toString()); // "10" 
 alert(num.toString(2)); // "1010" 
@@ -419,7 +419,7 @@ Object 类型所具有的任何属性和方法也同样存在于更具体的对�
 值。然后对该值应用前述规则。如果结果是 NaN，则在调用 toString()方法后再应用前述规
 则。对象变量变成数值变量。
 
-```++、--
+```js ++、--
 var s1 = "2"; 
 var s2 = "z"; 
 var b = false; 
@@ -442,7 +442,7 @@ o--; // 值变成数值-2
 
 一元+
 
-```-
+```js -
 var s1 = "01"; 
 var s2 = "1.1"; 
 var s3 = "z"; 
@@ -463,7 +463,7 @@ o = +o; // 值变成数值-1
 
 一元减
 
-```-
+```js -
 var s1 = "01"; 
 var s2 = "1.1"; 
 var s3 = "z"; 
@@ -505,7 +505,7 @@ js中所有数值都以64位存储，但是再计算的时候都是转换位32�
 
 - 3 & 1 -> 2 ,即0011 & 0001，将2个数的每一位按照，同1为1，其他为0 操作
 
-```AND
+```js AND
  25 = 0000 0000 0000 0000 0000 0000 0001 1001 
   3 = 0000 0000 0000 0000 0000 0000 0000 0011 
  --------------------------------------------- 
@@ -516,7 +516,7 @@ AND = 0000 0000 0000 0000 0000 0000 0000 0001
 
 - 1 | 3 => 0001 | 0011 ,将2个数的每一位按照，同0为0，其他为1 操作
 
-```OR
+```js OR
 25 = 0000 0000 0000 0000 0000 0000 0001 1001 
  3 = 0000 0000 0000 0000 0000 0000 0000 0011 
 -------------------------------------------- 
@@ -527,7 +527,7 @@ OR = 0000 0000 0000 0000 0000 0000 0001 1011
 
 - 3 ^ 1 => 0011 ^ 0001 ,将2个数的每一位按照，异为1，同为0 操作
 
-```异或
+```js 异或
  25 = 0000 0000 0000 0000 0000 0000 0001 1001 
   3 = 0000 0000 0000 0000 0000 0000 0000 0011 
  --------------------------------------------- 
@@ -565,7 +565,7 @@ XOR = 0000 0000 0000 0000 0000 0000 0001 1010
 - 如果操作数是 undefined，返回 true。
 下面几个例子展示了应用上述规则的结果：
 
-```逻辑非
+```js 逻辑非
 alert(!false); // true 
 alert(!"blue"); // false 
 alert(!0); // true 
@@ -738,7 +738,7 @@ var num = (5, 1, 4, 8, 0); // num 的值为 0，只返回最后一个数
 - while也没啥好讲
 - for没啥好讲，注意var声明的变量即可
 
-```for
+```js for
 只给出控制表达式实际上就把 for 循环转换成了 while 循环，例如：
 var count = 10; 
 var i = 0; 
@@ -751,7 +751,7 @@ for (; i < count; ){
 - for in 枚举对象的所有可枚举的属性，无顺序可言
 - label语句，即标签语句
 
-```label
+```js label
 start: for (var i=0; i < count; i++) { 
  alert(i); 
 } 
@@ -761,7 +761,7 @@ start: for (var i=0; i < count; i++) {
 
 - break,continue,前者跳出当前循环或者跳到标签位置，后者跳出当前循环，进入下一个循环或者跳到标签位置
 
-```break,continue
+```js break,continue
 var num = 0; 
 outermost: 
 for (var i=0; i < 10; i++) { 
@@ -779,7 +779,7 @@ alert(num); //55
 
 ##### with语句
 
-```with
+```js with
 with 语句的作用是将代码的作用域设置到一个特定的对象中。with 语句的语法如下：
 with (expression) statement; 
 定义 with 语句的目的主要是为了简化多次编写同一个对象的工作，如下面的例子所示：
@@ -798,7 +798,7 @@ with的参数就是其语句块中的局部对象，避免使用with影响性能
 
 ##### switch
 
-```switch
+```js switch
 switch (i) { 
  case 25: 
  /* 合并两种情形 */ 
@@ -856,7 +856,7 @@ arguments 的值会导致语法错误（代码将不会执行）。
 
 为了证明对象是按值传递的，我们再看一看下面这个经过修改的例子：
 
-```function
+```js function
 function setName(obj) { 
  obj.name = "Nicholas"; 
  obj = new Object(); 
@@ -1006,14 +1006,14 @@ true。
 - 不要在if语句中使用函数声明，可用函数表达式
 - 对于递归函数，不要赋值给其他变量，会导致内部递归函数调用问题，内部函数应该使用arguments.callee，但是严格模式下不能使用，最佳建议如下,使用命名函数表达式，这样就不会导致赋值时函数名问题
 
-```递归
+```js 递归
 let foo = (function f(num){
   if (num<=1) return 1;
   else return num * f (num - 1);
 })
 ```
 
-```compare
+```js compare
 function compare(value1, value2){ 
  if (value1 < value2){ 
  return -1; 
@@ -1041,7 +1041,7 @@ var result = compare(5, 10);
 数在搜索这两个变量时，只会搜索到其活动对象为止，因此永远不可能直接访问外部函数中的这两个变
 量
 
-```this
+```js this
 var name = "The Window"; 
 var object = { 
  name : "My Object", 
@@ -1099,7 +1099,7 @@ object.getName(); //"My Object"
 用来表明客户端的能力，其中包括浏览器窗口外部的显示器的信息，如像素宽度和高度等
 - window.history用户上网的历史记录，不能查看访问过的网站，不过可以操作浏览器前进后退到历史记录，history 对象还有一个 length 属性，保存着历史记录的数量
 
-```history
+```js history
 //后退一页
 history.go(-1); 
 //前进一页
@@ -1128,7 +1128,7 @@ if (history.length == 0){
 - 用户代理检测，这是客户端检测的最后一种方案，很复杂，依赖于用户代理字符串`Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/124 (KHTML, like Gecko) 
  Safari/125.1`比如这一串东西，用于检测具体的浏览器和版本以及呈现引擎，由于历史原因，此字符串很复杂检测起来很麻烦，各个浏览器需要单独检测
 
-```用户代理检测
+```js 用户代理检测
 var client = (function () {
 //呈现引擎
 var engine = {

@@ -9,7 +9,7 @@
 
 代码实现
 
-```冒泡排序
+```js 冒泡排序
 let array = [3, 2, 8, 2, 1, 9, 4, 5, 6, 0]
 // 冒泡排序
 function bubbling(arr, sort=1) { //arr:排序数组，sort:1升序、-1降序、0反转
@@ -69,7 +69,7 @@ console.log(array)
 
 代码实现
 
-```选择排序
+```js 选择排序
 // 选择排序
 function select(arr, sort = 1) {
   const l = arr.length
@@ -126,7 +126,7 @@ console.log(array)
 
 代码实现
 
-```插入排序
+```js 插入排序
 // 插入排序
 function insert(arr, sort = 1) {
   const l = arr.length
@@ -183,7 +183,7 @@ console.log(array)
 
 代码实现
 
-```希尔排序
+```js 希尔排序
 // 希尔排序
 function shell(arr, sort = 1) {
   const l = arr.length
@@ -253,7 +253,7 @@ console.log(array)
 
 ![计数排序](./img/11.gif)
 
-```计数排序
+```js 计数排序
 // 计数排序
 function count(arr, sort = 1) {
   // 获取长度，以及初始化一个保存计数个数的表
@@ -319,7 +319,7 @@ console.log(array)
 
 代码实现
 
-```桶排序
+```js 桶排序
 // 桶排序
 function bucket(arr, sort = 1, count = 4, step = Math.ceil(arr.length / count)) {
   // 创建count个桶的数值
@@ -386,7 +386,7 @@ console.log(array)
 
 代码实现
 
-```基数排序
+```js 基数排序
 // 基数排序
 function base(arr, sort = 1, maxLength = arr[0]) {
   const l = arr.length
@@ -471,7 +471,7 @@ console.log(array)
 
 代码实现
 
-```堆排序
+```js 堆排序
 // 堆排序
 function heap(arr, sort = 1) {
   const sortDown = function (arr, i, length, sort) {
@@ -519,7 +519,7 @@ console.log(array)
 
 代码实现
 
-```归并排序
+```js 归并排序
 // 归并排序
 function mergeSort(arr, sort = 1, merge = null) {
   if (!merge) {
@@ -570,7 +570,7 @@ console.log(mergeSort(array, 1))
 
 代码实现
 
-```快速排序
+```js 快速排序
 //快速排序
 function quick(arr, sort = 1, l = 0, r = arr.length - 1) {
   // 求中值索引函数
@@ -638,7 +638,7 @@ console.log(array)
 
 - 基于三数取中，插排，非递归，计数排序
 
-```强化版快排
+```js 强化版快排
 function counts(array) {
   let m = []
   for (let index = 0; index < array.length; index++) {
@@ -741,7 +741,7 @@ function quickSortNos(arr, L = 0, R = arr.length - 1) {
 
 代码实现
 
-```汉诺塔
+```js 汉诺塔
 // 定义初始塔元素,数组下标越小表示越处于塔的上方，10为塔底
 const A = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 // 定义辅助塔，空数组

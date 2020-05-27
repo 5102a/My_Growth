@@ -142,7 +142,7 @@
 * break 跳出循环
 * 标签跳转点
 
-```代码
+```js 代码
 switch(值){
   case 值1：
   代码
@@ -195,7 +195,7 @@ switch(值){
 
 ### 遍历数组用 for 循环
 
-```遍历数组
+```js 遍历数组
 for(var i=0;i<arr.length;i++){
   console.log(arr[i]);
 }
@@ -238,7 +238,7 @@ for(var i=0;i<arr.length;i++){
 * 调用：函数名（参数）
 * 函数返回值,没 return 返回为 undefined，有 return 没写返回值也返回 undefined
 
-  ```返回值
+  ```js 返回值
   function f(形参){
     代码
     return 返回值;
@@ -435,7 +435,7 @@ for(var i=0;i<arr.length;i++){
 
 * this 指向
 
-  ```this
+  ```js this
   var obj = {
     name:12,
     fun:function(){

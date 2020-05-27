@@ -1,6 +1,6 @@
 # vuepress的主配置文件描述
 
-```vuepress配置说明
+```js vuepress配置说明
 module.exports = {  // 主配置文件
   /* ------------- base ------------ */
   // string，网页标题，它将显示在导航栏

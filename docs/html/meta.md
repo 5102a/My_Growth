@@ -10,7 +10,7 @@
 - content 属性始终要和 name 属性或 http-equiv 属性一起使用
 - 但是所有服务器都至少要发送一个：content-type:text/html。这将告诉浏览器准备接受一个 HTML 文档
 
-```content
+```js content
 <!-- 网页作者 -->
 <meta name="author" content="开源技术团队"/>
 <!-- 网页地址 -->
@@ -49,7 +49,7 @@
 - 当服务器向浏览器发送文档时，会先发送许多名称/值对，服务器将把名称/值对添加到发送给浏览器的内容头部
 - 只有浏览器可以接受这些附加的头部字段，并能以适当的方式使用它们时，这些字段才有意义
 
-```http-equiv
+```js http-equiv
 <!-- expires指定网页的过期时间。一旦网页过期，必须从服务器上下载。 -->
 <meta http-equiv="expires" content="Fri, 12 Jan 2020 18:18:18 GMT"/>
 <!-- 等待一定的时间刷新或跳转到其他url。下面1表示1秒 -->
@@ -68,7 +68,7 @@
 
 - 定义文档的字符编码
 
-```charset字符集
+```js charset字符集
 <!-- 定义网页文档的字符集 -->
 <meta charset="utf-8" />
 ```

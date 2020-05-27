@@ -92,7 +92,7 @@
 6. undefined == null，也会发生隐式转换，且2者可以相互转换，即2者相等，与自身也相等
 7. 对象 == 非对象，如果非对象为string或number，则返回ToPrimitive(对象) == 非对象，的结果；ToPrimitive方法的参数如果是原始类型则直接返回；如果是对象，则调用valueOf方法，如果是原始值再进行原始类型转换和大小对比；如果不是原始值则调用toString，且结果为原始值则进行原始类型比较，如果不是原始值则抛出错误
 
-```比较
+```js 比较
 // 以下结果都为true
 console.log([5]==5,['5']==5)
 console.log({name:'5'}=='[object Object]')
@@ -133,7 +133,7 @@ console.log([5,6]=='5,6',['5','6']=='5,6')
 - 如果相同再比较大小，**不会进行任何隐式转换**
 - 对于引用类型来说，比较的都是引用内存地址，所以===这种方式的比较，除非两者存储的内存地址相同才相等，反之false
 
-```比较
+```js 比较
 const a=[]
 const b=a
 a===b //true
@@ -201,7 +201,7 @@ a===b //false
 
 一个简单的类型验证函数
 
-``` 简单的验证类型函数
+```js  简单的验证类型函数
 function isWho(x) {
   // null
   if (x === null) return 'null'
@@ -236,7 +236,7 @@ function isWho(x) {
 
 简单实现浅拷贝
 
-```浅拷贝
+```js 浅拷贝
 // a原拷贝对象，b新对象
 for (const key in a) {
   b[key] = a[key]
@@ -256,7 +256,7 @@ for (const key of Object.keys(a)) {
 
 简单深拷贝
 
-```简单深拷贝
+```js 简单深拷贝
 //简单版深拷贝，只能拷贝基本原始类型和普通对象与数组，无法拷贝循环引用
 function simpleDeepClone(a) {
   const b=Array.isArray(a) ? [] : {}
@@ -297,7 +297,7 @@ function JSdeepClone(data) {
 
 比较完善的深拷贝
 
-```具体深拷贝
+```js 具体深拷贝
 //深拷贝具体版，非完全，但大部分都可以
 function deepClonePlus(a, weakMap = new WeakMap()) {
   const type = typeof a
@@ -363,7 +363,7 @@ function deepClonePlus(a, weakMap = new WeakMap()) {
 
 接下来让我们看看WeakMap的好处
 
-```WeakMap
+```js WeakMap
 let obj = {
   name: {
     age: [{
@@ -381,7 +381,7 @@ console.dir(wm) // No properties 即为空
 
 看看这种情况
 
-```WeakMap
+```js WeakMap
 const obj = {
   name: {
     age: [{
@@ -421,7 +421,7 @@ console.timeEnd('start') // 耗时73ms
 
 `__proto__`大致实现
 
-```proto
+```js proto
 Object.defineProperty(Object.prototype,'__proto__',{
   get: function(){
     return Object.getPrototypeOf(this)  // 获取引用对象的[[Prototype]]
@@ -443,7 +443,7 @@ Object.defineProperty(Object.prototype,'__proto__',{
 
 以下演示函数prototype属性在实例化时的作用
 
-```prototype属性作用
+```js prototype属性作用
 function Foo(){} // 定义构造函数
 console.dir(Foo.prototype) // 定义Foo构造函数时，自动创建的“干净的实例原型”，在原型链第二幅图的左下角有体现
 
@@ -501,7 +501,7 @@ console.dir(obj.__proto__===Foo.prototype) // true，表名实例关联的原型
 
 原型之间的继承
 
-```原型继承
+```js 原型继承
 function Parent(){} // 定义父类构造器
 function Children(){} // 定义子类构造器
 
@@ -526,7 +526,7 @@ Object.setPrototypeOf(ChildPrototype, Parent.prototype) // 直接设置参数1�
 - 默认的构造函数的对象原型都指向原始函数构造器原型(即Function.prototype)，可以理解所有函数都是由原始函数构造器生成
 - 通过构造函数自身的对象原型(`__proto__`)，来实现静态属性继承
 
-```构造器静态属性继承
+```js 构造器静态属性继承
 function Parent() {} // 定义父构造函数
 function Children() {} //定义子构造函数
 
@@ -551,7 +551,7 @@ console.log(Children.foo) // function(){ console.log(this.name) } ,实现继承
 - 实例自带的属性是由构造函数实例化时默认生成的，那么要实现实例属性的继承，势必要实现子构造函数中调用父构造函数，这样才能实现子构造函数实例化出来的对象也具备父构造函数给予的默认属性
 - 在class语法糖的constructor中的super()函数就是实现这个继承
 
-```super
+```js super
 // 定义父构造函数
 function Parent(name) {
   this.name = name
@@ -577,7 +577,7 @@ console.log(obj) // {name: 'tom', age: 5} ，实现实例属性继承
 - 通过es6的extends关键字来继承原型
 - 手动实现原型继承
 
-```继承
+```js 继承
 // 定义父构造函数，功能：初始化实例name属性
 function Parent(name) {
   'use strict'
@@ -701,7 +701,7 @@ console.dir(C)
 - es6加入的class其实是为了开发者方便创建类，与其他语言在写法上尽量一致，但是js原生并没有类这个东西，为了实现类的效果，可以通过js的构造器来实现，class使用new关键字生成实例，构造器也是通过new来实例化，那么可以推断class本质也是个构造器
 - 手动实现class
 
-```实现class
+```js 实现class
 const Class = (function () {
   function Constructor(name) {
     this.name = name
@@ -737,7 +737,7 @@ const i = new Class('我是实例')
 - 继承需要满足原型的继承
 - 还需要满足可调用父类构造器
 
-```class继承实现
+```js class继承实现
 //父类
 const Parent = (function () {
   function Constructor(age) {
@@ -784,7 +784,7 @@ const Class = (function (_Parent = null) {
 
 - 所有未定义的变量直接赋值会自动声明为全局作用域的变量(隐式全局变量可以用delete删除，var定义的则不行)
 
-```隐式全局变量
+```js 隐式全局变量
 a=1 // 隐式全局变量 严格模式报错
 var b=2 // 显式全局变量
 console.log(a,b) //1 2
@@ -800,7 +800,7 @@ console.log(b,a) // 2   a is not defined
 - 同作用域下不能重复使用let、const声明同名变量，var可以，后者覆盖前者
 - for循环的条件语句的作用域与其循环体的作用域不同，条件语句块属于循环体的父级作用域
 
-```for语句作用域
+```js for语句作用域
 // 以下语句使用let声明不报错，说明为不同作用域
 for (let i = 0; i < 5; i++) {
   let i = 5
@@ -819,7 +819,7 @@ for (let i = 0; i < 5; i=x) { // x is not defined
 - 在当前作用域引用变量时，如果没有此变量，则会一路往父级作用域查找此变量，直到全局作用域，如果都没有，在非严格情况下会自动声明，所以是undefined，在严格条件下则会报错
 - 变量的查找路径依据的是在创建这个作用域的地方向上查找，并非是在执行时的作用域，如下 b变量的值为2。可以看出当执行到需要b变量时，当前作用域下并没有b，所以要到定义这个b变量的静态作用域中寻找，即创建时候的作用域链上查找b的值
 
-```作用域链
+```js 作用域链
 b = 1
 function a() {
   // 定义b，找到
@@ -846,7 +846,7 @@ s() // 2
 
 这里了解一下函数、变量提升
 
-```提升
+```js 提升
 console.dir(foo) // foo(){}
 function foo() {}
 var foo = 5
@@ -870,7 +870,7 @@ console.dir(foo) // 5
 
 - 所谓闭包就是函数与其词法环境(创建当前作用时的任何局部变量)的引用。闭包可以使内部函数访问到外部函数的作用域，当函数被创建时即生成闭包
 
-```闭包
+```js 闭包
 function fn1() {
   var name = 'hi';
   function fn2() {
@@ -887,7 +887,7 @@ fn1()() // hi
 - 当返回一个闭包时，保留此闭包下的所有被外部引用的对象
 - 闭包之间是独立的，在闭包环境下可以创建多个不同的闭包环境暴露给外部，从而实现不同的效果
 
-```不同环境的闭包
+```js 不同环境的闭包
 function makeAdder(x) {
   return function(y) {
     return x + y;
@@ -905,7 +905,7 @@ console.log(add10(2)); // 12
 
 这里看个有趣的东西
 
-```闭包
+```js 闭包
 function foo(){
   let a={name:'me'}
   let b={who:'isMe'}
@@ -952,7 +952,7 @@ console.dir(wm) // 保存了对象a与其值1
 - this的绑定只受最靠近调用它的成员的引用
 - 执行上下文在被执行的时候才会创建，创建执行上下文时才会绑定this，所以this的指向永远是在执行时确定
 
-```this
+```js this
 function foo(){
   console.dir(this) // window ,严格下undefined
 }
@@ -980,7 +980,7 @@ foo.call(5)
 
 在没有明确调用者情况下函数内部this指向window，严格模式下都为undefined，除非绑定函数的this指向，才会改变this
 
-```普通调用
+```js 普通调用
 // 直接调用函数
 function foo() {
   console.dir(this) //window,严格下 undefined
@@ -1034,7 +1034,7 @@ foo(function () {
 
 当函数作为**对象的方法**调用时，不受函数定义方式或者位置影响
 
-```基于对象
+```js 基于对象
 // 函数this指向调用者对象
 const obj = {
   foo: function () {
@@ -1080,7 +1080,7 @@ obj.obj1.foo()
 
 基于new关键字
 
-```new
+```js new
 // 基于new关键字调用的函数内部this指向实例
 function foo() {
   console.dir(this) // foo实例
@@ -1107,7 +1107,7 @@ const f = new foo()
 
 微任务中的简单调用的函数this指向window严格下指向undefined，而**定时器中的回调函数不管在严格还是非严格环境下this永远指向window**，说明一点，调用window对象的方法时this指向window也就是全局对象，换句话说，简单调用的函数如果属于window本身自带的方法那么这个方法的this指向window
 
-```宏微任务
+```js 宏微任务
 // 异步任务中简单调用的函数都是进入队列，最后由全局环境调用
 const id = setInterval(function () {
   console.dir(this) // window ,严格下 window
@@ -1171,7 +1171,7 @@ es6引入的箭头函数，是不具有this绑定，不过在其函数体中可�
 
 - 判断箭头函数的this指向，我们可以把箭头函数看成透明，其上下文中的this就是它的this
   
-```箭头函数中的this
+```js 箭头函数中的this
 // 可以看出箭头函数中的this就是其所在环境的this，箭头函数无法固定this，由其环境决定
 const foo = () => {
   console.dir(this) //window ,严格下还是window
@@ -1208,7 +1208,7 @@ obj.foo()()
 - bind方法与以上不同的是不会直接调用函数，只是先绑定函数的this，到要使用的时候调用即可，此方法返回一个绑定this与参数之后的新函数，其传入参数形式同call
 - 通过变量保留指定this来达到固定this
 
-```改变this
+```js 改变this
 // 通过变量保留父级this，进行对_this变量修改也就达到修改原this的效果
 const obj = {
   name: 'obj',
@@ -1232,7 +1232,7 @@ obj.foo()()
 
 - 思路就是想办法使函数被传入的thisArg调用，那么函数的this就指向调用者
 
-```手动apply
+```js 手动apply
 Function.prototype.Apply = function (thisArg, args = Symbol.for('args')) {
   console.dir(this)            //this为这个方法的调用者=>foo函数
   const fn = Symbol('fn')      //生成一个不重复的键
@@ -1260,7 +1260,7 @@ foo.Apply(obj,[obj.age,null])
 
 基本思路同apply，就是传参形式改变一下,这里通过arguments获取参数列表
 
-```call实现
+```js call实现
 Function.prototype.Call = function (thisArg) {
   console.dir(this)            //this为这个方法的调用者=>foo函数
   const fn = Symbol('fn')      //生成一个不重复的键
@@ -1275,7 +1275,7 @@ Function.prototype.Call = function (thisArg) {
 
 bind函数要能够返回严格绑定this与参数后的函数，调用这个返回的函数时有可能还会传入参数，那么需要拼接参数
 
-```bind实现
+```js bind实现
 Function.prototype.Bind = function (thisArg) {
   const fn = Symbol('fn')       //生成一个不重复的键
   thisArg[fn] = this || window  //把foo函数作为传入this的一个方法
@@ -1383,7 +1383,7 @@ foo.Bind(obj, obj.age)(2)
 - 创建一个webworker文件，其中写入算法代码，在最后调用postMessage(result)方法返回结果给主线程，js主代码中通过w=new Worker(文件路径)来创建一个渲染进程的webworker子线程实例，通过w.onmessage=function(e){console.log(e.data)}给其添加一个事件监听器，当webworker中传递消息给js主线程时会在此回调函数中执行，通过调用w.terminate()终止webworker线程
 - webworker线程与js主线程最大的区别就在于webworker线程无法操作window与document对象
 
-```webworker
+```js webworker
 // test.html(主线程)
 const w= new Worker('postMessage.js')
 w.onmessage=function(e){
@@ -1419,7 +1419,7 @@ this.addEventListener('message', (e) => {
 - 通过`require(dependencies,factory)`导入模块，其中dependencies为需要导入的模块路径数组，factory为当模块导入之后的回调函数，此函数的参数列表为对应导入的模块
 - 通过require.config(配置对象)配置各模块路径和引用名
 
-```配置AMD
+```js 配置AMD
 require.config({
   baseUrl: "js/lib",
   paths: {
@@ -1499,7 +1499,7 @@ CMD推崇就近依赖，只有在用到某个模块的时候再去require
 
 - location为全局对象window的一个属性，且`window.location===document.location`，其中的属性都是可读写的，但是只有修改**href**和**hash**才有意义，href会重新定位到一个URL，hash会跳到当前页面中的anchor名字的标记(如果有)，而且页面不会被重新加载
 
-```location
+```js location
 // 这行代码将会使当前页面重定向到http://www.baidu.com
 window.location.href = 'http://www.baidu.com'
 ----------------------------------------------
@@ -1518,7 +1518,7 @@ window.location.href = 'http://www.baidu.com'
 - 可以通过上述属性来获取URL中的指定部分，或者修改href于hash达到重新定位与跳转
 - 添加hash改变监听器，来控制hash改变时执行的代码
 
-```添加hash改变事件
+```js 添加hash改变事件
 window.addEventListener("hashchange", funcRef);
 // 或者
 window.onhashchange = funcRef;
@@ -1535,7 +1535,7 @@ location方法
 
 - `window.navigator`对象包含**有关浏览器的信息**，可以用它来查询一些关于运行当前脚本的应用程序的相关信息
 
-```navigator
+```js navigator
 document.write("浏览器的代码名:" + navigator.appCodeName + "<br>");
 document.write("浏览器的名称:" + navigator.appName + "<br>");
 document.write("当前浏览器的语言:" + navigator.browserLanguage + "<br>");
@@ -1553,7 +1553,7 @@ document.write("运行浏览器的操作系统平台 :" + navigator.platform + "
 
 如下在不同浏览器打印的信息
 
-```navigator.userAgent
+```js navigator.userAgent
 /*
 chrome:
     Mozilla/5.0
@@ -1635,7 +1635,7 @@ hybrid方法的可能：
 
 简单的发起一次请求
 
-```简单使用
+```js 简单使用
 // 最简单的发起一个请求
 const XHR = new XMLHttpRequest()
 XHR.open('get','http://127.0.0.1:3000/test?key=value')
@@ -1648,7 +1648,7 @@ XHR.addEventListener('load',(e)=>{
 
 基于XMLHttpRequest封装一个请求方法
 
-```封装网络请求
+```js 封装网络请求
 // 发送的数据
 const data = {
   name: 'tom'
@@ -1711,7 +1711,7 @@ const ajax = new Ajax(config).send()
 - fetch API提供了js接口，用于替代XMLHttpRequest方式的网络请求，fetch()全局方法使用起来比XHR更加方便
 - fetch方法接受2个参数，参数1为请求url或 Request 对象，参数2为可选配置对象
 
-```fetch
+```js fetch
 // fetch方法返回一个Promise对象，可用then方法接收结果，用catch方法捕获异常，同Promise使用
 // 配置对象具体配置
 const config = {
@@ -1762,7 +1762,7 @@ fetch('http://biadu.com' [, config])
 - WebSocket是一种在单个TCP连接上进行全双工通信的协议，即连接双方可以同时实时收发数据，它可以在用户的浏览器和服务器之间打开双工、双向通讯会话。
 - WebSocket API提供全局方法`WebSocket(url[, protocols])`创建实例,参数1 对方绝对url其url以`ws://`或者`wss://(加密)`开头，参数2 protocols是单协议或者包含协议的字符串数组
 
-```websocket
+```js websocket
 // 必须传入绝对URL，可以是任何网站
 const s = new WebSocket('ws://www.baidu.com') 
 s.readyState    // 0 建立连接 1 已经建立 2 正在关闭 3 连接已关闭或者没有链接成功
@@ -1810,7 +1810,7 @@ s.onclose = function (event) {
 
 简单演示
 
-```短轮询
+```js 短轮询
 const xhr = new XMLHttpRequest()
 // 每秒发送一次短轮询
 const id = setInterval(() => {
@@ -1834,7 +1834,7 @@ const id = setInterval(() => {
 
 简单演示
 
-```长轮询
+```js 长轮询
 function ajax() {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', 'http://127.0.0.1:3000/test?key=value');
@@ -1949,7 +1949,7 @@ function ajax() {
 
 基本使用
 
-```localStorage
+```js localStorage
 localStorage.setItem("b", "isaac");  //设置b为"isaac"
 localStorage.getItem("b");           //获取b的值,为"isaac"
 localStorage.key(0);                 //获取第0个数据项的键名，此处即为“b”
@@ -1964,7 +1964,7 @@ localStorage.clear();                //清除当前域名下的所有localStorag
 
 - sessionStorage用于本地存储一个会话（session）中的数据，这些数据只有在同一个会话中的页面才能访问并且当会话结束后数据也随之销毁。因此sessionStorage不是一种持久化的本地存储，仅仅是会话级别的存储
 
-```sessionStorage
+```js sessionStorage
 sessionStorage.setItem(name, num);    //存储数据
 sessionStorage.setItem('value2', 119);
 sessionStorage.valueOf();             //获取全部数据
@@ -2007,7 +2007,7 @@ localStorage：始终有效，窗口或浏览器关闭也一直保存，本地�
 
 来实现一下吧
 
-```jsonp
+```js jsonp
 // 前端准备
 // 定义回调函数
 function fn(arg) {
@@ -2096,7 +2096,7 @@ router.get('/test', async (req, res) => {
 - postMessage可用于不同页面之间的跨域传递数据
 - `postMessage(data,origin[, source])`data为发送的数据只能发送字符串信息，origin发送目标源，指定哪些窗口能接收到消息事件，如果origin设置为*则表示无限制，source为发送消息窗口的window对象引用，
 
-```postMessage
+```js postMessage
 <!-- test.html -->
 <iframe src="http://127.0.0.1:5501/postMessage.html"
 name="postIframe" onload="messageLoad()"></iframe>
@@ -2134,7 +2134,7 @@ window.addEventListener('message', (event) => {
 - 由于`window.name`属于全局属性，在html中的iframe加载新页面(可以是跨域)，通过iframe设置的src指向的源中更改name的值，同时主页面中的name也随之更改，但是需要给iframe中的window设置为`about:blank`或者同源页面即可
 - iframe使用之后应该删除，name的值只能为string类型，且数据量最大支持2MB
 
-```window.name
+```js window.name
 <!-- test.html -->
 // 封装应该用于获取数据的函数
 function foo(url, func) {
@@ -2173,7 +2173,7 @@ window.name = JSON.stringify(obj);
 - 通过对domain设置当前域名来实现跨域，不过仅限于域名不同，但是又要属于同一个基础域名下，如`http://a.baidu.com`与`http://b.baidu.com`这2个子域名之间才能使用domain跨域，一般用于子域名之间的跨域访问
 - domain只能赋值为当前域名或者其基础域名，即上级域名
 
-```domain
+```js domain
 <!-- test.html -->
 <script>
 document.domain = 'baidu.com';
@@ -2202,7 +2202,7 @@ ifr.onload = function(){
 - nginx反向代理，代理从客户端来的请求，转发到其代理源
 - 通过配置nginx的配置文件实现代理到不同源
 
-```nginx
+```js nginx
 // nginx.conf配置
 server {
   listen 80;  // 监听端口
@@ -2282,7 +2282,7 @@ server {
 - 添加DOM0事件，都是把一个函数赋值给文档元素，在事件监听函数被调用时，将会做为产生事件的元素方法调用，所以this指向目标元素，简单说就是直接把回调函数作为文档元素的一个方法调用
 - 删除DOM0事件只需把事件赋值为null即可
 
-```DOM0
+```js DOM0
 document.getElementById("btn").onclick = function () {}
 ----------------------------------------------
 <input type="button" onclick="alert('hi!');">
@@ -2328,7 +2328,7 @@ document.getElementById("btn").onclick = function () {}
 - 事件代理又或是事件委托，通过事件冒泡机制，使用单一父节点来操作多个子节点的响应，简单讲就是把所有子节点的事件去除，只给父节点注册事件，那么就可以通过事件冒泡机制来处理子节点的响应
 - 基于事件委托可以减少事件注册，节省内存，简化dom节点于事件的更新
 
-```事件委托
+```js 事件委托
 <ul id="f">
   <li>a</li>
   <li>b</li>

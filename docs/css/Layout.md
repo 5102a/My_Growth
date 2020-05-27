@@ -12,7 +12,7 @@ header、content、footer都是相同宽度，且居中
 
 ![单列布局等宽](./img/26.png)
 
-```单列布局等宽
+```js 单列布局等宽
 <style>
   .header {
     max-width: 200px;
@@ -43,7 +43,7 @@ header、content、footer都是相同宽度，且居中
 
 ![单列布局通栏](./img/27.png)
 
-```单列布局通栏
+```js 单列布局通栏
 <style>
   *{
     margin: 0;
@@ -77,7 +77,7 @@ header、content、footer都是相同宽度，且居中
 
 ![双列定位布局](./img/28.png)
 
-```双列定位布局
+```js 双列定位布局
 <style>
   .contain {
     position: relative;
@@ -113,7 +113,7 @@ header、content、footer都是相同宽度，且居中
 
 ![双列浮动BFC自适应布局](./img/29.png)
 
-```双列浮动BFC自适应布局
+```js 双列浮动BFC自适应布局
 <style>
   .contain {
     max-width: 200px;
@@ -144,7 +144,7 @@ flex就可以很容易实现双列自适应布局，通过给父容器设置flex
 
 ![双列flex自适应布局](./img/30.png)
 
-```双列flex自适应布局
+```js 双列flex自适应布局
 <style>
   .contain {
     max-width: 200px;
@@ -176,7 +176,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![双列grid自适应布局](./img/31.png)
 
-```双列grid自适应布局
+```js 双列grid自适应布局
 <style>
   .contain {
     max-width: 200px;
@@ -207,7 +207,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![双列浮动定宽布局](./img/32.png)
 
-```双列浮动定宽布局
+```js 双列浮动定宽布局
 <style>
   .contain {
     max-width: 200px;
@@ -246,7 +246,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![三列浮动布局](./img/33.png)
 
-```三列浮动布局
+```js 三列浮动布局
 <style>
   .contain {
     max-width: 200px;
@@ -285,7 +285,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![三列圣杯布局](./img/34.png)
 
-```三列圣杯布局
+```js 三列圣杯布局
 <style>
   .contain {
     max-width: 200px;
@@ -355,7 +355,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![圣杯布局](./img/38.png)
 
-```圣杯布局
+```js 圣杯布局
 <style>
   *{
     margin: 0;
@@ -423,7 +423,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![三列双飞翼布局](./img/41.png)
 
-```三列双飞翼布局
+```js 三列双飞翼布局
 <style>
   *{
     margin: 0;
@@ -482,7 +482,7 @@ flex与grid可以说是布局上的万金油，可以解决大部分的布局问
 
 一样的效果
 
-```三列flex布局
+```js 三列flex布局
 <style>
   .contain {
     max-width: 200px;
@@ -512,7 +512,7 @@ flex与grid可以说是布局上的万金油，可以解决大部分的布局问
 
 flex布局，一如既往的简单，况且还能自适应
 
-```grid
+```js grid
 <style>
   .contain {
     max-width: 200px;
@@ -548,7 +548,7 @@ grid两行实现，当然事物都有双面性，看你取舍咯。
 
 话不多说，直接上代码，效果就是拉满高度
 
-```通过flex与grid实现等高布局
+```js 通过flex与grid实现等高布局
 <!-- flex -->
 <style>
   .contain {
@@ -621,7 +621,7 @@ flex兼容性好些，不过ie是个坎
 
 ![等高效果](./img/45.png)
 
-```等高效果
+```js 等高效果
 <style>
   .contain {
     max-width: 200px;
@@ -661,7 +661,7 @@ flex兼容性好些，不过ie是个坎
 
 由于表格元素的单元格默认等高，所以也可以借助此属性实现元素等高效果
 
-```使用table布局实现等高
+```js 使用table布局实现等高
 <style>
   .contain {
     max-width: 200px;
@@ -705,7 +705,7 @@ flex兼容性好些，不过ie是个坎
 
 可以看到实际上左右栏的高度没有改变，只是通过padding把背景颜色填满高度
 
-```伪等高
+```js 伪等高
 <style>
   .contain {
     max-width: 200px;
@@ -752,7 +752,7 @@ flex兼容性好些，不过ie是个坎
 - 主体设置左右边框，颜色同左右栏背景色
 - 左右栏通过绝对定位到边框位置上，且设置背景为透明色，这样才能显示边框伪造背景，或者使用左右浮动来定位
 
-```边框伪装实现伪等高
+```js 边框伪装实现伪等高
 <style>
   .contain {
     max-width: 200px;

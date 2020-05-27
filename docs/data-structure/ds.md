@@ -23,7 +23,7 @@
 
 代码实现
 
-```匹配括号
+```js 匹配括号
 // 验证字符串中括号是否匹配
 const str = '[f](d)s{(f)[s]s}' // 可通过
 const str1 = '[f](d)s{(f)(s]s}' // 不可通过
@@ -72,7 +72,7 @@ console.log(check(str1)) // false
 
 代码实现
 
-```限制括号匹配
+```js 限制括号匹配
 const str = '{[d((d))f[d(g)]]{fd}s(f)}' // 可通过
 const str1 = '{[d((d))f[d(g[d]])]{fd}s(f)}' // 不可通过
 function check(str, i = 0, stack = []) {
@@ -108,7 +108,7 @@ console.log(check(str1)) // false
 
 ![队列](./img/12.png)
 
-```队列
+```js 队列
 // 直线队列
 const obj={
   queue:[],
@@ -157,7 +157,7 @@ obj.shift() // error
 
 代码演示循环队列
 
-```循环队列
+```js 循环队列
 // 循环队列
 const loopQueue = (function () {
   // 定义容量
@@ -239,7 +239,7 @@ console.log(loopQueue.isEmpty()) // true
 
 代码演示实现堆操作
 
-```堆操作
+```js 堆操作
 // 堆排序
 function heapSort(arr, sort = 1) {
   const sortDown = function (arr, i, length, sort) {
