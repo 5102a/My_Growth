@@ -38,6 +38,14 @@ module.exports = [ // 导航栏，导航
         link: '/security/',
       },
       {
+        text: 'Vue',
+        link: '/Vue/',
+      },
+      {
+        text: 'React',
+        link: '/React/',
+      },
+      {
         text: '设计模式',
         link: '/design-pattern/',
       },

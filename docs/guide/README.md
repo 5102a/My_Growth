@@ -26,17 +26,23 @@
 
 - ### [9. 安全系列](../security/)
 
-## [五、设计模式与代码优化](./sidebar5/)
+## [五、Vue&React](./sidebar7/)
 
-- ### [10. 设计模式系列](../design-pattern/)
+- ### [10. Vue系列](../Vue/)
 
-- ### [11. 代码优化系列](../optimization/)
+- ### [11. React系列](../React/)
 
-## [六、读书记](../reading/)
+## [六、设计模式与代码优化](./sidebar5/)
+
+- ### [12. 设计模式系列](../design-pattern/)
+
+- ### [13. 代码优化系列](../optimization/)
+
+## [七、读书记](../reading/)
 
 - ### [JavaScript高级程序设计](../reading/advanced-programming/)
 
-## [七、其他](./sidebar6/)
+## [八、其他](./sidebar6/)
 
 **总览**
 

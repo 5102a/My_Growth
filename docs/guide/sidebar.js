@@ -40,6 +40,16 @@ module.exports = [{ // 目录导航
     ]
   },
   {
+    title: 'Vue&React',
+    path: '/guide/sidebar7/',
+    collapsable: true,
+    sidebarDepth: 3,
+    children: [
+      '/Vue/',
+      '/React/'
+    ]
+  },
+  {
     title: '设计模式&代码优化',
     path: '/guide/sidebar5/',
     collapsable: true,
