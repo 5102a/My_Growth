@@ -28,9 +28,9 @@
 
 ## [五、Vue&React](./sidebar7/)
 
-- ### [10. Vue系列](../Vue/)
+- ### [10. Vue系列](../vue/)
 
-- ### [11. React系列](../React/)
+- ### [11. React系列](../react/)
 
 ## [六、设计模式与代码优化](./sidebar5/)
 

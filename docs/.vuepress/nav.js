@@ -39,11 +39,11 @@ module.exports = [ // 导航栏，导航
       },
       {
         text: 'Vue',
-        link: '/Vue/',
+        link: '/vue/',
       },
       {
         text: 'React',
-        link: '/React/',
+        link: '/react/',
       },
       {
         text: '设计模式',
