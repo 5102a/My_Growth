@@ -5,7 +5,7 @@
 - 还有几个生命周期钩子：activated(组件激活后)、deactivated(组件停用后)这2个主要是在组件设置了keep-alive之后特有的生命周期。errorCaptured(当捕获一个来自子孙组件的错误时被调用)
 - 接下来分析每个阶段Vue所做的事情
 
-![生命周期](./img/生命周期.png)
+![生命周期](./img/8.png)
 
 ## beforeCreate
 
@@ -25,7 +25,7 @@ const vm=new Vue({
 })
 ```
 
-![beforeCreate](./img/beforeCreate.png)
+![beforeCreate](./img/9.png)
 
 可以看到此时el与data都没有初始化
 
@@ -45,7 +45,7 @@ const vm=new Vue({
 
 看看调用created之后的数据
 
-![created](./img/created.png)
+![created](./img/10.png)
 
 现在可以看到data数据已经监听了，这里就设置了数据的getter与setter了，具有响应式
 
@@ -57,7 +57,7 @@ const vm=new Vue({
 
 ## beforeMount
 
-![beforeMount](./img/beforeMount.png)
+![beforeMount](./img/11.png)
 
 可以看到已经获取了el元素，但是对于数据还未挂载到视图上，此时调用了render生成vnode，并且渲染成了DOM节点，组件挂载到了el元素上
 
@@ -67,7 +67,7 @@ const vm=new Vue({
 
 ## mounted
 
-![mounted](./img/mounted.png)
+![mounted](./img/12.png)
 
 执行mounted时，数据已经挂载到了DOM上
 
@@ -77,7 +77,7 @@ const vm=new Vue({
 
 ## beforeUpdate
 
-![update](./img/update.png)
+![update](./img/13.png)
 
 - 这时数据已经被修改了，但是视图还未被更新
 - 接下来就是更新视图，经过patch、diff之后计算出不同点以及一些操作，触发watcher的updated操作，这里的更新顺序是从最底层更新到外层，也就是最先更新的是子孙组件，类似冒泡触发
@@ -103,4 +103,4 @@ const vm=new Vue({
 
 如果你需要一个组件不被重复创建与销毁那么可以使用keep-alive标签包裹缓存组件，当停用触发deactivated时对当前数据进行保存，等下次激活时可以在activated中释放这些数据，就可以营造出一种记忆操作功能，保存用户的上一次页面操作，不过这主要针对于频繁切换的组件来说可能需要用到
 
-![构建组件过程](./img/构建组件过程.png)
+![构建组件过程](./img/13.png)
