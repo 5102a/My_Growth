@@ -8,7 +8,7 @@ module.exports = { // 侧边栏，路由
   '/data-structure/': ['', 'ds', 'link', 'tree'],
   '/design-pattern/': ['', 'd-p'],
   '/network/': ['', 'net'],
-  '/vue/': ['', 'response','live','VDOM'],
+  '/vue/': ['', 'response','live','VDOM','important'],
   '/react/': [''],
   '/others/': ['', 'echart', 'mysql', 'PHP'],
   '/reading/': ['', 'advanced-programming/note'],

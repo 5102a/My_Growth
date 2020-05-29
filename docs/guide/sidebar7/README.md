@@ -9,3 +9,5 @@
 - ### [生命周期](../../vue/live.html)
 
 - ### [虚拟DOM与diff算法](../../vue/VDOM.html)
+
+- ### [vue重点知识](../../vue/important.html)
