@@ -49,7 +49,7 @@ export default {
 </script>
 ```
 
-![mixin](./img/mixin.png)
+![mixin](./img/28.png)
 
 - 通过结果可以看的确实混入到当前组件中，其实就是把mixin.js中对应数据进行混合，加入到当前组件中，可以看到混入之后的生命周期执行顺序不是嵌套组件那样，貌似所有混入的钩子都在当前组件钩子之前触发，而且并没有覆盖钩子，似乎是进行顺序调用的
 - 再看看如果是相同数据和方法会是如何混合的
@@ -114,7 +114,7 @@ export default {
 </script>
 ```
 
-![mixin1](./img/mixin1.png)
+![mixin1](./img/29.png)
 
 - 从结果中可以看到，如果是多个mixin混入，那么将会取最后一个混入作为数据，当然如果本身组件有这个属性，那么还是以当前组件为主，而且如果是钩子按照混入顺序执行，组件自身相对于最后混入，如果是普通方法则是后混入的覆盖前面的
 
@@ -160,7 +160,7 @@ export default {
 </script>
 ```
 
-![mixin2](./img/mixin2.png)
+![mixin2](./img/30.png)
 
 - 可以看的这时候虽然myComponent没有单独混入mixin1.js但是由于在全局中混入，所以之后创建的每个vue都带有这些数据
 - 如果是插件，那么可以使用`Vue.use(插件)，此时vue会调用插件内部的install，进行混入到Vue中，之后的实例也都带有插件的数据
@@ -180,11 +180,11 @@ mixin利弊：
   - v-if可以控制标签是否被渲染，也就是是否会生成DOM，如果判断为false，那么则不会被生成VDOM，更不会被生成真实DOM，可以理解成存不存在
   - v-show只是通过简单的控制css的样式，如果是隐藏则设置为`display:none`，如果是显示则去掉这个属性，就像给他增加一个隐藏的`class`一样
 
-![v-if](./img/v-if.png)
+![v-if](./img/31.png)
 
 - 可以看的，此时判断都为false，v-if用注释节点来占位，而v-show直接设置为`display:none`
 
-![v-show](./img/v-show.png)
+![v-show](./img/32.png)
 
 - 此时显示的时候v-if节点渲染出来了，而v-show的display去掉了
 
@@ -194,11 +194,11 @@ mixin利弊：
 - `display:none`，则不显示对应的元素，在文档布局中不再分配空间（回流+重绘）
 - `visibility:hidden`隐藏对应元素，在文档布局中仍保留原来的空间（重绘）
 
-![display](./img/display.png)
+![display](./img/33.png)
 
 选中display，此时页面根本没有出现其位置，也就意味着不存在页面中，不占位置，当需要显示的时候会触发回流和重绘
 
-![visibility](./img/visibility.png)
+![visibility](./img/34.png)
 
 选中visibility可以看到页面中存在这个元素，当需要显示的时候只会触发重绘
 
