@@ -50,6 +50,10 @@ module.exports = [ // 导航栏，导航
         link: '/design-pattern/',
       },
       {
+        text: 'Gulp',
+        link: '/gulp/',
+      },
+      {
         text: '其他',
         link: '/others/',
       },

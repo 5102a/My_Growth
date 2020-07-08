@@ -59,6 +59,16 @@ module.exports = [{ // 目录导航
     ]
   },
   {
+    title: '自动化构建',
+    path: '/guide/sidebar8/',
+    collapsable: true,
+    sidebarDepth: 3,
+    children: [
+      '/gulp/',
+      '/webpack/'
+    ]
+  },
+  {
     title: '其他',
     path: '/guide/sidebar6/',
     collapsable: true,

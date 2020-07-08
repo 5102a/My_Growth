@@ -38,11 +38,17 @@
 
 - ### [13. 代码优化系列](../optimization/)
 
-## [七、读书记](../reading/)
+## [七、自动化构建](./sidebar8/)
+
+- ### [14. Gulp系列](../gulp/)
+
+- ### [15. Webpack系列](../webpack/)
+
+## [读书记](../reading/)
 
 - ### [JavaScript高级程序设计](../reading/advanced-programming/)
 
-## [八、其他](./sidebar6/)
+## [其他](./sidebar6/)
 
 **总览**
 
