@@ -54,6 +54,10 @@ module.exports = [ // 导航栏，导航
         link: '/gulp/',
       },
       {
+        text: 'Webpack',
+        link: '/webpack/',
+      },
+      {
         text: '其他',
         link: '/others/',
       },

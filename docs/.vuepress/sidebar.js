@@ -21,6 +21,7 @@ module.exports = {
   '/vue/': ['', 'response', 'live', 'VDOM', 'important'],
   '/react/': [''],
   '/gulp/': ['', 'gulp', 'plugins'],
+  '/webpack/': ['', 'webpack', 'webpackOptimize'],
   '/others/': ['', 'echart', 'mysql', 'PHP'],
   '/reading/': ['', 'advanced-programming/note'],
   '/security/': ['', 'secure'],
