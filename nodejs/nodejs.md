@@ -167,7 +167,7 @@ module.exports公开了它指向的对象，export公开了它指向的对象的
 - `<package-name>`包名，默认安装最新稳定版
 - `<package-name>@next`、`<package-name>@beta`包名，安装最新测试版
 - `<package-name>@version`包名，安装包的指定版本，version格式一般为xx.xx.xx
-- 一般官方核心包名是以@开头命名的包，一些工具软件的指定包带有后缀等，比如`css-loader`是webpack的css包，`gulp-sass`是gulp的工具包
+- 以@开头命名形式集中在一个命名空间下面，实现域级管理的包，还有一些工具软件的指定包带有后缀等，比如`css-loader`是webpack的css包，`gulp-sass`是gulp的工具包
 - `npm root -g`可以查看全局安装的包路径
 - `npx 可执行包名`，使用npx可以直接执行一些可以运行的包
 - 使用`require(包名)`,导入`node_modules`中安装的包，require不需要写路径名，直接写包名即可，默认会冒泡的去`node_modules`中查找指定包

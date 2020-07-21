@@ -1,4 +1,6 @@
-module.exports = { // 主配置文件
+
+module.exports = {
+  // 主配置文件
   /* ------------- base ------------ */
   // string，网页标题，它将显示在导航栏
   title: '5102的技术文档',
@@ -8,7 +10,7 @@ module.exports = { // 主配置文件
   base: '/',
   // Array，额外的需要被注入到当前页面的 HTML <head> 中的标签
   // [tagName, { attrName: attrValue }, innerHTML?]
-  head: [],
+  head: [['link', { rel: 'icon', href: '/favicon.png' }]],
   // string，指定用于 dev server 的主机名
   host: '0.0.0.0',
   // number，指定 dev server 的端口
@@ -18,7 +20,13 @@ module.exports = { // 主配置文件
   // string，输出目录
   dest: './docs/.vuepress/dist',
   // { [path: string]: Object }，提供多语言支持的语言配置
-  // locales: undefined,
+  locales: {
+    '/': {
+      lang: 'zh-CN', // 将会被设置为 <html> 的 lang 属性
+      title: '5102的技术文档',
+      description: '5102构建前端知识体系',
+    },
+  },
   // Function，用来控制对于哪些文件，是需要生成 <link rel="prefetch"> 资源提示的
   // shouldPrefetch: () => true,
   // boolean|string，VuePress 默认使用了 cache-loader 来大大地加快 webpack 的编译速度
@@ -53,14 +61,27 @@ module.exports = { // 主配置文件
     // 最后更新时间
     lastUpdated: '上次更新',
     // // 多语言模式
-    // locales:require('./languages')
+    // locales: {
+    //   '/': {
+    //     lang: 'zh-CN', // 将会被设置为 <html> 的 lang 属性
+    //     title: '5102的技术文档',
+    //     description: '5102构建前端知识体系',
+    //   },
+    // },
     // 深度
-    sidebarDepth: 3
+    sidebarDepth: 3,
   },
 
   /* -------------- Pluggable -----------*/
   // Object|Array，使用插件
-  // plugins: undefined,
+  plugins: [
+    [
+      '@vuepress/google-analytics',
+      {
+        'ga': '' // UA-00000000-0
+      }
+    ]
+  ],
 
   /* -------------- Markdown -----------*/
   markdown: {
@@ -78,14 +99,14 @@ module.exports = { // 主配置文件
     // 打开a外部链接会额外打开的选项
     externalLinks: {
       target: '_blank',
-      rel: 'https://docs.5102it.cn/CanvasBoard.html'
+      rel: 'https://docs.5102it.cn/CanvasBoard.html',
     },
     // Object，markdown-it-table-of-contents 的选项
     // toc: {
     //   includeLevel: [2, 3]
     // },
     // Object|Array，配置 markdown-it插件
-    // plugins:[]or{},
+    // plugins:[],
     // Function，一个用于修改当前的 markdown-it 实例的默认配置，或者应用额外的插件的函数
     // extendMarkdown: undefined,
     // Array，提取到this.$page.headers中的元素
@@ -113,12 +134,12 @@ module.exports = { // 主配置文件
   configureWebpack: {
     resolve: {
       alias: {
-        'docs': '../../docs/',
+        docs: '../../docs/',
         'vue-press': './',
         'my-press': '../../',
-        'my-growth': '../../../'
-      }
-    }
+        'my-growth': '../../../',
+      },
+    },
   },
   // Function，通过web-pack-chain，链式配置config
   // chainWebpack: undefined,
