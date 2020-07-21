@@ -22,6 +22,7 @@ module.exports = {
   '/react/': [''],
   '/gulp/': ['', 'gulp', 'plugins'],
   '/webpack/': ['', 'webpack', 'webpackOptimize'],
+  '/nodejs/': ['', 'nodejs', 'nodeEventLoop','express'],
   '/others/': ['', 'echart', 'mysql', 'PHP'],
   '/reading/': ['', 'advanced-programming/note'],
   '/security/': ['', 'secure'],

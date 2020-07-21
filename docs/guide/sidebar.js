@@ -69,6 +69,15 @@ module.exports = [{ // 目录导航
     ]
   },
   {
+    title: '后端',
+    path: '/guide/sidebar9/',
+    collapsable: true,
+    sidebarDepth: 3,
+    children: [
+      '/nodejs/'
+    ]
+  },
+  {
     title: '其他',
     path: '/guide/sidebar6/',
     collapsable: true,

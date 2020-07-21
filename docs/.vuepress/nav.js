@@ -58,6 +58,10 @@ module.exports = [ // 导航栏，导航
         link: '/webpack/',
       },
       {
+        text: 'Node.js',
+        link: '/nodejs/',
+      },
+      {
         text: '其他',
         link: '/others/',
       },
