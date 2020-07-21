@@ -1,4 +1,4 @@
-
+const configs = require('./my-configs.js')
 module.exports = {
   // 主配置文件
   /* ------------- base ------------ */
@@ -78,9 +78,9 @@ module.exports = {
     [
       '@vuepress/google-analytics',
       {
-        'ga': '' // UA-00000000-0
-      }
-    ]
+        ga: configs.ga,
+      },
+    ],
   ],
 
   /* -------------- Markdown -----------*/

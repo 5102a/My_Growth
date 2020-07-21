@@ -6,3 +6,4 @@ CNAME
 dist
 .gitignore
 _config.yml
+my-configs.js
