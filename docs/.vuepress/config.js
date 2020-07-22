@@ -76,11 +76,14 @@ module.exports = {
   // Object|Array，使用插件
   plugins: [
     [
-      '@vuepress/google-analytics',
+      '@vuepress/google-analytics', // 网站分析
       {
         ga: configs.ga,
       },
     ],
+    '@vuepress/nprogress',  // 进度条
+    '@vuepress/medium-zoom', // 图片放大
+    '@vuepress/plugin-back-to-top'
   ],
 
   /* -------------- Markdown -----------*/
