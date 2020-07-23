@@ -19,7 +19,7 @@
   "icons": [{
       "src": "/images/favicon.ico",
       "sizes": "16x16",
-      "type": "image/png"
+      "type": "image/x-icon"
     },
     {
       "src": "/images/touch/homescreen32.png",
