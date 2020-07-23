@@ -1,6 +1,6 @@
 module.exports=[
-  ['link', { rel: 'icon', href: '../public/images/favicon.png' }],
-  ['link', { rel: 'manifest', href: '../public/manifest.json' }],
+  ['link', { rel: 'icon', href: 'images/favicon.png' }],
+  ['link', { rel: 'manifest', href: 'manifest.json' }],
   ['meta', { name: 'author', content: '5102a' }],
   [
     'meta',
