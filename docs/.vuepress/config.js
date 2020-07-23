@@ -5,12 +5,25 @@ module.exports = {
   // string，网页标题，它将显示在导航栏
   title: '5102的技术文档',
   // string，网站的描述，它将会以 <meta> 标签渲染到当前页面的 HTML 中
-  description: '欧里给!!!',
+  description:
+    '5102的技术文档 - 个人技术文档、前端技术文档、自学前端、前端知识体系',
   // string，站点基础路径
   base: '/',
   // Array，额外的需要被注入到当前页面的 HTML <head> 中的标签
   // [tagName, { attrName: attrValue }, innerHTML?]
-  head: [['link', { rel: 'icon', href: '/favicon.png' }]],
+  head: [
+    ['link', { rel: 'icon', href: '/images/favicon.png' }],
+    ['link', { rel: 'manifest', href: '/manifest.json' }],
+    ['meta', { name: 'author', content: '5102a' }],
+    [
+      'meta',
+      {
+        name: 'keywords',
+        content:
+          '5102技术文档,自学前端,前端知识,大前端,前端基础,个人文档,奥力给',
+      },
+    ],
+  ],
   // string，指定用于 dev server 的主机名
   host: '0.0.0.0',
   // number，指定 dev server 的端口
@@ -55,7 +68,7 @@ module.exports = {
     // 导航栏
     nav: require('./nav'),
     // 导航栏logo
-    logo: '/logo.png',
+    logo: '/images/logo.png',
     // 侧边栏
     sidebar: require('./sidebar'),
     // 最后更新时间
@@ -81,9 +94,19 @@ module.exports = {
         ga: configs.ga,
       },
     ],
-    '@vuepress/nprogress',  // 进度条
+    '@vuepress/nprogress', // 进度条
     '@vuepress/medium-zoom', // 图片放大
-    '@vuepress/plugin-back-to-top'
+    '@vuepress/plugin-back-to-top',
+    [
+      '@vuepress/pwa',
+      {
+        serviceWorker: true,
+        updatePopup: {
+          message: '有内容更新！',
+          buttonText: '刷新',
+        },
+      },
+    ],
   ],
 
   /* -------------- Markdown -----------*/

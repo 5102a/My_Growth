@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /logo.png
+heroImage: /images/logo.png
 heroText: 5102的技术文档
 tagline: 从零构建前端知识体系
 actionText: BOY NEXT DOOR →

@@ -56,4 +56,4 @@
 
 **总览**
 
-![前端知识体系](/knowledge.png)
+![前端知识体系](/images/knowledge.png)
