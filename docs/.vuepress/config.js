@@ -21,7 +21,7 @@ module.exports = {
   head: headConfig,
   // string，指定用于 dev server 的主机名
   host: '0.0.0.0',
-  // number，指定 dev server 的端口
+  // number，指定 dev server 的端口di
   port: 8081,
   // string，指定客户端文件的临时目录
   // temp: '/path/to/@vuepress/core/.temp',
