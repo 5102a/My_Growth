@@ -6,7 +6,7 @@ module.exports = {
   // 导航栏
   nav: navConfig,
   // 导航栏logo
-  logo: 'images/logo.png',
+  logo: '/images/logo.png',
   // 侧边栏
   sidebar: sidebarConfig,
   // 最后更新时间

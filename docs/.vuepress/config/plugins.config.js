@@ -1,7 +1,11 @@
-
 const mySecret = require('./my.secret.js')
 
-module.exports={
+module.exports = {
+  'vuepress-plugin-dehydrate': {
+    // 禁用 SSR
+    noSSR: '404.html',
+    noEmptyLine:true
+  },
   '@vssue/vuepress-plugin-vssue': {
     // 设置 `platform` 而不是 `api`
     platform: 'github-v4',
@@ -11,7 +15,7 @@ module.exports={
     repo: 'My_Growth',
     clientId: mySecret.clientId,
     clientSecret: mySecret.clientSecret,
-    autoCreateIssue :true
+    autoCreateIssue: true,
   },
   // 网站分析
   '@vuepress/google-analytics': {
