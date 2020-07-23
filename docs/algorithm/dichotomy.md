@@ -88,3 +88,5 @@ function search(arr, target, l = 0, r = arr.length - 1) {
 }
 console.log(search(array, 7)) // [3,4,5,6,7]
 ```
+
+<Vssue title="算法 issue" />

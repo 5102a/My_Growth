@@ -62,3 +62,5 @@
 7. splice()
 8. copyWithin()
 9. arr.fill()
+
+<Vssue title="JavaScript issue" />

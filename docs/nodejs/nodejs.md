@@ -1165,3 +1165,5 @@ async function foo() {
 // 内部没处理，外部处理错误，如果没处理再到全局处理错误
 foo().catch(console.error)
 ```
+
+<Vssue title="Node.js issue" />

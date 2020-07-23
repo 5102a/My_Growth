@@ -121,3 +121,5 @@ age int
 `set character_set _connection=utf8`;
 - 全部设置
 `set names utf8`;
+
+<Vssue title="其他 issue" />

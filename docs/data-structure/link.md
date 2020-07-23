@@ -610,3 +610,5 @@ function isRing(link) {
 }
 console.log(isRing(list)) // node3
 ```
+
+<Vssue title="数据结构 issue" />

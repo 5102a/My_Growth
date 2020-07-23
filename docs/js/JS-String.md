@@ -52,3 +52,5 @@ String.raw\`templateString\`返回给定模板字符串的元素字符串`，cal
 1. String.raw(callSite, ...substitutions)、String.raw\`templateString\`
 2. String.fromCharCode()
 3. String.fromCodePoint()
+
+<Vssue title="JavaScript issue" />

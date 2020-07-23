@@ -107,3 +107,5 @@ function pay(money, coins, p = coins.length - 1, obj = {
 console.log(pay(328, coins)) // {1: 1, 2: 1, 5: 1, 10: 0, 20: 1, 50: 2, 100: 2, count: 8}
 console.log(pay(600, coins)) // 钱不够
 ```
+
+<Vssue title="算法 issue" />

@@ -282,3 +282,5 @@ exports.default = Watch
 ```
 
 以上只是简单的使用gulp实现自动监听文件，文件改动时同时更新gulp构建之后的文件
+
+<Vssue title="Gulp issue" />

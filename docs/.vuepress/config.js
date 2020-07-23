@@ -1,4 +1,11 @@
-const configs = require('./my-configs.js')
+const configureWebpackConfig = require('./config/configureWebpack.config.js')
+const themeConfig = require('./config/theme.config.js')
+const headConfig = require('./config/head.config.js')
+const localesConfig = require('./config/locales.config.js')
+const pluginsConfig = require('./config/plugins.config.js')
+const markdownConfig = require('./config/markdown.config.js')
+
+
 module.exports = {
   // 主配置文件
   /* ------------- base ------------ */
@@ -11,19 +18,7 @@ module.exports = {
   base: '/',
   // Array，额外的需要被注入到当前页面的 HTML <head> 中的标签
   // [tagName, { attrName: attrValue }, innerHTML?]
-  head: [
-    ['link', { rel: 'icon', href: '/images/favicon.png' }],
-    ['link', { rel: 'manifest', href: '/manifest.json' }],
-    ['meta', { name: 'author', content: '5102a' }],
-    [
-      'meta',
-      {
-        name: 'keywords',
-        content:
-          '5102技术文档,自学前端,前端知识,大前端,前端基础,个人文档,奥力给',
-      },
-    ],
-  ],
+  head: headConfig,
   // string，指定用于 dev server 的主机名
   host: '0.0.0.0',
   // number，指定 dev server 的端口
@@ -31,15 +26,9 @@ module.exports = {
   // string，指定客户端文件的临时目录
   // temp: '/path/to/@vuepress/core/.temp',
   // string，输出目录
-  dest: './docs/.vuepress/dist',
+  dest: '~docs/.vuepress/dist',
   // { [path: string]: Object }，提供多语言支持的语言配置
-  locales: {
-    '/': {
-      lang: 'zh-CN', // 将会被设置为 <html> 的 lang 属性
-      title: '5102的技术文档',
-      description: '5102构建前端知识体系',
-    },
-  },
+  locales: localesConfig,
   // Function，用来控制对于哪些文件，是需要生成 <link rel="prefetch"> 资源提示的
   // shouldPrefetch: () => true,
   // boolean|string，VuePress 默认使用了 cache-loader 来大大地加快 webpack 的编译速度
@@ -50,94 +39,18 @@ module.exports = {
   // Array，默认解析的文件
   patterns: ['**/*.md', '**/*.vue'],
 
-  /* -------------- Styling -----------*/
-  // 定义一些变量，外部样式变量
-  // palette: {
-  //   styl: '/'
-  // },
-  // 一种添加额外样式的简便方法，外部样式
-  // index: {
-  //   styl: '/'
-  // },
-
   /* -------------- theme -----------*/
   // string，当你使用自定义主题的时候，需要指定它
   // theme: undefined,
   // Object，为当前的主题提供一些配置，这些选项依赖于你正在使用的主题
-  themeConfig: {
-    // 导航栏
-    nav: require('./nav'),
-    // 导航栏logo
-    logo: '/images/logo.png',
-    // 侧边栏
-    sidebar: require('./sidebar'),
-    // 最后更新时间
-    lastUpdated: '上次更新',
-    // // 多语言模式
-    // locales: {
-    //   '/': {
-    //     lang: 'zh-CN', // 将会被设置为 <html> 的 lang 属性
-    //     title: '5102的技术文档',
-    //     description: '5102构建前端知识体系',
-    //   },
-    // },
-    // 深度
-    sidebarDepth: 3,
-  },
+  themeConfig: themeConfig,
 
   /* -------------- Pluggable -----------*/
   // Object|Array，使用插件
-  plugins: [
-    [
-      '@vuepress/google-analytics', // 网站分析
-      {
-        ga: configs.ga,
-      },
-    ],
-    '@vuepress/nprogress', // 进度条
-    '@vuepress/medium-zoom', // 图片放大
-    '@vuepress/plugin-back-to-top',
-    [
-      '@vuepress/pwa',
-      {
-        serviceWorker: true,
-        updatePopup: {
-          message: '有内容更新！',
-          buttonText: '刷新',
-        },
-      },
-    ],
-  ],
+  plugins: pluginsConfig,
 
   /* -------------- Markdown -----------*/
-  markdown: {
-    // boolean=undefined是否在每个代码块的左侧显示行号
-    lineNumbers: true,
-    // Function，一个将标题文本转换为 slug 的函数
-    // slugify:source
-    // Object，markdown-it-anchor 的选项。
-    // anchor: {
-    //   permalink: true,
-    //   permalinkBefore: true,
-    //   permalinkSymbol: '#'
-    // },
-    // Object，这个键值对将会作为特性被增加到是外部链接的 <a> 标签上，默认的选项将会在新窗口中打开一个该外部链接
-    // 打开a外部链接会额外打开的选项
-    externalLinks: {
-      target: '_blank',
-      rel: 'https://docs.5102it.cn/CanvasBoard.html',
-    },
-    // Object，markdown-it-table-of-contents 的选项
-    // toc: {
-    //   includeLevel: [2, 3]
-    // },
-    // Object|Array，配置 markdown-it插件
-    // plugins:[],
-    // Function，一个用于修改当前的 markdown-it 实例的默认配置，或者应用额外的插件的函数
-    // extendMarkdown: undefined,
-    // Array，提取到this.$page.headers中的元素
-    // extractHeaders: ['h2', 'h3']
-  },
+  markdown: markdownConfig,
 
   /* -------------- 构建流程 -----------*/
   // Object，配置postcss-loader，指定这个值，将会覆盖内置的 autoprefixer
@@ -157,16 +70,7 @@ module.exports = {
   // Object，less-loader配置
   // less: {},
   // Object | Function，用于修改内部的 Webpack 配置，会合并到主配置
-  configureWebpack: {
-    resolve: {
-      alias: {
-        docs: '../../docs/',
-        'vue-press': './',
-        'my-press': '../../',
-        'my-growth': '../../../',
-      },
-    },
-  },
+  configureWebpack: configureWebpackConfig,
   // Function，通过web-pack-chain，链式配置config
   // chainWebpack: undefined,
 

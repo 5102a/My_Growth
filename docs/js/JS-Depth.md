@@ -2336,3 +2336,5 @@ document.getElementById("btn").onclick = function () {}
 部分内容并非原创，还是要感谢前辈的总结，如果本文影响到您的利益，那么还请事先告知，在写本文时的初衷就是想给更多学习前端的小伙伴拓展知识，夯实基础，共同进步，也为了以后方便复习使用
 
 总结不易，如需转载请注明出处，感谢！
+
+<Vssue title="JavaScript issue" />

@@ -631,3 +631,5 @@ for(var i=0;i<arr.length;i++){
 * 定时器最少 4ms
 * 定时器模块，主线程运行定时器时已经开始计时，定时器队列按定时器时间排序
 * 队列任务再主线程执行数据共享，闭包
+
+<Vssue title="JavaScript issue" />

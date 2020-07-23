@@ -44,3 +44,5 @@
 4. obj.toLocaleString()
 5. obj.toString()
 6. object.valueOf()
+
+<Vssue title="JavaScript issue" />

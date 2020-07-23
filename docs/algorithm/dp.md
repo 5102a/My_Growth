@@ -280,3 +280,5 @@ function way(layer) {
 }
 console.log(way(8)) // 34
 ```
+
+<Vssue title="算法 issue" />

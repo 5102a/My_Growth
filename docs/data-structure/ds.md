@@ -332,3 +332,5 @@ console.log(Heap.getRChild(i, true));
 console.log(Heap.removeNode(i, false));
 console.log(bigHeap)
 ```
+
+<Vssue title="数据结构 issue" />

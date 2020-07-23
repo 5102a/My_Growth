@@ -371,3 +371,5 @@ Firefox 显示列表
 [阮一峰的事件循环](http://www.ruanyifeng.com/blog/2014/10/event-loop.html#comment-text)
 
 [浏览器工作原理梳理](https://juejin.im/post/5a6547d0f265da3e283a1df7#heading-17)
+
+<Vssue title="浏览器 issue" />

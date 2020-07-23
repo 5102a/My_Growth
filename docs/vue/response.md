@@ -1208,3 +1208,5 @@ class Watcher {
   const vm = new MyVue(options)
 </script>
 ```
+
+<Vssue title="Vue.js issue" />

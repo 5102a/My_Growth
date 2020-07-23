@@ -768,3 +768,5 @@ function move(a, b, c, i = a.length - 1) {
 move(A, B, C) // 执行移动
 console.log(A, B, C) // [],[],[1,2,3,4,5,6,7,8,9,10]
 ```
+
+<Vssue title="算法 issue" />

@@ -590,3 +590,5 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 - **`position:absolute`+定宽高+`top:50%`+`left:50%`+`transform:translate3d(-50%,50%,0)`**
 
 以上并非最简情况，可能有些不需要定宽或者定高，可自行斟酌，后续将会修正
+
+<Vssue title="CSS issue" />

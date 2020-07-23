@@ -466,3 +466,5 @@ BFC就是页面上的一个隔离的独立容器，容器里面的子元素不�
 优点：符合闭合浮动思想，结构语义化正确
 
 缺点：ie6-7不支持伪元素：after，使用zoom:1触发hasLayout
+
+<Vssue title="CSS issue" />
