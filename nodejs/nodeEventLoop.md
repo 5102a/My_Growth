@@ -176,7 +176,7 @@ nextTick与浏览器事件循环中的requestAnimationFrame有异曲同工之妙
 
 [libuv源码](./img/7.png)
 
-```c++
+```js
 // c++核心源码
 // /v1.x/src/unix/core.c#L365
 int uv_run(uv_loop_t* loop, uv_run_mode mode) {
@@ -445,7 +445,7 @@ nextTick:1、nextTick:2、nextTick:9(nextTick第一轮结束)、Promise:1、Prom
 
 看看timer阶段源码
 
-```c++
+```js
 // 找出已经超时的节点，并且执行里面的回调
 void uv__run_timers(uv_loop_t* loop) {
   struct heap_node* heap_node;
@@ -509,7 +509,7 @@ int uv_timer_start(
 
 其中决定setTimeout与setImmediate谁先执行，取决于以下条件
 
-```c++
+```js
 if (handle->timeout > loop->time)
   break;
 // 其中handle->timeout = handle->loop->time + timeout
@@ -669,7 +669,7 @@ process.stdin.on('readable', () => {
 
 node v12.16.1版本测试结果如下
 
-```txt
+```js
 回车以启动测试！
 执行io回调
 p1
@@ -697,7 +697,7 @@ s5
 
 node v10.10.0版本测试结果如下
 
-```txt
+```js
 回车以启动测试！
 执行io回调
 p1

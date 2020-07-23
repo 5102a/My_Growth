@@ -1,14 +1,65 @@
 {
   "name": "5102的技术文档",
+  "categories": ["front-end", "technology", "document"],
+  "scope": "https://docs.5102it.cn/",
+  "serviceworker": {
+    "src": "./service-worker.js",
+    "scope": "https://docs.5102it.cn/",
+    "type": "",
+    "update_via_cache": "none"
+  },
+  "dir": "auto",
   "short_name": "5102",
-  "start_url": ".",
+  "start_url": "https://docs.5102it.cn",
   "lang": "zh-CH",
   "display": "standalone",
+  "theme_color": "#35363A",
   "background_color": "#fff",
   "description": "5102的技术文档 - 个人技术文档、前端技术文档、自学前端、前端知识体系",
   "icons": [{
-    "src": "images/favicon.png",
-    "sizes": "16x16",
-    "type": "image/png"
-  }]
+      "src": "/images/favicon.ico",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/touch/homescreen32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/touch/homescreen48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/touch/homescreen72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/touch/homescreen96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/touch/homescreen144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/touch/homescreen168.png",
+      "sizes": "168x168",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/touch/homescreen192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/touch/homescreen512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }

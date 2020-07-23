@@ -649,7 +649,7 @@ app.get('/index', (req, res, next) => {
 
 使用express项目生成器，生成的默认应用程序上运行此命令将输出以下输出
 
-```txt
+```js
 $ DEBUG=express:* node ./bin/www
   express:router:route new / +0ms
   express:router:layer new / +1ms
@@ -695,7 +695,7 @@ $ DEBUG=express:* node ./bin/www
 
 向应用程序发出请求时，您将看到Express代码中指定的日志
 
-```txt
+```js
 express:router dispatching GET / +4h
 express:router query  : / +2ms
 express:router expressInit  : / +0ms

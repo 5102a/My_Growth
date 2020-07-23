@@ -5,7 +5,6 @@ const localesConfig = require('./config/locales.config.js')
 const pluginsConfig = require('./config/plugins.config.js')
 const markdownConfig = require('./config/markdown.config.js')
 
-
 module.exports = {
   // 主配置文件
   /* ------------- base ------------ */
@@ -30,10 +29,24 @@ module.exports = {
   // { [path: string]: Object }，提供多语言支持的语言配置
   locales: localesConfig,
   // Function，用来控制对于哪些文件，是需要生成 <link rel="prefetch"> 资源提示的
-  // shouldPrefetch: () => true,
+  // shouldPrefetch:(file, type) => {
+  //   // 基于文件扩展名的类型推断。
+  //   // https://fetch.spec.whatwg.org/#concept-request-destination
+  //   if (type === 'script' || type === 'style') {
+  //     return true
+  //   }
+  //   if (type === 'html') {
+  //     return true
+  //   }
+  //   if (type === 'image') {
+  //     // 只预加载重要 images
+  //     return file === 'favicon.png'||file === 'knowledge.png'||file === 'logo.jpg'
+  //   }
+  // },
+
   // boolean|string，VuePress 默认使用了 cache-loader 来大大地加快 webpack 的编译速度
   // 指定 cache 的路径，设置为 false 来在每次构建之前删除 cache
-  // cache: true,
+  // cache: false,
   // Array，指定额外的需要被监听的文件，文件变动将会触发 vuepress 重新构建
   // extraWatchFiles: [],
   // Array，默认解析的文件

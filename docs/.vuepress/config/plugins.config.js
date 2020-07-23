@@ -1,11 +1,6 @@
 const mySecret = require('./my.secret.js')
 
 module.exports = {
-  'vuepress-plugin-dehydrate': {
-    // 禁用 SSR
-    noSSR: '404.html',
-    noEmptyLine:true
-  },
   '@vssue/vuepress-plugin-vssue': {
     // 设置 `platform` 而不是 `api`
     platform: 'github-v4',

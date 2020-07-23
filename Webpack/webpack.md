@@ -521,7 +521,7 @@ module.exports = {
 
 ```js
 // js 中引入资源
-import logo from './images/logo.png'
+import logo from './images/logo.jpg'
 const img = new Image()
 img.src = logo  // logo为创建后引入的新路径，不能直接设置字符串路径，需要使用模块引入才能被webpack处理
 ```
