@@ -4,6 +4,8 @@ deploy.sh
 package.json
 CNAME
 dist
+.env
+config.html
 .gitignore
 _config.yml
 my.secret.js
