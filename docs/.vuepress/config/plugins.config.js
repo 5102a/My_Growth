@@ -32,11 +32,11 @@ module.exports = {
   'vuepress-plugin-baidu-autopush': {},
   'vuepress-plugin-code-copy':{},
   'img-lazy':{},
-  'reading-progress': {
-    readingDir: 'top',
-  },
+  // 'reading-progress': {
+  //   readingDir: 'top',
+  // },
   // 'vuepress-plugin-export': {}, //导出pdf ，指令vuepress export [path/to/your/docs]
-  graysite: {}, // 哀悼日变灰{startDate: '2020-04-03 00:00:00',endDate: '2020-04-04 23:59:59'}
+  // graysite: {}, // 哀悼日变灰{startDate: '2020-04-03 00:00:00',endDate: '2020-04-04 23:59:59'}
   seo: {
     type: () => 'article',
   },

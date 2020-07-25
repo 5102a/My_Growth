@@ -2,19 +2,12 @@
   "name": "5102的技术文档",
   "categories": ["front-end", "technology", "document"],
   "scope": "https://docs.5102it.cn/",
-  "serviceworker": {
-    "src": "./service-worker.js",
-    "scope": "https://docs.5102it.cn/",
-    "type": "",
-    "update_via_cache": "none"
-  },
-  "dir": "auto",
   "short_name": "5102",
-  "start_url": "https://docs.5102it.cn/",
+  "start_url": "https://docs.5102it.cn",
   "lang": "zh-CH",
   "display": "standalone",
-  "theme_color": "#35363A",
-  "background_color": "#fff",
+  "theme_color": "#3367D6",
+  "background_color": "#3367D6",
   "description": "5102的技术文档 - 个人技术文档、前端技术文档、自学前端、前端知识体系",
   "icons": [{
       "src": "/images/favicon.ico",

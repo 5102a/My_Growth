@@ -1,8 +1,12 @@
 module.exports = [
   ['link', { rel: 'icon', href: '/images/favicon.ico' }],
   ['link', { rel: 'manifest', href: '/manifest.json' }],
-  ['link', { rel: 'apple-touch-icon', href: '/images/touch/apple-touch-icon.png' }],
+  [
+    'link',
+    { rel: 'apple-touch-icon', href: '/images/touch/apple-touch-icon.png' },
+  ],
   ['meta', { name: 'author', content: '5102a' }],
+  ['meta', { name: 'copyright', content: '本网站版权归5102it所有' }],
   ['meta', { name: 'theme-color', content: '#ffffff' }],
   ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
   ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
