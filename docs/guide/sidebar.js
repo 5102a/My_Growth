@@ -59,13 +59,14 @@ module.exports = [{ // 目录导航
     ]
   },
   {
-    title: '自动化构建',
+    title: '自动化工具',
     path: '/guide/sidebar8/',
     collapsable: true,
     sidebarDepth: 3,
     children: [
       '/gulp/',
-      '/webpack/'
+      '/webpack/',
+      '/jest/'
     ]
   },
   {
