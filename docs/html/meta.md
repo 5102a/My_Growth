@@ -1,16 +1,16 @@
 # mete标签详解
 
 元素可提供有关页面的元信息（meta-information），比如针对搜索引擎和更新频度的描述和关键词
-标签位于文档的头部，不包含任何内容。<meta> 标签的属性定义了与文档相关联的名称/值对
+标签位于文档的头部，不包含任何内容。`<meta>` 标签的属性定义了与文档相关联的名称/值对
 
 ## 必选属性content
 
 - 定义与 http-equiv 或 name 属性相关的元信息
 - content 属性提供了名称/值对中的值。该值可以是任何有效的字符串
 - content 属性始终要和 name 属性或 http-equiv 属性一起使用
-- 但是所有服务器都至少要发送一个：content-type:text/html。这将告诉浏览器准备接受一个 HTML 文档
+- 但是所有服务器都至少要发送一个：`content-type:text/html`。这将告诉浏览器准备接受一个 HTML 文档
 
-```js content
+```html content
 <!-- 网页作者 -->
 <meta name="author" content="开源技术团队"/>
 <!-- 网页地址 -->
@@ -40,16 +40,16 @@
 
 - name提供名称，与把content属性关联到一个名称
 - 通常情况下，您可以自由使用对自己和源文档的读者来说富有意义的名称
-- "keywords" 是一个经常被用到的名称。它为文档定义了一组关键字。某些搜索引擎在遇到这些关键字时，会用这些关键字对文档进行分类
+- "keywords" 是一个经常被用到的名称。它为文档定义了一组关键字。某些**搜索引擎**在遇到这些**关键字**时，会用这些关键字对文档进行分类
 
 ### 可选属性http-equiv
 
 - http-equiv 属性为名称/值对提供了名称
 - 指示服务器在发送实际的文档之前先在要传送给浏览器的 MIME 文档头部包含名称/值对
 - 当服务器向浏览器发送文档时，会先发送许多名称/值对，服务器将把名称/值对添加到发送给浏览器的内容头部
-- 只有浏览器可以接受这些附加的头部字段，并能以适当的方式使用它们时，这些字段才有意义
+- **只有浏览器可以接受这些附加的头部字段，并能以适当的方式使用它们时，这些字段才有意义**
 
-```js http-equiv
+```html http-equiv
 <!-- expires指定网页的过期时间。一旦网页过期，必须从服务器上下载。 -->
 <meta http-equiv="expires" content="Fri, 12 Jan 2020 18:18:18 GMT"/>
 <!-- 等待一定的时间刷新或跳转到其他url。下面1表示1秒 -->
@@ -60,7 +60,7 @@
 <meta http-equiv="set-cookie" content="name=value expires=Fri, 12 Jan 2001 18:18:18 GMT,path=/"/>
 <!-- 使用浏览器版本 -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<!-- 针对WebApp全屏模式，隐藏状态栏/设置状态栏颜色，content的值为default | black | black-translucent -->
+<!-- 针对WebApp全屏模式，隐藏状态栏/设置状态栏颜色，content的值为default | black | black-translucent（半透明） -->
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 ```
 
@@ -68,15 +68,15 @@
 
 - 定义文档的字符编码
 
-```js charset字符集
-<!-- 定义网页文档的字符集 -->
+```html charset字符集
+<!-- 定义网页文档的字符集，用于浏览器解析 -->
 <meta charset="utf-8" />
 ```
 
 ### scheme(html5不支持)
 
 - 定义用于翻译 content 属性值的格式
-- 此方案应该在由 <head> 标签的 profile 属性指定的概况文件中进行了定义
+- 此方案应该在由 `<head>` 标签的 profile 属性指定的概况文件中进行了定义。
 
 ### 总结
 

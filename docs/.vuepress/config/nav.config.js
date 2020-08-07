@@ -58,6 +58,10 @@ module.exports = [ // 导航栏，导航
         link: '/webpack/',
       },
       {
+        text: 'Jest',
+        link: '/jest/',
+      },
+      {
         text: 'Node.js',
         link: '/nodejs/',
       },

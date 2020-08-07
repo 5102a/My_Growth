@@ -6,7 +6,7 @@ HTML5 技术结合了 HTML4.01 的相关标准并革新，符合现代网络发�
 
 ### HTML5 文档定义
 
-```js 基本框架
+```html 基本框架
 <!--文档定义-->
 <!DOCTYPE html>
 <!--中文编码来解析-->
@@ -50,24 +50,24 @@ HTML5 技术结合了 HTML4.01 的相关标准并革新，符合现代网络发�
   - range 范围（滑动条）属性 min、max、value 表示设定值
   - 如果浏览器不解析 type 的值，则当成文本框使用
 
-```js 表单控件新增属性
+```html 表单控件新增属性
 <!-- 此类型要求输入格式正确的email地址 -->
-<input type=email >
+<input type="email" >
 <!-- 要求输入格式正确的URL地址  -->
-<input type=url >
+<input type="url" >
 <!-- 要求输入格式数字，默认会有上下两个按钮 -->
-<input type=number >
+<input type="number" >
 <!-- 时间系列，但目前只有 Opera和Chrome支持 -->
-<input type=date >
-<input type=time >
-<input type=datetime >
-<input type=datetime-local >
-<input type=month >
-<input type=week >
+<input type="date" >
+<input type="time" >
+<input type="datetime" >
+<input type="datetime-local" >
+<input type="month" >
+<input type="week" >
 <!-- 默认占位文字 -->
-<input type=text placeholder="your message" >
+<input type="text" placeholder="your message" >
 <!-- 默认聚焦属性 -->
-<input type=text autofacus="true" >
+<input type="text" autofacus="true" >
 ```
 
 ### 视频
@@ -82,7 +82,7 @@ HTML5 技术结合了 HTML4.01 的相关标准并革新，符合现代网络发�
 - 解决兼容性问题
   - 多选几种格式
 
-  ```js 兼容性
+  ```html 兼容性
   <video controls>
     <source src="xx.mp4">
     <source src="xx.ogg">
@@ -99,7 +99,7 @@ HTML5 技术结合了 HTML4.01 的相关标准并革新，符合现代网络发�
 ### Canvas绘图
 
 - HTML5的canvas元素可以实现画布功能，该元素通过自带的API结合使用JavaScript脚本语言在网页上绘制图形和处理，拥有实现绘制线条、弧线以及矩形
-- 用样式和颜色填充区域，书写样式化文本，以及添加图像的方法，且使用JavaScript可以控制其每一个像素-
+- 用样式和颜色填充区域，书写样式化文本，以及添加图像的方法，且使用JavaScript可以控制其每一个像素
 - HTML5的canvas元素使得浏览器无需Flash或Silverlight等插件就能直接显示图形或动画图像
 - 通过canvas绘制图像
 - 通过canvas绘制路径
@@ -109,18 +109,18 @@ HTML5 技术结合了 HTML4.01 的相关标准并革新，符合现代网络发�
 
 ### 地理位置
 
-- HTML5通过引入Geolocation的API可以通过GPS或网络信息实现用户的定位功能，定位更加准确、灵活
+- HTML5通过引入**Geolocation**的API可以通过GPS或网络信息实现用户的定位功能，定位更加准确、灵活
 - 通过HTML5进行定位，除了可以定位自己的位置，还可以在他人对你开放信息的情况下获得他人的定位信息
 
 ### WebStorage
 
-- WebStorage数据存储，HTML5支持DOM Storage和Web SQL Database 两种存储机制
-- localStorage用于长久保存整个网站的数据，保存的数据没有过期时间，直到手动去除
-- sessionStorage - 用于临时保存同一窗口(或标签页)的数据，在关闭窗口或标签页之后将会删除这些数据
+- WebStorage数据存储，HTML5支持**DOM Storage**和**Web SQL Database** 两种存储机制
+- LocalStorage用于长久保存整个网站的数据，保存的数据**没有过期时间**，直到**手动去除**
+- SessionStorage用于**临时保存**同一窗口(或标签页)的数据，在**关闭窗口或标签页之后**将会**删除**这些数据
 
 ### WebWorker
 
-- WebWorker多线程，通过创建一个Web Worker对象就可以实现多线程操作
+- WebWorker多线程，通过创建一个Web Worker对象就可以实现**多线程**操作
 - HTML5新增加了一个WebWorkerAPI，用户可以创建多个在后台的线程，将耗费较长时间的处理交给后台面不影响用户界面和响应速度，这些处理不会因用户交互而运行中断
 - 大致步骤如下
   - ①先创建发送数据的子线程；
@@ -131,7 +131,7 @@ HTML5 技术结合了 HTML4.01 的相关标准并革新，符合现代网络发�
 
 ### WebSocket
 
-- WebSocket是HTML5开始提供的一种在单个 TCP 连接上进行全双工通讯的协议
+- WebSocket是HTML5开始提供的一种在**单个 TCP 连接上进行全双工通讯的协议**
 - 浏览器通过 JavaScript 向服务器发出建立 WebSocket 连接的请求，连接建立以后，客户端和服务器端就可以通过 TCP 连接直接交换数据
 - 当你获取 Web Socket 连接后，你可以通过 send() 方法来向服务器发送数据，并通过 onmessage 事件来接收服务器返回的数据
 - 解决HTML4.01的轮询问题
