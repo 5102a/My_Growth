@@ -12,6 +12,10 @@
 
 - ### [贪心算法](../../algorithm/greedy.html)
 
+- ### [位运算试题](../../algorithm/LeetCode-BO.html)
+
+- ### [排序试题](../../algorithm/LeetCode-Sort.html)
+
 ## [二、数据结构系列](../../data-structure/)
 
 - ### [几种常见数据结构](../../data-structure/ds.html)
@@ -19,3 +23,7 @@
 - ### [链表](../../data-structure/link.html)
 
 - ### [各种树](../../data-structure/tree.html)
+
+- ### [栈试题](../../data-structure/LeetCode-Stack.html)
+
+- ### [树试题](../../data-structure/LeetCode-Tree.html)
