@@ -11,3 +11,5 @@
 - ### [虚拟DOM与diff算法](../../vue/VDOM.html)
 
 - ### [vue重点知识](../../vue/important.html)
+
+- ### [组件通信](../../vue/component.html)

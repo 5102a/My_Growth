@@ -38,15 +38,17 @@
 
 - ### [13. 代码优化系列](../optimization/)
 
-## [七、自动化构建](./sidebar8/)
+## [七、自动化工具](./sidebar8/)
 
 - ### [14. Gulp系列](../gulp/)
 
 - ### [15. Webpack系列](../webpack/)
 
+- ### [16. Jest系列](../jest/)
+
 ## [八、后端](./sidebar9/)
 
-- ### [16. Node.js系列](../nodejs/)
+- ### [17. Node.js系列](../nodejs/)
 
 ## [读书记](../reading/)
 
