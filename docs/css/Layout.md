@@ -4,7 +4,7 @@
 
 许多网站都是使用这种布局，从上至下只有一列
 
-单列布局主要有header、content、footer组成，由于header于footer有不同的布局方式又分为，等宽与通栏布局
+单列布局主要有header、content、footer组成，由于header与footer有不同的布局方式又分为，等宽与通栏布局
 
 ### 单列等宽布局
 
@@ -12,7 +12,7 @@ header、content、footer都是相同宽度，且居中
 
 ![单列布局等宽](./img/26.png)
 
-```js 单列布局等宽
+```html 单列布局等宽
 <style>
   .header {
     max-width: 200px;
@@ -43,7 +43,7 @@ header、content、footer都是相同宽度，且居中
 
 ![单列布局通栏](./img/27.png)
 
-```js 单列布局通栏
+```html 单列布局通栏
 <style>
   *{
     margin: 0;
@@ -77,7 +77,7 @@ header、content、footer都是相同宽度，且居中
 
 ![双列定位布局](./img/28.png)
 
-```js 双列定位布局
+```html 双列定位布局
 <style>
   .contain {
     position: relative;
@@ -113,7 +113,7 @@ header、content、footer都是相同宽度，且居中
 
 ![双列浮动BFC自适应布局](./img/29.png)
 
-```js 双列浮动BFC自适应布局
+```html 双列浮动BFC自适应布局
 <style>
   .contain {
     max-width: 200px;
@@ -144,7 +144,7 @@ flex就可以很容易实现双列自适应布局，通过给父容器设置flex
 
 ![双列flex自适应布局](./img/30.png)
 
-```js 双列flex自适应布局
+```html 双列flex自适应布局
 <style>
   .contain {
     max-width: 200px;
@@ -176,7 +176,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![双列grid自适应布局](./img/31.png)
 
-```js 双列grid自适应布局
+```html 双列grid自适应布局
 <style>
   .contain {
     max-width: 200px;
@@ -207,7 +207,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![双列浮动定宽布局](./img/32.png)
 
-```js 双列浮动定宽布局
+```html 双列浮动定宽布局
 <style>
   .contain {
     max-width: 200px;
@@ -246,7 +246,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![三列浮动布局](./img/33.png)
 
-```js 三列浮动布局
+```html 三列浮动布局
 <style>
   .contain {
     max-width: 200px;
@@ -285,7 +285,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![三列圣杯布局](./img/34.png)
 
-```js 三列圣杯布局
+```html 三列圣杯布局
 <style>
   .contain {
     max-width: 200px;
@@ -312,7 +312,7 @@ grid又是一种新型布局方式，对于table来说更加方便
   }
   .middle {
     float: left;
-    width: 100%;
+    width: 100%;  /* 中间列自动拉满宽 */
     background-color: rgb(255, 0, 0);
   }
 </style>
@@ -330,7 +330,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 - 如果父容器没有高度的情况下需要清除浮动，且设置padding是为了之后给左右栏腾出位置
 - 左右栏部分
   - 定宽，这样主体可以自适应，以及后续操作方便
-  - 相对定位+左右偏移，真好定位到父容器腾出的位置，且不会遮挡主体部分
+  - 相对定位+左右偏移，正好定位到父容器腾出的位置，且不会遮挡主体部分
   - 重点部分，左栏设置`margin-left:-100%`
     - 个人理解：元素在页面上占据的总宽度=左右外边距宽度+左右边框宽度+左右内边距宽度+内容宽度，当左栏设置了`margin-left:-100%`，此处的100%为父容器内容宽度即200px，由于左栏内容宽度50px，所以计算之后左栏占据空间总宽度=-200px+50px=-150px，这样一来，左栏在页面上占据的宽度为负数，则往回移动，由于正宽度是追加排列，负宽度则是回走排列，即在有正宽度的情况下按照正常从左到右，不够换行的方式排列，而负宽度则就是往回走，从右往左，不够则回到上行，直到抵消负宽度值
   - 右栏同理
@@ -355,7 +355,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![圣杯布局](./img/38.png)
 
-```js 圣杯布局
+```html 圣杯布局
 <style>
   *{
     margin: 0;
@@ -423,7 +423,7 @@ grid又是一种新型布局方式，对于table来说更加方便
 
 ![三列双飞翼布局](./img/41.png)
 
-```js 三列双飞翼布局
+```html 三列双飞翼布局
 <style>
   *{
     margin: 0;
@@ -482,7 +482,7 @@ flex与grid可以说是布局上的万金油，可以解决大部分的布局问
 
 一样的效果
 
-```js 三列flex布局
+```html 三列flex布局
 <style>
   .contain {
     max-width: 200px;
@@ -512,7 +512,7 @@ flex与grid可以说是布局上的万金油，可以解决大部分的布局问
 
 flex布局，一如既往的简单，况且还能自适应
 
-```js grid
+```html grid
 <style>
   .contain {
     max-width: 200px;
@@ -548,7 +548,7 @@ grid两行实现，当然事物都有双面性，看你取舍咯。
 
 话不多说，直接上代码，效果就是拉满高度
 
-```js 通过flex与grid实现等高布局
+```html 通过flex与grid实现等高布局
 <!-- flex -->
 <style>
   .contain {
@@ -621,7 +621,7 @@ flex兼容性好些，不过ie是个坎
 
 ![等高效果](./img/45.png)
 
-```js 等高效果
+```html 等高效果
 <style>
   .contain {
     max-width: 200px;
@@ -661,7 +661,7 @@ flex兼容性好些，不过ie是个坎
 
 由于表格元素的单元格默认等高，所以也可以借助此属性实现元素等高效果
 
-```js 使用table布局实现等高
+```html 使用table布局实现等高
 <style>
   .contain {
     max-width: 200px;
@@ -705,7 +705,7 @@ flex兼容性好些，不过ie是个坎
 
 可以看到实际上左右栏的高度没有改变，只是通过padding把背景颜色填满高度
 
-```js 伪等高
+```html 伪等高
 <style>
   .contain {
     max-width: 200px;
@@ -752,7 +752,7 @@ flex兼容性好些，不过ie是个坎
 - 主体设置左右边框，颜色同左右栏背景色
 - 左右栏通过绝对定位到边框位置上，且设置背景为透明色，这样才能显示边框伪造背景，或者使用左右浮动来定位
 
-```js 边框伪装实现伪等高
+```html 边框伪装实现伪等高
 <style>
   .contain {
     max-width: 200px;
@@ -788,6 +788,32 @@ flex兼容性好些，不过ie是个坎
 #### 背景图实现伪等高
 
 这操作没谁了，使用一张背景图伪装成左右栏背景的填充，实现视觉等高，这就不演示了吧！
+
+## 总结
+
+- 单列布局
+  - **单列等宽：header、content、footer都定宽+`margin:0 auto`**
+  - **单列通栏：header、footer不设宽，content定宽+`margin:0 auto`**
+- 双列布局
+  - **绝对定位双列：父容器定位+左右子容器绝对定位**
+  - **float+BFC双列：侧边float+主体BFC**
+  - **flex双列：父容器`display:flex`+子容器`flex:1、flex:2`按比例分配**
+  - **grid双列：父容器`display:grid`+`grid-template-columns: 1fr 2fr`按比例分配**
+  - **浮动以及定宽双列：子元素`float:left/right`+定宽(%)**
+- 三列布局
+  - **浮动三列：左右浮动+中间`margin:0 左右宽度`**
+  - **圣杯三列：左中右浮动+左定宽`position: relative;margin-left: -100%;left: -自身宽;`+右定宽`position: relative;margin-left: -自身宽;left: 自身宽;`+中间`width:100%`**
+  - **双飞翼三列：左中右浮动+左定宽`margin-left: -100%;`+右定宽`margin-left: -自身宽;`+中间`width: 100%;`+额外盒子`margin: 0 左/右宽度;`**
+  - **flex三列：父容器`display:flex`+左子容器`flex:1;`+中子容器`flex:2;`+右子容器`flex:1;`**
+  - **grid三列：父容器`display:flex;grid-template-columns: 1fr 2fr 1fr;`**
+- 等高布局
+  - **flex/grid同上配置，子元素高度默认拉满为父元素高度**
+  - **绝对定位等高：子元素:不设高度+`top:0;bottom:0`**
+  - **table等高：父容器`display:table`+子容器`display:table-cell`**
+  - 伪等高
+    - **使用正padding、负margin，让背景填充(padding中有背景填充)**
+    - **边框伪装左右栏、并且左右栏定位到边框上且不透明度为0**
+    - **背景图伪装，使背景图与实际左右栏相似**
 
 CSS布局先补充到这里，持续更新。。。
 

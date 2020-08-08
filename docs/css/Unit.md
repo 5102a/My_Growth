@@ -62,7 +62,7 @@ CSS中到处都需要使用单位，各类属性也离不开单位，通过不�
 
 ![em](./img/49.png)
 
-```js em
+```html em
 <style>
   *{
     margin: 0;
@@ -101,19 +101,19 @@ CSS中到处都需要使用单位，各类属性也离不开单位，通过不�
 
 ### rem
 
-- 这个单位代表根元素的 font-size 大小（例如 <html> 元素的font-size）
+- 这个单位代表根元素的 font-size 大小（例如 `<html>` 元素的font-size）
 - 当用在根元素的 font-size 上面时 ，它代表了它的初始值
 
 ![rem](./img/52.png)
 
-```js rem
+```html rem
 <style>
   *{
     margin: 0;
     border: 0;
   }
   html{
-    font-size: 1rem; // 也可以直接用px单位， 这里1rem=20px，浏览器默认比例
+    font-size: 1rem; /* 也可以直接用px单位， 这里1rem=20px，浏览器默认比例 */
   }
   .text1{
     width: 20px;

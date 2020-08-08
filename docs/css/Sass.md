@@ -218,7 +218,7 @@ css
 
 - 独立的值也被视为数组
 - nth 函数可以直接访问数组中的某一项；join 函数可以将多个数组连接在一起；append 函数可以在数组中添加新值；而 @each 指令能够遍历数组中的每一项
-- 数组可以有子数组，使用逗号风格为2个子数组，或者使用括号包裹2个子数组，`1px 2px, 5px 6px与(1px 2px) (5px 6px)`，用空括号表示null
+- 数组可以有子数组，使用逗号分割为2个子数组，或者使用括号包裹2个子数组，`1px 2px, 5px 6px与(1px 2px) (5px 6px)`，用空括号表示null
 
 #### maps
 
@@ -237,7 +237,7 @@ scss
 
 ```scss
 p {
-  font: 10px/8px;             // Plain CSS, no division
+  font: 10px/8px;             // Plain CSS, no division，不是除
   $width: 1000px;
   width: $width/2;            // Uses a variable, does division
   width: round(1.5)/2;        // Uses a function, does division
@@ -431,9 +431,9 @@ css
 
 `@extend` 会把.seriousError.seriousError合并为.seriousError
 
-#### 延时复杂选择器
+#### 延申复杂选择器
 
-- extend可以延时任何定义给单个元素的选择器，包括`.main.title`,`a:hover`,`a.user[href^="http://"]`，直接继承选择器所拥有的样式
+- extend可以延申任何定义给单个元素的选择器，包括`.main.title`,`a:hover`,`a.user[href^="http://"]`，直接继承选择器所拥有的样式
 
 scss
 
