@@ -144,10 +144,10 @@
 
 ## 背景样式属性
 
-- bakcground-color 值#ffffff 等，设置背景色
+- background-color 值#ffffff 等，设置背景色
 - background-image 值 url 图像路径，设置背景图
 - background-repeat 值 repeat、repeat-x、repeat-y、no-repeat，设置图像重复类型
-- background-position 值（left、right、center）center center 或 x% y%或 xpos ypos，设置背景图像起始位置
+- background-position 值（left、right、center）center center 或 x% y%或 x pos y pos，设置背景图像起始位置
 - **background-attachment** 值 scroll 滚动、fixed 固定，设置背景图像是否固定或者随页面的其余部分滚动
 - background 值 url no-repeat center center，设置背景的简写形式
 - **background-clip：content-box背景按内容裁切**
@@ -368,7 +368,7 @@
 ### 变形透视
 
 - x水平，y垂直，z纵深不能%
-- transform:translateX（200px）x移动，%，translate（x，y），可以把元素定在中心用动画，translate3d（x，y，z），scaleX（2，.5）缩放,perspective(900px)透视，rotateX（45deg）、rotate（）、rotate3d（x,y,z,deg）旋转，scaleZ（5）z轴拉长，scale3d（x,y,z），skew(xdeg,ydeg)倾斜
+- transform:translateX（200px）x移动，%，translate（x，y），可以把元素定在中心用动画，translate3d（x，y，z），scaleX（2，.5）缩放,perspective(900px)透视，rotateX（45deg）、rotate（）、rotate3d（x,y,z,deg）旋转，scaleZ（5）z轴拉长，scale3d（x,y,z），skew(x deg,y deg)倾斜
 - **linear-gradient**（to left，col，col）线性渐变函数
 - transform-style:preserve-3d，能看到z轴方向
 - transform-origin:left top缩放基点，旋转参考点等变换参考点

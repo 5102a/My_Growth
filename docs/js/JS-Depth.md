@@ -219,7 +219,7 @@ function deepClone(a, weakMap = new WeakMap()) {
   if (s = weakMap.get(a)) return s
   const b = Array.isArray(a) ? [] : {}
   weakMap.set(a, b)
-  for (const key of Object.keys(a)) b[key] = clone(a[key], weakMap)
+  for (const key of Object.keys(a)) b[key] = deepClone(a[key], weakMap)
   return b
 }
 //js原生深拷贝，无法拷贝Symbol、null、循环引用
@@ -231,7 +231,7 @@ function JSdeepClone(data) {
   const result = new constructor();
   for (const key in data) {
     if (data.hasOwnProperty(key)) {
-      result[key] = deepClone(data[key]);
+      result[key] = JSdeepClone(data[key]);
     }
   }
   return result;
@@ -283,7 +283,7 @@ function deepClonePlus(a, weakMap = new WeakMap()) {
 
 刨析深拷贝(个人思路)
 
-- 本人使用递归算法来实习深拷贝，由于使用递归，会让代码看起来更加易懂，在不触及调用栈溢出的情况下，推荐使用递归
+- 本人使用递归算法来实现深拷贝，由于使用递归，会让代码看起来更加易懂，在不触及调用栈溢出的情况下，推荐使用递归
 - 深拷贝，其实考验的就是如何把引用类型给拷贝过来，还有Symbol类型比较特殊，如何实现一个比较完整的深拷贝就要涉及**不同类型**的拷贝方式
 
 1. 首先考虑简单的**原始类型**，由于原始类型在内存中保存的是值可以直接通过值的赋值操作，先判断传入参数是否为原始类型，包括null这里归为原始类型来判断，没必要进入对象环节，函数直接赋值不影响使用
@@ -382,7 +382,7 @@ Object.defineProperty(Object.prototype,'__proto__',{
 
 **二、函数的prototype属性**
 
->所有函数都有的prototype属性，js中函数也属于对象的子类型，所以函数也具备对象的`__proto__`与普通对象类似都指向其原型。而这里的prototype属性，是函数独有的。当函数使用new关键字修饰时，我们可以理解为此函数被当作构造函数使用也就是构造器。当函数被用作构造函数调用时，其prototype发挥了作用，使得由构造器new出来对象的`__proto__`指向构造函数的prototype。
+>所有函数都有的prototype属性，js中函数也属于对象的子类型，所以函数也具备对象的`__proto__`与普通对象类似都指向其原型。而这里的prototype属性，是函数独有的。当函数使用new关键字修饰时，我们可以理解为，此函数被当作构造函数使用也就是构造器。当函数被用作构造函数调用时，其prototype发挥了作用，使得由构造器new出来对象的`__proto__`指向构造函数的prototype。
 
 以下演示函数prototype属性在实例化时的作用
 
@@ -405,7 +405,7 @@ console.dir(obj.__proto__===Foo.prototype) // true，表名实例关联的原型
 
 - 只有对象类型才有原型概念
 - 普通对象(即使用对象字面量或者Object构造器创建的对象)的原型为`__proto__`属性，此属性其实是个访问器属性，并不是真实存在的属性，或者可以使用es6的`Reflect.getPrototypeOf(obj)`和`Object.getPrototypeOf(obj)`方法获取对象的原型，其关系`Reflect.getPrototypeOf({}) === Object.getPrototypeOf({}) === {}.__proto__`
-- 普通函数有2个属性，一个是是`__proto__`(与普通对象类似)，还有一个是函数专有的`prototype`属性，因为函数有双重身份，即可以是实例也可以是构造器，所以关系比较特殊
+- 普通函数有2个属性，一个是`__proto__`(与普通对象类似)，还有一个是函数专有的`prototype`属性，因为函数有双重身份，即可以是实例也可以是构造器，所以关系比较特殊
 - 不是所有的对象都会有原型，比如对象原型`Object.prototype`的原型`Object.prototype.__proto__`就指向null，字典对象的原型也为null(把对象的`__proto__`设置为null，或者使用`Object.create(null)`创建一个没有原型的字典对象，但是这个对象还是属于对象类型)，所以原始对象原型(Object.prototype)就是最原始的原型，其他对象类型都要继承自它。
 - 箭头函数虽然属于函数，由Function产生，但是没有prototype属性没有构造器特性，所以也就没有所谓的constructor，就不能作为构造器使用
 
@@ -1121,7 +1121,9 @@ const foo = () => {
 }
 foo()
 ----------------------------------------------
-// 可见对象中的this指向window，箭头函数中的this指向对象中的this。由于只有创建执行上下文才会绑定this指向，而除了全局上下文，只有函数作用域才会创建上下文环境从而绑定this，创建对象不会绑定this，所以还是全局this
+// 可见对象中的this指向window，箭头函数中的this指向对象中的this。
+// 由于只有创建执行上下文才会绑定this指向，而除了全局上下文，
+// 只有函数作用域才会创建上下文环境从而绑定this，创建对象不会绑定this，所以还是全局this
 const obj={
   this:this,
   foo:()=>{
@@ -1131,7 +1133,9 @@ const obj={
 console.dir(obj.this) //window ，严格下 window
 obj.foo()
 ---------------------------------------------
-// 对象方法内部嵌套箭头函数，则此箭头函数的this属于外部非箭头函数this。当调用obj.foo时foo函数创建的执行上下文中的this绑定对象obj，而箭头函数并不会绑定this，所以其this属于foo下的this，即对象obj
+// 对象方法内部嵌套箭头函数，则此箭头函数的this属于外部非箭头函数this。
+// 当调用obj.foo时foo函数创建的执行上下文中的this绑定对象obj，
+// 而箭头函数并不会绑定this，所以其this属于foo下的this，即对象obj
 const obj = {
   foo: function () {
     return () => {
@@ -1222,7 +1226,7 @@ bind函数要能够返回严格绑定this与参数后的函数，调用这个返
 Function.prototype.Bind = function (thisArg) {
   const fn = Symbol('fn')       //生成一个不重复的键
   thisArg[fn] = this || window  //把foo函数作为传入this的一个方法
-  const f = thisArg[fn]         // 负责一份函数
+  const f = thisArg[fn]         // 复制一份函数
   delete thisArg[fn]            //删除原来对象上的函数，但是保留了this指向
   const args = Array.from(arguments).slice(1)
   return function () {
@@ -1432,7 +1436,7 @@ CMD推崇就近依赖，只有在用到某个模块的时候再去require
 6. reverse() 原位反转数组中的元素
 7. `splice(pos,deleteCount,...item)`  返回修改后的数组，从pos开始删除deleteCount个元素，并在当前位置插入items
 8. `copyWithin(pos[, start[, end]])` 复制从start到end(不包括end)的元素，到pos开始的索引，返回改变后的数组，浅拷贝
-9. `arr.fill(value[, start[, end]])` 从start到end默认到数组最后一个位置，不包括end，填充val，返回填充后的数组
+9. `fill(value[, start[, end]])` 从start到end默认到数组最后一个位置，不包括end，填充val，返回填充后的数组
 
 其他数组api不改变原数组
 
@@ -1458,7 +1462,7 @@ window.location.href = 'http://www.baidu.com'
 ![location属性](./img/6.png)
 这里补充一个**origin**属性，`返回URL协议+服务器名称+端口号 (location.origin == location.protocol + '//' + location.host)`
 
-- 可以通过上述属性来获取URL中的指定部分，或者修改href于hash达到重新定位与跳转
+- 可以通过上述属性来获取URL中的指定部分，或者修改href与hash达到重新定位与跳转
 - 添加hash改变监听器，来控制hash改变时执行的代码
 
 ```js 添加hash改变事件
@@ -1547,7 +1551,7 @@ hybrid方法的可能：
 
 - ajax全称Asynchronous JavaScript And XML也就是异步js与xml，它可以让页面在不刷新的情况下发起请求获取数据
 - 使用`window.XMLHttpRequest`构造器实例化一个网络请求对象`const XHR = new XMLHttpRequest()`
-- `XHR.open(method, url, [ async, [ user, [ password]]])`此方法用来发送一个请求，method为请求方法，url为请求地址，async为boolean值默认为true即使用异步请求，user和password在请求需要用户和密码的时候使用
+- `XHR.open(method, url, [ async, [ user, [ password]]])`此方法用来创建一个发送请求，method为请求方法，url为请求地址，async为boolean值默认为true即使用异步请求，user和password在请求需要用户和密码的时候使用
 - `XHR.send(body)`参数为发生请求主体内容，其格式可以为FormData、ArrayBuffer、Document、序列化字符串，在收到响应后，响应的数据会自动填充XHR对象的属性
 - 当需要设置请求头时可以调用`XHR.setRequestHeader(header,value)`设置请求头的类型与值，当以post方式发起请求就用设置`XHR.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')`此请求头，值可更改
 - 通过监听实例的onreadystatechange属性方法，当readyState的值改变的时候会触发onreadystatechange对应的回调函数`XHR.onreadystatechange = function () { }`
@@ -1623,7 +1627,7 @@ Ajax.prototype.send = function () {
   if (this.url === '') return
   const XHR = new XMLHttpRequest()
   XHR.addEventListener('load', () => {
-    if (XHR.status >= 200 && XHR.status < 300 || XHR.status == 304) {
+    if (XHR.status >= 200 && XHR.status < 300 || XHR.status == 304) { // 304走缓存，文档没变
       typeof this.success === 'function' && this.success(XHR.response)
     }
   })
@@ -1932,11 +1936,11 @@ sessionStorage.clear();
 - 数据存储有效期
   - sessionStorage：仅在当前浏览器窗口关闭之前有效；
 localStorage：始终有效，窗口或浏览器关闭也一直保存，本地存储，因此用作持久数据；
-  - cookie：只在设置的cookie过期时间之前有效，即使窗口关闭或浏览器关闭
+  - cookie：只在设置的cookie过期时间之前有效，即使窗口关闭或浏览器关闭也有效
 - 作用域不同
   - sessionStorage不在不同的浏览器窗口中共享，即使是同一个页面；
   - localStorage在所有同源窗口中都是共享的；也就是说只要浏览器不关闭，数据仍然存在
-  - cookie: 也是在所有同源窗口中都是共享的.也就是说只要浏览器不关闭，数据仍然存在
+  - cookie: 也是在所有同源窗口中都是共享的.也就是说只要没过期，数据仍然存在
 
 ![storage](./img/14.png)
 
@@ -2263,7 +2267,7 @@ document.getElementById("btn").onclick = function () {}
   - preventDefault() 阻止浏览器执行与世界相关的默认动作，与DOM0返回false相同
 - 触发时机
   - document 往 target节点传播，捕获前进，遇到注册的捕获事件立即触发执行
-  - 到达target节点，触发事件（对于target节点上，是先捕获还是先冒泡则捕获事件和冒泡事件的注册顺序，先注册先执行）
+  - 到达target节点，触发事件（对于target节点上，是先捕获还是先冒泡，是由捕获事件和冒泡事件的注册顺序决定，先注册先执行）
   - target节点 往 document 方向传播，冒泡前进，遇到注册的冒泡事件立即触发
 
 ### 事件代理

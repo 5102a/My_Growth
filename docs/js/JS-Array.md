@@ -21,8 +21,8 @@
 ## 遍历元素
 
 1. `arr.forEach(callback(currentValue [, index [, array]])[, thisArg])`对每个元素调用func，不返回任何值
-2. `arr.entries/keys/values()返回新的数组迭代器对象`，该对象包含数组中每个索引的键/值对[key,val]/[key]/[values]，可用next()遍历，value()查看值
-3. `arr.every(callback(element[,index[,array]])[, thisArg]))返回boolean`，callback(element[,index[,array]])为测试数组元素的函数,el为测试当前值，index为当前索引，array为调用的数组本身。如果每次回调函数都返回true则函数返回true，否则false
+2. `arr.entries/keys/values()返回新的数组迭代器对象`，该对象包含数组中每个索引的键/值对`[key,val]/[key]/[values]`，可用next()遍历，value()查看值
+3. `arr.every(callback(element[,index[,array]])[, thisArg]))返回boolean`，`callback(element[,index[,array]])`为测试数组元素的函数,el为测试当前值，index为当前索引，array为调用的数组本身。如果每次回调函数都返回true则函数返回true，否则false
 4. `arr.some(callback(element[, index[, array]])[, thisArg])返回boolean`，类every，只要一个通过测试则返回true
 
 ## 转换数组
@@ -31,7 +31,7 @@
 2. `arr.sort([compareFunction])`对数组进行原位（in-place）排序，然后返回，func参数arg1：第一个比较的元素，arg2：第二个比较的元素
 3. `arr.reverse()`原位反转数组，然后返回
 4. `arr.join([separator])`将数组转换为指定分隔符连成的字符串并返回，默认用','
-5. `arr.reduce/reducnRight(callback(accumulator, currentValue[, index[, array]])[, initialValue])返回函数累计处理的结果`通过对每个元素调用func，计算数组是的单个值，并在调用之间传递中间结果。accum累计器累计回调的返回值; 它是上一次调用回调时返回的累积值，或initialValue(初始accum的值，如果没有则用数组第一个元素)。
+5. `arr.reduce/reduceRight(callback(accumulator, currentValue[, index[, array]])[, initialValue])返回函数累计处理的结果`通过对每个元素调用func，计算数组是的单个值，并在调用之间传递中间结果。accum累计器累计回调的返回值; 它是上一次调用回调时返回的累积值，或initialValue(初始accum的值，如果没有则用数组第一个元素)。
 6. `Array.isArray(arr)`检查arr是否为数组
 7. `Array.from(arrayLike[,mapFn[,this.Arg]]) 返回新数组,浅拷贝`，将类数组对象或可迭代对象转化为数组,第二参数：用于对每个元素进行处理，放入数组的是处理后的元素。第三参数：用于指定第二参数执行时的this对象
 8. `arr.flat([depth])返回新数组`，depth维数组转一维
@@ -41,15 +41,15 @@
 
 ## 属性方法
 
-1. `arr\[Symbol.iterator]()默认与values()的返回值相同`
+1. `arr[Symbol.iterator]()默认与values()的返回值相同`
 2. `Array[Symbol.species]返回数组的构造函数`
 
 ## Array构造函数的方法
 
 1. Array.of(...items)
-2. Array.isArray(arr)
-3. Array.from(arrayLike[,mapFn[,this.Arg]]) 
-4. Array[Symbol.species]
+2. `Array.from(arrayLike[,mapFn[,this.Arg]])`
+3. Array.isArray(arr)
+4. `Array[Symbol.species]`
 
 ## 会影响原数组本身的方法
 
@@ -61,6 +61,6 @@
 6. reverse()
 7. splice()
 8. copyWithin()
-9. arr.fill()
+9. fill()
 
 <Vssue title="JavaScript issue" />

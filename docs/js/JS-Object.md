@@ -13,7 +13,7 @@
 ## 对象属性查看方法
 
 1. `Object.values(obj)返回对象的所有可枚举属性值的数组`，值的顺序与使用for...in循环的顺序相同 ( 区别在于 for-in 循环枚举原型链中的属性 )
-2. `Object.keys(obj)返回对的所有可枚举属性的字符串数组`，排列顺序和 for...in 循环遍历时顺序一致 
+2. `Object.keys(obj)返回对象所有可枚举属性的字符串数组`，排列顺序和 for...in 循环遍历时顺序一致 
 3. `Object.entries(obj)返回给定对象自身可枚举属性的键值对数组`，其排列与 for...in 循环遍历时顺序一致 
 4. `Object.fromEntries(iterable)返回一个由该迭代对象条目提供对应属性的新对象`，把键值对列表转换为一个对象，参数：可迭代对象，类似 Array 、Map历时返回的顺序一致（区别于 for-in 循环还会枚举原型链中的属性），浅拷贝
 5. `obj.toString()返回表示该对象的字符串`，[object Object]
@@ -23,16 +23,16 @@
 9. `Object.getOwnPropertyDescriptors(obj)返回对象的所有自身属性描述符`，用来获取一个对象的所有自身属性的描述符
 10. `Object.getOwnPropertyNames(obj)返回对象的所有属性名字符串组成的数组`，返回一个由指定对象的所有自身属性的属性名（包括不可枚举属性但不包括Symbol值作为名称的属性）组成的数组
 11. `Object.getOwnPropertySymbols(obj)返回对象所有Symbol属性的数组`
-12. `Object.getPrototypeOf(object)返回对象的原型`，返回指定对象的原型（内部[[Prototype]]属性的值），没有则null
+12. `Object.getPrototypeOf(object)返回对象的原型`，返回指定对象的原型（内部`[[Prototype]]`属性的值），没有则null
 
 ## 对象属性操作方法
 
 1. `Object.assign(target, ...sources)返回目标对象`，用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象，浅拷贝
 2. `Object.create(proto[,propertiesObject])返回新对象，带有指定原型对象和属性`，参数1：新对象的原型，参数2：要定义其可枚举属性或修改的属性描述符的对象
-3. `Object.setPrototypeOf(obj, prototype)返回这个对象`，设置一个指定的对象的原型 ( 即, 内部[[Prototype]]属性）到另一个对象或  null
-4. `Object.preventExtensions(obj)返回不可扩展对象`，让对象变的不可扩展，也就是永远不能再添加新属性
-5. `Object.freeze(obj)返回冻结的对象`，冻结一个对象。一个被冻结的对象再也不能被修改
-6. `Object.seal(obj)返回被密封的对象`，阻止添加新属性并将所有现有属性标记为不可配置。当前属性的值只要原来是可写的就可以改变
+3. `Object.setPrototypeOf(obj, prototype)返回这个对象`，设置一个指定的对象的原型 ( 即, 内部`[[Prototype]]`属性）到另一个对象或  null
+4. `Object.preventExtensions(obj)返回不可扩展对象`，让对象变的不可扩展，也就是永远**不能再添加新属性**
+5. `Object.freeze(obj)返回冻结的对象`，冻结一个对象。一个被冻结的对象再也**不能被修改**
+6. `Object.seal(obj)返回被密封的对象`，**阻止添加新属性**并将所有现有属性标记为**不可配置**。当前属性的值只要**原来是可写的就可以改变**
 7. `Object.defineProperties(obj, props)返回参数对象本身`，在一个对象上定义新的属性或修改现有属性，并返回该对象，参数2：要定义其可枚举属性或修改的属性描述符的对象
 8. `Object.defineProperty(obj, prop, descriptor)返回参数对象`，参数2：定义或修改的属性名，参数3：对应的属性描述符。直接在一个对象上定义一个新属性，或者修改一个对象的现有属性
 
