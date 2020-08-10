@@ -1,0 +1,472 @@
+# 手写实现
+
+## 手写apply
+
+```js
+/* 手写apply */
+/* 语法 func.apply(thisArg, [argsArray]) */
+Function.prototype.myApply = function (thisArg, args) {
+  const fn = Symbol()
+  var result
+  thisArg = Object(thisArg) || window
+  thisArg[fn] = this
+  if (!args) {
+    result = thisArg[fn]()
+  } else {
+    if (!args[Symbol.iterator])
+      throw new Error('params must be array or iterator')
+    result = thisArg[fn](...args)
+  }
+  delete thisArg[fn]
+  return result
+}
+```
+
+分析思路：
+
+1. apply属于函数的原型方法，所以调用apply的一定是函数才会有，可见apply中的this就是指向调用者(函数)
+2. 由于此调用函数需要使用apply来绑定其他this，则需要传入指定调用的thisArg，通过传入的thisArg来调用函数，这样一来，执行函数时的this指向就改变了
+3. 把当前this即当前函数，设置为thisArg的方法进行调用，这样一来函数的this指向就是他的调用者
+4. 最后保存调用后的返回值，再删除临时给thisArg添加的函数
+5. apply本身只接受一个数组或者是类数组的函数参数，这里要对参数进行判断，如果参数不能迭代则不能使用，我这里也允许参数为迭代器，这样才能使用...语法
+6. 包装传入的thisArg，以保证thisArg为对象，这样才能添加属性
+
+## 手写call
+
+```js
+/* 手写call */
+/* 语法 function.call(thisArg, arg1, arg2, ...) */
+Function.prototype.myCall = function (thisArg, ...args) {
+  const fn = Symbol()
+  thisArg = Object(thisArg) || window
+  thisArg[fn] = this
+  var result = thisArg[fn](...args)
+  delete thisArg[fn]
+  return result
+}
+```
+
+分析思路(类似apply)：
+
+1. call属于函数的原型方法，所以调用call的一定是函数才会有，可见call中的this就是指向调用者(函数)
+2. 由于此调用函数需要使用call来绑定其他this，则需要传入指定调用的thisArg，通过传入的thisArg来调用函数，这样一来，执行函数时的this指向就改变了
+3. 把当前this即当前函数，设置为thisArg的方法进行调用，这样一来函数的this指向就是他的调用者
+4. 最后保存调用后的返回值，再删除临时给thisArg添加的函数
+5. call本身可接受多个函数参数使用剩余、展开语法导入参数即可，这里不需要对空参数进行判断
+6. 包装传入的thisArg，以保证thisArg为对象，这样才能添加属性
+
+## 手写bind
+
+```js
+/* 手写bind */
+/* 语法 function.bind(thisArg[, arg1[, arg2[, ...]]]) */
+Function.prototype.myBind = function (thisArg, ...args) {
+  var thatFn = this
+  return function Fn() {
+    var isInstance = this instanceof Fn
+    return isInstance ? new thatFn(...args, ...arguments) : thatFn.call(thisArg, ...args, ...arguments)
+  }
+}
+```
+
+分析思路：
+
+1. bind方法给调用函数绑定一个thisArg，并且可以使用柯里化方式传递参数，最终返回一个绑定thisArg以及部分预处理参数
+2. 新函数可以作为构造函数使用，当使用new时还是能够返回原构造函数实例
+3. 普通函数使用时，this就指向thisArg
+
+现在不推荐创建空白原型方法，继承和实例化都会产生额外的内存开销，并且使原型链更加庞大
+
+## 手写防抖debounce
+
+```js
+/* 手写debounce */
+function debounce(func, interval = 0, immediately = false) {
+  var timeID = null
+  return function () {
+    var thisArg = this
+    if (timeID) clearTimeout(timeID)
+    if (immediately) {
+      immediately = false
+      return new Promise((resolve, reject) => {
+        setTimeout(() => resolve(func.call(thisArg, ...arguments)))
+      })
+    } else {
+      return new Promise((resolve, reject) => {
+        timeID = setTimeout(
+          () => resolve(func.call(thisArg, ...arguments)),
+          interval
+        )
+      })
+    }
+  }
+}
+```
+
+分析思路：
+
+1. 防抖：防止在一段时间内多次执行函数，当超过给定延迟时间后才触发执行，否则重置计时
+2. 如果在延迟时间之内又触发函数，那么将清除之前的定时器，重新开一个定时器计时
+3. 简单理解，一段时间内的最后一次的函数调用有效
+4. 如果有需要可以绑定触发函数的this以及参数、返回值、首次立即调用等
+
+## 手写节流throttle
+
+```js
+/* 手写throttle */
+function throttle(func, interval = 0, immediately = true) {
+  var timeID = null
+  return function () {
+    if (timeID) return Promise.resolve()
+    var thisArg = this
+    if (immediately) {
+      immediately = false
+      return new Promise((resolve, reject) => {
+        timeID = setTimeout(() => {
+          resolve(func.call(thisArg, ...arguments))
+          timeID = null
+        })
+      })
+    } else {
+      return new Promise((resolve, reject) => {
+        timeID = setTimeout(() => {
+          resolve(func.call(thisArg, ...arguments))
+          timeID = null
+        }, interval)
+      })
+    }
+  }
+}
+```
+
+分析思路：
+
+1. 节流：一段时间内只会执行一次函数调用，如果连续触发函数，那么将会直接返回，不会执行，等上一次定时器执行完成后才会重新开启新的定时器
+2. 与防抖的区别在于:防抖多次触发会清除旧的，开启新的定时器；节流多次触发只会保留已经存在的定时器，等到定时器触发之后才会清除，如果当前没有存在的定时器id那么才会开启新定时器
+3. 简单理解，一段时间内只有一次函数调用有效
+4. 如果有需要可以绑定触发函数的this以及参数、返回值、首次立即调用等
+
+## 手写new
+
+```js
+/* 手写new */
+/* 语法 new constructor[([arguments])] */
+function myNew(Fn, ...args) {
+  const instance = Object.create(Fn.prototype)
+  var result = Fn.call(instance, ...args)
+  return result instanceof Object ? result : instance
+}
+```
+
+分析思路：
+
+1. 创建一个以构造函数的prototype为原型的对象实例
+2. 正常调用构造函数，传入实例作为this指向
+3. 如果构造函数返回对象类型，则代替实例对象返回，反之返回创建的实例对象
+
+创建实例步骤：
+
+1. 创建一个空的简单JavaScript对象（即{}）
+2. 链接该对象（即设置该对象的构造函数）到另一个对象
+3. 将步骤1新创建的对象作为this的上下文
+4. 如果该函数没有返回对象，则返回this
+
+## 手写instanceof
+
+```js
+/* 手写instanceof */
+/* 语法 object instanceof constructor */
+// 非标准
+function myInstanceof(leftObj, rightFunc){
+  if(leftObj.__proto__ === null) return false
+  if(leftObj.__proto__ === rightFunc.prototype) return true
+  return myInstanceof(leftObj.__proto__,rightFunc)
+}
+// 标准
+function myInstanceof(leftObj, rightFunc){
+  var prototype = Object.getPrototypeOf(leftObj)
+  if(prototype === null) return false
+  if(prototype === rightFunc.prototype) return true
+  return myInstanceof(prototype,rightFunc)
+}
+```
+
+分析思路：
+
+1. 递归匹配`构造函数的prototype`与`对象原型`是否相等
+2. 如果最终原型为null说明不在其原型链上
+3. 不建议使用非标准的`leftObj.__proto__`来获取原型，推荐使用`Object.getPrototypeOf(leftObj)`获取原型
+4. 对于输入的参数可以自行判断处理
+
+## 手写reduce
+
+```js
+/* 手写reduce */
+/* 语法 arr.reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue]) */
+// 简单版
+Array.prototype.myReduce = function myReduce(cb, initialValue, thisArg = this) {
+  var start = 0
+  if (initialValue === undefined) {
+    start = 1
+    initialValue =  this[0]
+  }
+  for (var i = start; i < this.length; i++) {
+    initialValue = cb.call(thisArg, initialValue, this[i], i, this)
+  }
+  return initialValue
+}
+// 递归版
+Array.prototype.myReduce = function myReduce(cb, initialValue, thisArg = this, index = 0) {
+  if (index >= thisArg.length) return initialValue
+  if (initialValue === undefined) {
+    index = 1
+    initialValue = this[0]
+  }
+  initialValue = cb.call(thisArg, initialValue, this[index], index, this)
+  return thisArg.myReduce(cb, initialValue, thisArg, ++index)
+}
+// 左右通用版
+Array.prototype.myReduce = function myReduce(cb, initialValue, right = false, thisArg = this) {
+  var start = 0
+  if (initialValue === undefined) {
+    start = 1
+    initialValue = right ? this[this.length - 1] : this[0]
+  }
+  if(right){
+    for (var i = this.length - 1 - start; i >= 0; i--) {
+      initialValue = cb.call(thisArg, initialValue, this[i], i, this)
+    }
+  }else{
+    for (var i = start; i < this.length; i++) {
+      initialValue = cb.call(thisArg, initialValue, this[i], i, this)
+    }
+  }
+  return initialValue
+}
+```
+
+分析思路：
+
+1. 对有初始值和无初始值的调用进行初始循环判断，如果有初始值则从索引为0开始循环，否则初始值为索引0的值，再从索引1开始循环
+2. 每次循环给回调函数传入需要的参数，其中initialValue第一次为初始值，之后为每次回调的返回值
+3. 有些情况下cb需要绑定其他this指向，但是在递归中需要绑定的是原循环的数组
+4. 回调中也需要可以访问原数组，如果想要最原始的数组，即原始数组不受cb影响，那么需要深拷贝原来数组并且传入每次cb回调
+
+## 手写splice
+
+```js
+/* 手写splice */
+/* 语法 array.splice(start[, deleteCount[, item1[, item2[, ...]]]]) */
+Array.prototype.mySplice = function mySpice(start = 0, deleteCount = this.length, ...args) {
+  var length = this.length
+  var rest = [], del = [], count = 0
+  if (start >= length) start = length
+  if (start <= -1) start = Math.abs(start) > Math.abs(length) ? 0 : length + start
+  if (deleteCount >= length - start || deleteCount < 0) deleteCount = deleteCount < 0 ? 0 : length - start
+  for (var i = start + deleteCount; i < length; i++) rest.push(this[i])
+  for (var i = start; i < start + deleteCount; i++) del.push(this[i])
+  for (var i = start; i < length - deleteCount + args.length; i++) this[i] = args[count] !== undefined ? args[count++] : rest[count++ - args.length]
+  while (this.length > length - deleteCount + args.length) this.pop()
+  return del
+}
+```
+
+分析思路：
+
+1. 根据参数范围进行参数初始化
+2. 此方法会修改原数组，根据增删元素情况调整原数组长度，注意不能直接对this(原数组引用)进行修改，可以修改索引值，this相当于使用const定义的变量
+3. 最后返回删除元素组成的数组
+
+## 手写flatMap
+
+```js
+/* 手写flatMap */
+/* 语法 var new_array = arr.flatMap(function callback(currentValue[, index[, array]]) {
+    // return element for new_array
+}[, thisArg]) */
+Array.prototype.myFlatMap = function myFlatMap(cb, depth = 1, thisArg = this, result = []) {
+  for (var i = 0; i < this.length; i++) {
+    if ((this[i] instanceof Array) && depth) {
+      myFlatMap.call(this[i], cb, depth - 1, thisArg, result)
+    } else {
+      result.push(cb ? cb.call(thisArg, this[i], i, this) : this[i])
+    }
+  }
+  return result
+}
+```
+
+分析思路：
+
+1. 使用递归对嵌套数组进行扁平化，递归层数就是depth值，每递归一层depth-1，直到depth为0，则不需要进一步扁平化
+2. 根据递归遍历当前数组，并且使用一个新数组按照迭代顺序push，如果有处理函数cb，则在push之前使用cb处理，把cb的返回值作为最终值push进新数组
+3. 最后返回新数组，如果需要指定cb的this指向则可以使用call或者apply来绑定
+
+## 手写indexOf
+
+```js
+/* 手写indexOf */
+/* 语法 str.indexOf(searchValue [, fromIndex]) */
+/* Sunday算法 */
+String.prototype.myIndexOf = function myIndexOf(str, fromIndex = 0) {
+  if (str === '') return 0
+  if (str === null || str === undefined) return -1
+  var sIndex = 0, pos = fromIndex, flag = false
+  for (var i = fromIndex; i < this.length; i++) {
+    if (str[sIndex] !== this[i]) {
+      flag = false
+      sIndex = 0
+      while (this[pos + str.length] !== str[sIndex] && sIndex < str.length) {
+        sIndex++
+      }
+      var index = sIndex >= str.length ? -1 : sIndex
+      pos += str.length + (index === -1 ? 1 : -index)
+      sIndex = 0
+      i = pos - 1
+    } else {
+      flag = true
+      sIndex++
+    }
+    if (sIndex >= str.length && flag) return pos >= this.length ? -1 : pos
+  }
+  return -1
+}
+```
+
+分析思路：
+
+1. 子串查找，使用Sunday算法进行查找，效率更高
+2. 可以试试实现从后往前查找的情况
+
+## 手写trim
+
+```js
+/* 手写trim */
+/* 语法 str.trim() */
+/* mode: 0 去两边空格, 1 去左边空格， 2 去右边空格*/
+String.prototype.myTrim = function myTrim(mode = 0) {
+  var result = '', index = mode <= 1 ? 0 : this.length - 1
+  if (mode <= 1) {
+    while (this[index++] === ' ');
+    var l = --index,
+      r = this.length - 1
+    if (mode === 1) {
+      while (index < this.length) result += this[index++]
+    } else {
+      while (this[r--] === ' ');
+      while (index <= r + 1) result += this[index++]
+    }
+    return result
+  } else {
+    while (this[index--] === ' ');index++
+    while (index >= 0) result += this[index--]
+    return [...result].reverse().join('')
+  }
+}
+/* 正则 */
+String.prototype.myTrim = function myTrim(mode = 0) {
+  switch (mode) {
+    case 0: return this.replace(/^\s*|\s*$/g,'')
+    case 1: return this.replace(/^\s*/g,'')
+    case 2: return this.replace(/\s*$/g,'')
+  }
+}
+```
+
+分析思路：
+
+1. 前后连续空格即为我们需要去除的，必须是从头部开始或者是从尾部开始的连续空格，中间的不算
+2. 使用正则可以轻松处理
+
+## 手写Promise
+
+```js
+/* 手写Promise */
+/* 语法 new Promise( function(resolve, reject) {...} // executor  ); */
+function MyPromise(executor) {
+  this.PromiseState = 'pending'
+  this.PromiseResult = undefined
+  if (executor) executor(MyPromise.resolve.bind(this), MyPromise.reject.bind(this))
+}
+MyPromise.resolve = function (data) {
+  var that = (this instanceof MyPromise || this.then) ? this : new MyPromise()
+  if (that.PromiseState === 'pending') {
+    that.PromiseState = 'fulfilled'
+    that.PromiseResult = data
+  }
+  return that
+}
+MyPromise.reject = function (err) {
+  var that = (this instanceof MyPromise || this.then) ? this : new MyPromise()
+  if (that.PromiseState === 'pending') {
+    that.PromiseState = 'rejected'
+    that.PromiseResult = err
+    // that.errorID = setTimeout(() => {
+    //   throw `(in promise) ${err}`
+    // })
+  }
+  return that
+}
+MyPromise.prototype.then = function (resolve, error) {
+  var newPromise = new MyPromise((res, rej) => {
+    setTimeout(() => {
+      if (this.PromiseState === 'fulfilled') {
+        if (this.PromiseResult instanceof MyPromise) {
+          res(resolve(this.PromiseResult.PromiseResult))
+        } else {
+          res(resolve(this.PromiseResult))
+        }
+      } else if (this.PromiseState === 'rejected') {
+        // if (typeof error !== 'function') throw `(in promise) ${this.PromiseResult}`
+        if (this.PromiseResult instanceof MyPromise) {
+          rej(error ? error(this.PromiseResult.PromiseResult) : this.PromiseResult.PromiseResult)
+        } else {
+          rej(error ? error(this.PromiseResult) : this.PromiseResult)
+        }
+      } else {
+        if (this.PromiseResult instanceof MyPromise) {
+          newPromise.PromiseResult = this.PromiseResult.PromiseResult
+          newPromise.PromiseState = this.PromiseResult.PromiseState
+        } else {
+          newPromise.PromiseResult = this.PromiseResult
+          newPromise.PromiseState = this.PromiseState
+        }
+      }
+    })
+  })
+  return newPromise
+}
+MyPromise.prototype.catch = function (err) {
+  if (this.PromiseState == 'pending') return this
+  var newPromise = new MyPromise((resolve, reject) => {
+    resolve()
+  })
+  if (this.PromiseState == 'rejected' && this.errorID) {
+    clearTimeout(this.errorID)
+    setTimeout(() => {
+      err(this.PromiseResult)
+    })
+  } else {
+    newPromise.PromiseResult = this.PromiseResult
+  }
+  return newPromise
+}
+MyPromise.prototype.finally = function (cb) {
+  if (this.PromiseState == 'pending') return this
+  var newPromise = new MyPromise((resolve, reject) => {
+    setTimeout(() => {
+      if (this.PromiseState == 'fulfilled') {
+        resolve(this.PromiseResult)
+      } else if (this.PromiseState == 'rejected') {
+        reject(this.PromiseResult)
+      }
+      cb()
+    })
+  })
+  return newPromise
+}
+```
+
+分析思路：
+
+1. 难
