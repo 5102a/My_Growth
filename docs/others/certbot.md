@@ -105,7 +105,7 @@ Window上查看DNS解析记录命令`nslookup -q=txt _acme-challenge.xxxx.cn`
 
 3. 查看之后出现有记录值，那么就可以回车，等待完成了
 
-注意letsencrypt一想起最多操作5次，也就是上面这步骤最多7天5次，之后就不能再试了，要等7天，所以要确保每次尽可能成功
+注意letsencrypt一星期最多操作5次，也就是上面这步骤最多7天5次，之后就不能再试了，要等7天，所以要确保每次尽可能成功
 
 [网站证书情况查询](https://www.ssllabs.com/ssltest/)
 

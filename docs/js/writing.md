@@ -386,7 +386,11 @@ String.prototype.myTrim = function myTrim(mode = 0) {
 function MyPromise(executor) {
   this.PromiseState = 'pending'
   this.PromiseResult = undefined
-  if (executor) executor(MyPromise.resolve.bind(this), MyPromise.reject.bind(this))
+  try {
+    if (executor) executor(MyPromise.resolve.bind(this), MyPromise.reject.bind(this))
+  } catch (error) {
+    MyPromise.reject.bind(this, error)
+  }
 }
 MyPromise.resolve = function (data) {
   var that = (this instanceof MyPromise || this.then) ? this : new MyPromise()
@@ -401,9 +405,6 @@ MyPromise.reject = function (err) {
   if (that.PromiseState === 'pending') {
     that.PromiseState = 'rejected'
     that.PromiseResult = err
-    // that.errorID = setTimeout(() => {
-    //   throw `(in promise) ${err}`
-    // })
   }
   return that
 }
@@ -417,7 +418,6 @@ MyPromise.prototype.then = function (resolve, error) {
           res(resolve(this.PromiseResult))
         }
       } else if (this.PromiseState === 'rejected') {
-        // if (typeof error !== 'function') throw `(in promise) ${this.PromiseResult}`
         if (this.PromiseResult instanceof MyPromise) {
           rej(error ? error(this.PromiseResult.PromiseResult) : this.PromiseResult.PromiseResult)
         } else {
@@ -439,16 +439,15 @@ MyPromise.prototype.then = function (resolve, error) {
 MyPromise.prototype.catch = function (err) {
   if (this.PromiseState == 'pending') return this
   var newPromise = new MyPromise((resolve, reject) => {
-    resolve()
-  })
-  if (this.PromiseState == 'rejected' && this.errorID) {
-    clearTimeout(this.errorID)
     setTimeout(() => {
-      err(this.PromiseResult)
+      if (this.PromiseState == 'rejected') {
+        err(this.PromiseResult)
+      } else {
+        newPromise.PromiseResult = this.PromiseResult
+      }
+      resolve()
     })
-  } else {
-    newPromise.PromiseResult = this.PromiseResult
-  }
+  })
   return newPromise
 }
 MyPromise.prototype.finally = function (cb) {
@@ -469,4 +468,129 @@ MyPromise.prototype.finally = function (cb) {
 
 分析思路：
 
-1. 难
+1. 这是本人自己摸索出来的可能不太对，但是大多数与原生Promise契合，主要是在链式捕获那块不知道怎么catch
+2. 这里只要明白，resolve和reject是用来改变当前promise的状态以及获取传入的参数作为promise的数据结果，真正异步的地方是在then方法中
+3. resolve和reject是静态方法，then、catch、finally是原型方法
+4. 由于在resolve和reject中改变了当前promise的状态，况且promise状态不可逆，所以在then的链式调用中需要做到几点
+5. then中处理fulfilled和rejected的promise，并且根据传入then的数据进行判断处理，有可能是数据有可能是新的promise都要处理，最终then返回的是一个新的promise，状态为处理之后的promise，这里的处理取决于你对then中传入的参数以及返回值
+6. 能够形成链式调用的前提是要返回promise实例
+
+## 手写currying
+
+```js
+/* 手写currying */
+/* 单参数柯里化 */
+function currying(fn) {
+  var args = []
+  return function foo(arg) {
+    args.push(arg)
+    if (args.length >= fn.length) return fn.apply(this, args)
+    return function (arg1) {
+      args.push(arg1)
+      return foo
+    }
+  }
+/* 变种，可直接正常调用 */
+function currying(fn) {
+  return function foo(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args)
+    } else {
+      return function (...rest) {
+        return foo.apply(this, [...args, ...rest])
+      }
+    }
+  }
+}
+```
+
+分析思路：
+
+1. 普通柯里化，每次调用只传一个参数并且闭包保存已有参数个数，当参数个数与被柯里化的函数形参个数相等时调用原来函数并传参
+2. 可传多个参数的柯里化，这里把单参数改成可变参数，这样一次可以传递多个参数，只要满足累计传入的参数达到原函数形参个数则执行原函数
+3. 柯里化的函数必须是固定形参个数的，柯里化不改变函数调用，只是转化了函数传参的情况，把原本一次性传参改成多次传参，最终调用
+4. 柯里化每次都返回一个函数，这个函数的实参个数逐渐接近原函数的形参个数，直到相等或者大于才调用原函数
+5. 柯里化与偏函数还是有些区别的
+
+## 手写partial
+
+```js
+/* 手写partial */
+/* 偏函数 */
+function partial(fn, ...args) {
+  return function (...rest) {
+    return fn.apply(this, [...args, ...rest])
+  }
+}
+/* 例子 */
+function isType(type, data) { // 通用类型判断
+  return Object.prototype.toString.call(data) === `[object ${type}]`
+}
+var isArray = partial(isType, 'Array')  // 定制一个判断数组类型的函数
+console.log(isArray([]))
+```
+
+分析思路：
+
+1. 偏函数是提前固定原函数的部分参数，并且返回固定了部分参数值的偏函数，这样之后调用偏函数就无需再传那些固定的参数
+2. 可以理解为把原函数包装成一个新函数，这个新函数的形参比原函数少，这是因为新函数设置了部分形参的默认值，以便之后直接调用
+3. 当需要固定形参时可以使用偏函数，当需要改变传参形式时可以使用柯里化
+
+## 手写Promise.all
+
+```js
+/* 手写Promise.all */
+/* 语法 Promise.all(iterable) */
+Promise.myAll = function (iterable) {
+  let result = [], hasPromise = false, count = 0
+  return new Promise((resolve, reject) => {
+    if (iterable[Symbol.iterator]().next().done) resolve([])
+    for (const iterator of iterable) {
+      let index = count++
+      if (iterator instanceof Promise) {
+        hasPromise = true
+        iterator.then((data) => {
+          result[index] = data
+          if (result.length === count) resolve(result)
+        }, reject)
+      } else {
+        result[index] = iterator
+      }
+    }
+    if (!hasPromise) resolve()
+  })
+}
+```
+
+分析思路：
+
+1. Promise.all是用来处理多个Promise返回的结果，如果有一个失败则返回这个失败，除非全部完成
+2. 迭代迭代器参数时需要对每次迭代的值做判断，只有promise才需要调用then方法，其他值直接返回
+3. 由于需要全部的promise完成才算完成，那么需要一个数组来记录已经完成的promise，当每格promise在执行完成回调时进行当前数组长度与最终长度做对比如果已经是最终长度，那么就resolve返回的promise，否则继续pending
+4. 返回的数组存放的是按照迭代器迭代的顺序，所以这里需要一个局部变量来存放当前index，以便对号入座
+
+## 手写Promise.race
+
+```js
+/* 手写Promise.race */
+/* 语法 Promise.race(iterable) */
+Promise.myRace = function (iterable) {
+  let hasPromise = false
+  return new Promise((resolve, reject) => {
+    if (iterable[Symbol.iterator]().next().done) return
+    for (const iterator of iterable) {
+      if (iterator instanceof Promise) {
+        iterator.then(resolve, reject)
+      } else {
+        resolve(iterator)
+      }
+    }
+  })
+}
+```
+
+分析思路：
+
+1. Promise.race方法返回一个 promise，一旦迭代器中的某个promise解决或拒绝，返回的 promise就会解决或拒绝
+2. 当迭代到一个不是promise时，将会直接返回这个值，而不会继续迭代下去，毕竟是同步返回结果当然最快
+3. 这里不需要像all那样统计完成的个数，每次调用then时，直接传入resolve和reject，这样一来只要第一个完成的promise都会直接改变返回的promise状态
