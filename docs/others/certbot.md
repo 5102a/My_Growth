@@ -10,12 +10,12 @@
 - 安装certbot，以及nginx插件
 
 ```js
-$ sudo apt-get update
-$ sudo apt-get install software-properties-common
-$ sudo add-apt-repository universe
-$ sudo add-apt-repository ppa:certbot/certbot
-$ sudo apt-get update
-$ sudo apt-get install certbot python-certbot-nginx
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt-repository universe
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install certbot python-certbot-nginx
 ```
 
 官网也有介绍不同系统下如何安装certbot以及申请、自动续期证书操作
