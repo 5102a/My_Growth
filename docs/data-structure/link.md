@@ -464,6 +464,24 @@ reverse(node=this.searchNode(0,0).cur, preNode=null) {
   // 逐路返回尾节点
   return oldLast
 }
+reverseLink(node = this.head.next, pre = null) {
+  if (node === null) return pre
+  this.head.next = this.reverseLink(node.next, node)
+  node.next = pre
+  return this.head.next
+}
+// 直接反转
+reverseLink() {
+  let node = this.head.next
+  let pre = null
+  while (node !== null) {
+    const next = node.next
+    node.next = pre
+    pre = node
+    node = next
+  }
+  this.head.next = pre
+}
 ```
 
 此时链表已经反转，此时原链表head指向null，所有只能使用返回的oldLast用作新head
@@ -544,6 +562,17 @@ function isRing(link) {
   return false
 }
 console.log(isRing(list)) // true
+
+function isR(list) {
+  const head = list.head
+  let show = head, fast = head
+  while (fast && fast.next) {
+    fast = fast.next.next
+    show = show.next
+    if (show === fast) return true
+  }
+  return false
+}
 ```
 
 二、通过设置快慢指针，当快指针与慢指针重合则说明，快指针绕了个环跑到后面了，快指针一次二格，慢指针一次一格
@@ -609,6 +638,72 @@ function isRing(link) {
   return fast
 }
 console.log(isRing(list)) // node3
+```
+
+### 删除倒数第k个节点
+
+- 删除之前先判断是否为环，以及索引是否越界
+- 使用反转之后再删除，最后反转回来
+
+```js
+removeByIndexFromEnd(k) {
+  if (!k || isR(this)) return false
+  this.reverseLink()
+  let pre = this.head
+  let node = pre.next
+  for (let i = 1; i < k; i++) {
+    pre = node
+    node = node.next
+    if (!node) return false
+  }
+  pre.next = pre.next && pre.next.next ? pre.next.next : null
+  node = null
+  this.reverseLink()
+  return true
+}
+```
+
+### 中间节点
+
+- 使用快慢指针，当快指针为null时，慢指针为中心节点
+
+```js
+middleNode() {
+  let show = this.head
+  let fast = this.head
+  while (fast && fast.next) {
+    fast = fast.next.next
+    show = show.next
+  }
+  return show
+}
+```
+
+### 合并2个有序链表
+
+- 思路有点类似快排
+
+```js
+// 合并到第一个链表中
+function merge(list1, list2) {
+  let node1 = list1.head.next
+  let node2 = list2.head.next
+  let pre = list1.head
+  while (node1 && node2) {
+    if (node1.data < node2.data) {
+      pre = node1
+      node1 = node1.next
+    } else {
+      const newNode = new CreateNode(node2.data)
+      newNode.next = pre.next
+      pre.next = newNode
+      pre = newNode
+      node2 = node2.next
+    }
+  }
+  if (node2) pre.next = node2
+  return list1
+}
 ```
 
 <Vssue title="数据结构 issue" />

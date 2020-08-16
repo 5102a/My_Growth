@@ -145,7 +145,7 @@ obj.shift() // error
 
 ![循环队列1](./img/29.png)
 
-- 队头指针front永远只需队头元素，队尾rear指针永远指向将要插入的位置即队尾元素的后一个空间
+- 队头指针front永远指向队头元素，队尾rear指针永远指向将要插入的位置即队尾元素的后一个空间
 
 ![循环队列满](./img/31.png)
 
@@ -221,6 +221,49 @@ loopQueue.shift()
 console.log(loopQueue.isEmpty()) // false
 console.log(loopQueue.shift()) // 2
 console.log(loopQueue.isEmpty()) // true
+```
+
+为了判断队列空和满，则需要额外一个空间来区分，循环队列尾永远指向空这样才能通过`(tail + 1) % size === head`来判断队满情况
+
+```js
+class LoopQueue {
+  constructor(size) {
+    this.queue = Array(size)
+    this.size = size
+    this.head = 0
+    this.tail = 0
+  }
+  enqueue(data) {
+    if (this.isFull()) return false
+    if (this.tail >= this.size) this.tail %= this.size
+    this.queue[this.tail++] = data
+    return true
+  }
+  dequeue() {
+    if (this.isEmpty()) return false
+    if (this.head >= this.size) this.head %= this.size
+    const data = this.queue[this.head]
+    this.queue[this.head++] = null
+    return data
+  }
+  isEmpty() {
+    return this.tail === this.head
+  }
+  isFull() {
+    return (this.tail + 1) % this.size === this.head
+  }
+}
+let queue = new LoopQueue(5)
+queue.enqueue('1')
+queue.enqueue('2')
+queue.enqueue('3')
+console.log(queue.isEmpty(), queue.isFull()) // false,false
+queue.enqueue('4')
+console.log(queue.isEmpty(), queue.isFull()) // false,true
+queue.dequeue()
+console.log(queue.isEmpty(), queue.isFull()) // false,false
+queue.enqueue('6')
+console.log(queue);
 ```
 
 ## 堆

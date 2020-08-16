@@ -554,6 +554,30 @@ function mergeSort(arr, sort = 1, merge = null) {
   return merge(mergeSort(left, sort, merge), mergeSort(right, sort, merge))
 }
 console.log(mergeSort(array, 1))
+// 
+function mergeSort(array, l = 0, r = array.length - 1) {
+  if (l >= r) return array
+  let mid = (l + r)>>1
+  return merge(mergeSort(array.slice(l, mid + 1)), mergeSort(array.slice(mid + 1, r + 1)))
+}
+function merge(l, r) {
+  let indexL = 0, indexR = 0
+  let arr = []
+  while (indexL < l.length && indexR < r.length) {
+    let val1 = l[indexL]
+    let val2 = r[indexR]
+    if (val1 <= val2) {
+      arr.push(val1)
+      indexL++
+    } else {
+      arr.push(val2)
+      indexR++
+    }
+  }
+  while (indexL < l.length) arr.push(l[indexL++]);
+  while (indexR < r.length) arr.push(r[indexR++]);
+  return arr
+}
 ```
 
 归并排序时间复杂度最好/最坏/平均O(nlogn)
@@ -630,6 +654,21 @@ function quick(arr, sort = 1, l = 0, r = arr.length - 1, getBase = null) {
 }
 quick(array, 1)
 console.log(array)
+
+function quick(arr, l = 0, r = arr.length - 1) {
+  if (l >= r) return arr
+  let s = l, e = r, base = arr[s]
+  while (l < r) {
+    while (l < r && arr[r] > base) r--;
+    arr[l] = arr[r]
+    while (l < r && arr[l] <= base) l++;
+    arr[r] = arr[l]
+  }
+  arr[l] = base
+  quick(arr, s, l - 1)
+  quick(arr, r + 1, e)
+  return arr
+}
 ```
 
 快速排序时间复杂度最好O(nlogn)、最坏O(n^2)、平均O(nlogn)
