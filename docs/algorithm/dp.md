@@ -1,9 +1,10 @@
-
 # 动态规划
 
 - 是求解决策过程(decision process)最优化的数学方法
 - 把多阶段过程转化为一系列单阶段问题，利用各阶段之间的关系，逐个求解
 - 求最优解
+- 空间换时间
+- 大部分动态规划能解决的问题，都可以通过回溯算法来解决
 
 适用条件
 
@@ -279,6 +280,44 @@ function way(layer) {
   return sum
 }
 console.log(way(8)) // 34
+```
+
+## 杨辉三角
+
+- 假设你站在第一层，往下移动，我们把移动到最底层所经过的所有数字之和，定义为路径的长度。请你编程求出从最高层移动到最底层的最短路径长度
+
+![杨辉三角](./img/21.jpg)
+
+```js
+const heap = [
+      [5],
+     [7, 8],
+    [2, 3, 4],
+   [4, 9, 6, 1],
+  [2, 7, 9, 4, 5]
+]
+// 状态转移方程：走到heap[i][j]的最短路径 
+// heap[i][j] = min(heap[i-1][j],heap[i-1][j-1]) + c[i][j]
+// c[i][j] 为当前路程
+function minLength(heap, i = 4, j = 4) {
+  let res = Infinity,map = []
+  function foo(heap, i, j) {
+    if (i === 0) return heap[0][0]
+    if (j < 0 || j > i) return Infinity
+    if(map[i] && map[i][j]) {
+      return map[i][j]
+    }else{
+      if(!map[i]) map[i] = []
+      map[i][j] = Math.min(foo(heap, i - 1, j), foo(heap, i - 1, j - 1)) + heap[i][j]
+      return map[i][j]
+    }
+  }
+  for (let n = 0; n <= j; n++) {
+    res = Math.min(res, foo(heap, i, n))
+  }
+  return res
+}
+console.log(minLength(heap));
 ```
 
 <Vssue title="算法 issue" />
