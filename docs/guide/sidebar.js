@@ -46,7 +46,6 @@ module.exports = [{ // 目录导航
     sidebarDepth: 3,
     children: [
       '/vue/'
-
     ]
   },
   {

@@ -12,6 +12,16 @@
 
 - ### [贪心算法](../../algorithm/greedy.html)
 
+- ### [回溯算法](../../algorithm/ba.html)
+
+- ### [分治算法](../../algorithm/dac.html)
+
+- ### [二分法查找算法](../../algorithm/dichotomy.html)
+
+- ### [字符串匹配算法](../../algorithm/string.html)
+
+- ### [递归](../../algorithm/recursion.html)
+
 - ### [位运算试题](../../algorithm/LeetCode-BO.html)
 
 - ### [排序试题](../../algorithm/LeetCode-Sort.html)
@@ -23,6 +33,12 @@
 - ### [链表](../../data-structure/link.html)
 
 - ### [各种树](../../data-structure/tree.html)
+
+- ### [图](../../data-structure/graph.html)
+
+- ### [散列表](../../data-structure/hash.html)
+
+- ### [跳表](../../data-structure/skip.html)
 
 - ### [栈试题](../../data-structure/LeetCode-Stack.html)
 

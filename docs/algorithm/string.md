@@ -26,3 +26,31 @@
 
 - KMP 算法是根据三位作者（D.E.Knuth，J.H.Morris 和 V.R.Pratt）的名字来命名的，算法的全称是 Knuth Morris Pratt 算法，简称为 KMP 算法
 - KMP 算法跟 BM 算法的本质是一样的
+
+## Sunday算法
+
+```js
+String.prototype.myIndexOf = function myIndexOf(str, fromIndex = 0) {
+  if (str === '') return 0
+  if (str === null || str === undefined) return -1
+  var sIndex = 0, pos = fromIndex, flag = false
+  for (var i = fromIndex; i < this.length; i++) {
+    if (str[sIndex] !== this[i]) {
+      flag = false
+      sIndex = 0
+      while (this[pos + str.length] !== str[sIndex] && sIndex < str.length) {
+        sIndex++
+      }
+      var index = sIndex >= str.length ? -1 : sIndex
+      pos += str.length + (index === -1 ? 1 : -index)
+      sIndex = 0
+      i = pos - 1
+    } else {
+      flag = true
+      sIndex++
+    }
+    if (sIndex >= str.length && flag) return pos >= this.length ? -1 : pos
+  }
+  return -1
+}
+```

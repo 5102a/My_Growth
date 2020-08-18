@@ -36,6 +36,8 @@
 
 - ### [深入JavaScript](../../js/JS-Depth.html)
 
+- ### [JS手写实现](../../js/writing.html)
+
 - ### [JS数组方法](../../js/JS-Array.html)
 
 - ### [JS对象方法](../../js/JS-Object.html)

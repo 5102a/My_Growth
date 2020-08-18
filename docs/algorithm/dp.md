@@ -6,11 +6,16 @@
 - 空间换时间
 - 大部分动态规划能解决的问题，都可以通过回溯算法来解决
 
-适用条件
+适用条件：
 
 - 最优子结构：一个最优化策略的子策略总是最优的
 - 无后效应：每个状态都是过去历史的一个完整总结
 - 子问题重叠：动态规划将原来具有指数级时间复杂度的搜索算法改进成了具有多项式时间复杂度的算法，动态规划实质上是一种以空间换时间的技术，其中的关键在于解决冗余，这是动态规划算法的根本目的
+
+思路：
+
+1. 状态转移表法：回溯算法实现 - 定义状态 - 画递归树 - 找重复子问题 - 画状态转移表 - 根据递推关系填表 - 将填表过程翻译成代码
+2. 状态转移方程：找最优子结构 - 写状态转移方程 - 将状态转移方程翻译成代码
 
 ## 斐波那契数列
 
@@ -296,7 +301,7 @@ const heap = [
    [4, 9, 6, 1],
   [2, 7, 9, 4, 5]
 ]
-// 状态转移方程：走到heap[i][j]的最短路径 
+// 状态转移方程：走到heap[i][j]的最短路径
 // heap[i][j] = min(heap[i-1][j],heap[i-1][j-1]) + c[i][j]
 // c[i][j] 为当前路程
 function minLength(heap, i = 4, j = 4) {
@@ -318,6 +323,24 @@ function minLength(heap, i = 4, j = 4) {
   return res
 }
 console.log(minLength(heap));
+```
+
+## 求最长递增子序列
+
+- 我们有一个数字序列包含 n 个不同的数字，如何求出这个序列中的最长递增子序列长度？
+- 比如 2, 9, 3, 6, 5, 1, 7 这样一组数字序列，它的最长递增子序列就是 2, 3, 5, 7，所以最长递增子序列的长度是 4
+
+```js
+const nums = [2, 9, 3, 6, 5, 1, 7]
+function maxLength(nums, i = nums.length - 1) {
+  if (i <= 0 || i === 1 && nums[0] >= nums[1]) return 1
+  let max = 0
+  for (let n = i - 1; n >= 0; n--) {
+    if (nums[n] < nums[i]) max = Math.max(max, maxLength(nums, n) + 1)
+  }
+  return Math.max(max, maxLength(nums, i - 1))
+}
+console.log(maxLength(nums));
 ```
 
 <Vssue title="算法 issue" />

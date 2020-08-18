@@ -1,5 +1,4 @@
-
-const guide=require('../../guide/sidebar.js')
+const guide = require('../../guide/sidebar.js')
 module.exports = {
   // 侧边栏，路由
   '/guide/': guide, // 目录，导航栏
@@ -14,13 +13,44 @@ module.exports = {
     'Bootstrap',
     'Sass',
   ],
-  '/js/': ['', 'JavaScript', 'JS-Array', 'JS-Object', 'JS-String', 'JS-Depth'],
-  '/algorithm/': ['', 'top10sort', 'dichotomy', 'dp', 'greedy','LeetCode-BO','LeetCode-Sort'],
+  '/js/': [
+    '',
+    'JavaScript',
+    'writing',
+    'JS-Array',
+    'JS-Object',
+    'JS-String',
+    'JS-Depth',
+  ],
+  '/algorithm/': [
+    '',
+    'top10sort',
+    'dichotomy',
+    'dp',
+    'greedy',
+    'ba',
+    'dac',
+    'dichotomy',
+    'string',
+    'recursion',
+    'LeetCode-BO',
+    'LeetCode-Sort',
+  ],
   '/browser/': ['', 'Browser', 'Process'],
-  '/data-structure/': ['', 'ds', 'link', 'tree','LeetCode-Stack','LeetCode-Tree'],
+  '/data-structure/': [
+    '',
+    'ds',
+    'link',
+    'tree',
+    'graph',
+    'hash',
+    'skip',
+    'LeetCode-Stack',
+    'LeetCode-Tree',
+  ],
   '/design-pattern/': ['', 'd-p'],
   '/network/': ['', 'net'],
-  '/vue/': ['', 'response', 'live', 'VDOM', 'important','component'],
+  '/vue/': ['', 'response', 'live', 'VDOM', 'important', 'component'],
   '/react/': [''],
   '/gulp/': ['', 'gulp', 'plugins'],
   '/webpack/': ['', 'webpack', 'webpackOptimize'],
