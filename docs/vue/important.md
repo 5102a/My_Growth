@@ -8,7 +8,7 @@
 
 ### 组件混入
 
-```vue
+```html
 // mixin.js
 export default {
   data(){
@@ -54,7 +54,7 @@ export default {
 - 通过结果可以看的确实混入到当前组件中，其实就是把mixin.js中对应数据进行混合，加入到当前组件中，可以看到混入之后的生命周期执行顺序不是嵌套组件那样，貌似所有混入的钩子都在当前组件钩子之前触发，而且并没有覆盖钩子，似乎是进行顺序调用的
 - 再看看如果是相同数据和方法会是如何混合的
 
-```vue
+```html
 // mixin1.js
 export default {
   data(){
@@ -122,7 +122,7 @@ export default {
 
 - 如果在全局混入那么之后的每个vue实例都会带有混入的数据
 
-```vue
+```html
 // main.js
 import Vue from "vue";
 import App from "./App.vue";
@@ -239,7 +239,7 @@ computed主要用来那些可以缓存，且经常读取的数据，watch用于�
 - vue2.2.0新增可以自定义v-model绑定的事件以及属性
 - 通过model来设置绑定的prop与event
 
-```vue
+```html
 // 父组件
 <template>
   <div>
@@ -296,7 +296,7 @@ export default {
 - `$nextTick`可以DOM更新之后再调用，在一般情况下，我们对数据进行操作后，DOM是还未发生改变
 - 由于vue的异步渲染机制，可以把多次操作在一次异步调用的时候统一执行，而且只会保留最后的结果渲染出来，等到渲染结束之后会调用`$nextTick`的回调
 
-```vue
+```html
 <template>
   <div>
     <ul ref="ul">
@@ -336,7 +336,7 @@ export default {
 - 插槽可以理解成组件中的占位符，有些情况下可能不知道组件的具体形式，那么可以通过外部传入来替代组件插槽位置的内容
 - 如果组件没有插槽那么将会忽略使用此组件时传入到标签内部的数据
 
-```vue
+```html
 // 父组件
 <template>
   <div>
@@ -404,7 +404,7 @@ export default {
 - 在vue2.6.0之后使用v-slot替代slot与slot-scope，当然虽然这些也都能使用，不过还是推荐使用最新指令
 - 具名插槽就是在定义的时候给slot添加name属性，指定每个slot的名字，这样如果外部使用的时候可以根据内部定义的slot的name来选择替换对应的插槽位置
 
-```vue
+```html
 // 父组件
 <template>
   <div>
@@ -476,7 +476,7 @@ export default {
 - 作用域插槽在定义的时候通过v-bind绑定定义时的数据在插槽上，当父组件需要使用的时候通过v-slot获取所绑定的数据
 - v-bind的数据作为组件的prop属性
 
-```vue
+```html
 // 父组件
 <template>
   <div>
@@ -553,7 +553,7 @@ export default {
 - 当有的时候可能需要动态渲染组件，比如主页框架一致的情况下，通过控制渲染的组件不同来达到不同的效果，那么可以使用动态组件
 - 动态组件通过component动态绑定is为需要渲染的组件名
 
-```vue
+```html
 <template>
   <div>
     <div v-for="val in comp" :key="val">

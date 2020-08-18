@@ -12,7 +12,7 @@
 
 - 一般情况下，子组件需要用到父组件的数据，那么父组件就可以通过给子组件传递属性，而在子组件中的props就是接收到父组件传来的数据
 
-```vue
+```html
 // 父组件
 <template>
   <div>
@@ -70,7 +70,7 @@ export default {
 
 #### 通过`$children`传数据
 
-```vue
+```html
 // 父组件
 <template>
   <div>
@@ -127,7 +127,7 @@ export default {
 - 父组件把所有后代可能用到的数据存放到provide对象中
 - 而后代组件如果需要用到这些数据，则根据需要在inject中导入即可使用，可以看成是灵活的隔代props
 
-```vue
+```html
 // 父组件
 <template>
   <div>
@@ -187,7 +187,7 @@ export default {
 - 在vue中提供了一个属性ref可以在需要引用的组件上使用ref属性来获取引用
 - 比如在父组件中给子组件设置一个ref，那么就可以在父组件中通过`this.refs.属性值`获取相应子组件的引用
 
-```vue
+```html
 // 父组件
 <template>
   <div>
@@ -235,7 +235,7 @@ export default {
 - vue2.4中新增的api，可用于继承父组件中定义的属性
 - 比如在父组件中给子组件定义属性，并且这些属性在子组件的props不存在，那么可以在子组件中使用`$attrs`来获取父组件中定义的这些属性
 
-```vue
+```html
 // 父组件
 <template>
   <div>
@@ -305,7 +305,7 @@ export default {
 - 子组件通过$emit触发父组件在子组件标签上定义的事件，并且调用定义的回调函数
 - 此方式触发的事件其实也是组件本身的事件，只不过此事件的回调是父组件中传入的方法而已，由于事件可以传递数据，所以就可以给父组件提供数据
 
-```vue
+```html
 // 父组件
 <template>
   <div>
@@ -370,7 +370,7 @@ export default {
 
 #### 通过`$parent`
 
-```vue
+```html
 // 父组件
 <template>
   <div>
@@ -430,7 +430,7 @@ export default {
 - 兄弟组件间通讯，那就意味着不是嵌套关系，也没有相互引用，那么该如何实现呢
 - vue中提供了自定义事件，用来不同组件间的通讯
 
-```vue
+```html
 <template>
   <div>
     <h1>我是：{{ name }}</h1>
@@ -471,7 +471,7 @@ export default {
   
 看看如何使用事件总线实现兄弟组件的通讯
 
-```vue
+```html
 // 兄弟组件1 注册事件
 <template>
   <div>
@@ -543,7 +543,7 @@ export default {
   - actions：类似于mutation，用于提交mutation来改变状态，而不直接变更状态，可以包含任意异步操作
   - modules：类似于命名空间，用于项目中将各个模块的状态分开定义和操作，便于维护
 
-```vue
+```html
 // index.js store
 import Vue from "vue";
 import Vuex from "vuex";
@@ -588,7 +588,7 @@ export default new Vuex.Store({
 });
 ```
 
-```vue
+```html
 // parent.vue
 <template>
   <div>
@@ -624,7 +624,7 @@ export default {
 </script>
 ```
 
-```vue
+```html
 // children1.vue
 <template>
   <div>
@@ -644,7 +644,7 @@ export default {
 </script>
 ```
 
-```vue
+```html
 // children2.vue
 <template>
   <div>
@@ -672,7 +672,7 @@ export default {
 
 - 当然也可以通过保存在localStorage或者是sessionStorage中，这样每个组件都能访问到存储的数据
 
-```vue
+```html
 // 父组件
 <template>
   <div>
