@@ -6,7 +6,7 @@ module.exports = (config) => {
   if (NODE_ENV === 'production') {
     return {
       output: {
-        publicPath: 'https://multer-1258613188.cos.ap-shanghai.myqcloud.com/',
+        publicPath: 'https://multer-1258613188.file.myqcloud.com/',
       },
       resolve: {
         //配置路径别名
