@@ -127,7 +127,7 @@ exports.default = Watch
 `series(...tasks)`，task为已经注册的任务名字符串或函数，返回一个组合操作，它将注册为任务或嵌套在其他 series或parallel组合中，如果一个任务错误，则不会运行下去
 
 ```js
-const { src, lastRun, dest, watch } = require('gulp')
+const { src, lastRun, dest, watch, series} = require('gulp')
 function Task() {
   // 此操作为，读取全部当前目录下以.css结尾的文件，复制到css文件夹下
   return src('*.css', { since: lastRun(Task, 0) }).pipe(dest('css/'))
@@ -148,7 +148,7 @@ exports.default = series(Task,Watch) // 顺序执行传入的任务
 `parallel(...tasks)`，task为已经注册的任务名字符串或函数，返回一个组合操作，它将注册为任务或嵌套在其他 series或parallel组合中，如果一个任务错误，则其他任务有可能执行完，也有可能没完成
 
 ```js
-const { src, lastRun, dest, watch } = require('gulp')
+const { src, lastRun, dest, watch, parallel } = require('gulp')
 function Task() {
   // 此操作为，读取全部当前目录下以.css结尾的文件，复制到css文件夹下
   return src('*.css', { since: lastRun(Task, 0) }).pipe(dest('css/'))
@@ -157,7 +157,7 @@ function Watch() {
   // 监听所有.css文件的变化，如果变化则执行Task任务
   watch('*.css', Task)
 }
-exports.default = series(Task,Watch) // 顺序执行传入的任务
+exports.default = parallel(Task,Watch) // 并发执行传入的任务
 ```
 
 使用parallel并发执行任务，可配合series使多个任务顺序执行
@@ -235,8 +235,8 @@ file.path === '/specs/file.js';
 ### 示例
 
 ```js
-/* 
-  gupl-css.js
+/*
+  gulp-css.js
 */
 const { src, dest, series } = require('gulp')
 const sass = require('gulp-sass') // sass插件
@@ -263,7 +263,7 @@ function css() {
 module.exports = series(handleScss, css)
 
 /*
-  gulpfile.js
+  gulpfile.js 主执行文件
  */
 const cssTask = require('./gulp-css.js')
 const { src, dest, watch, parallel } = require('gulp')

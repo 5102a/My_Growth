@@ -593,4 +593,66 @@ export default {
 - 异步组件可以让我们异步加载组件，等需要使用的时候才加载
 - 缓存组件可以避免频繁创建销毁的性能开销
 
+## 函数式组件
+
+- 函数式组件没有管理任何状态，也没有监听任何传递给它的状态，也没有生命周期方法，没有this上下文，没有响应式数据，它只是一个接受一些 prop 的函数
+- 只要将组件标记为`functional:true`即可
+- 当我们需要在模板中使用临时变量，而不使用定义好的data数据时，可以自由的使用自定义变量
+- 函数式组件只是个函数，没有渲染开销
+
+全局注册函数式组件
+
+```js
+Vue.component('my-component', {
+  functional: true,
+  // Props 是可选的
+  props: {
+    // ...
+  },
+  // 为了弥补缺少的实例
+  // 提供第二个参数作为上下文
+  render: function (createElement, context) {
+    // ...
+  }
+})
+```
+
+在 2.5.0 及以上版本中，如果你使用了单文件组件，那么基于模板的函数式组件可以这样声明
+
+```js
+<template functional>
+</template>
+<script>
+export default {
+  functional: true,
+  render: (createElement, context) =>{
+    return context.scopedSlots.default && context.scopedSlots.default(ctx.props || {}) // 导出传入此组件的属性给插槽
+  }
+}
+</script>
+```
+
+render函数的参数：
+
+1. createElement方法，创建一个元素并可以选择数据传递给这个元素
+2. context对象，当前组件上下文
+
+context包括如下属性：
+
+- props：提供所有 prop 的对象
+- children：VNode 子节点的数组
+- slots：一个函数，返回了包含所有插槽的对象
+- scopedSlots：(2.6.0+) 一个暴露传入的作用域插槽的对象。也以函数形式暴露普通插槽
+- data：传递给组件的整个数据对象，作为 createElement 的第二个参数传入组件
+- parent：对父组件的引用
+- listeners：(2.3.0+) 一个包含了所有父组件为当前组件注册的事件监听器的对象。这是 data.on 的一个别名
+- injections：(2.3.0+) 如果使用了 inject 选项，则该对象包含了应当被注入的 property
+
+使用地方：
+
+1. 程序化地在多个组件中选择一个来代为渲染
+2. 在将 children、props、data 传递给子组件之前操作它们
+
+简单说，函数式组件作为层层组件的一个过渡层，可以在这个组件中操作一些内容，来达到上下层组件之间更好的契合，因为他并不参与渲染，而只是做些操作，比如传递参数，并且可以透传父组件的属性和事件给子组件
+
 <Vssue title="Vue.js issue" />

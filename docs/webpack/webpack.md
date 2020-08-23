@@ -89,7 +89,7 @@ module: {
 
 ```js
 resolve:{
-  alias:{  // 路径别名(对象),`$css`键为路径的别名，`resolve(__dirname,'src/css')`·`值为实际的路径，这样可以在其他文件中直接使用路径别名
+  alias:{  // 路径别名(对象),`$css`键为路径的别名，`resolve(__dirname,'src/css')`值为实际的路径，这样可以在其他文件中直接使用路径别名
     $css:resolve(__dirname,'src/css')
   },
   // 配置可省略的文件后缀名，优先级为从左到右，即先匹配是否有js对应的文件名，再匹配json对应的文件名
@@ -113,7 +113,7 @@ devServer: {
   // 监视更新配置，ignored忽略目录
   watchOptions: { ignored: /node_modules/ },
   // 服务器域名
-  host: 'loaclhost',
+  host: 'localhost',
   // 开启HMR功能
   hot: true,
   // 不在浏览器中显示启动服务器的日志信息
@@ -131,7 +131,7 @@ devServer: {
     '/api': {
       target: 'http://loaclhost:3000',
       pathRewrite: {
-        '^/api': ''
+        '^/api': '' // 路径重写
       }
     }
   },
@@ -223,7 +223,7 @@ optimization: {
 
 ## Mode模式
 
-- mode设置webpack打包构建的模式，有开发模式development主要是在开发时使用，更适合开发调试以及快速构建。生成模式production，主要是在上线发布时打包构建，更加注重代码的优化，执行稳定性
+- mode设置webpack打包构建的模式，有开发模式development主要是在开发时使用，更适合开发调试以及快速构建。生产模式production，主要是在上线发布时打包构建，更加注重代码的优化，执行稳定性
 - 开发环境：`webpack 入口目录 -o 出口目录 --mode=development`
 - 生产环境：`webpack 入口目录 -o 出口目录 --mode=production`
   - 生产环境压缩js代码
@@ -722,7 +722,7 @@ module.exports = {
 }
 ```
 
-这样的好处就是，css独立成一个文件，不会因为加载js而不能即使渲染样式，通过link标签引入，而不是内联式，不会出现短暂的白屏现象
+这样的好处就是，css独立成一个文件，不会因为加载js而不能及时渲染样式，通过link标签引入，而不是内联式，不会出现短暂的白屏现象
 
 ## css兼容性处理
 
@@ -795,7 +795,7 @@ module.exports = {
 ```
 
 1. 使用`postcss-loader`来完成css兼容性处理，此外，此loader还需借助`postcss-preset-env`插件来完成兼容
-2. 在package.json中配置此项目在开发和生产环境下需要兼容到的浏览器，以便loader可以根据此配置来补充兼容样式
+2. 在`package.json`中配置此项目在开发和生产环境下需要兼容到的浏览器，以便loader可以根据此配置来补充兼容样式
 3. `postcss-loader`默认使用生产环境兼容处理，使用`process.env.NODE_ENV='development'`可强制设置webpack打包时的node环境
 
 ## 压缩css样式
@@ -1237,7 +1237,7 @@ module.exports = {
     rules: [
       // loader规则配置
       {
-        // 匹配css样式文件
+        // 匹配js文件
         test: /\.js$/,
         use: 'happypack/loader?id=js',  // 使用happypack打包
       },
