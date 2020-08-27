@@ -185,7 +185,7 @@ export default {
 #### 通过ref引用组件
 
 - 在vue中提供了一个属性ref可以在需要引用的组件上使用ref属性来获取引用
-- 比如在父组件中给子组件设置一个ref，那么就可以在父组件中通过`this.refs.属性值`获取相应子组件的引用
+- 比如在父组件中给子组件设置一个ref，那么就可以在父组件中通过`this.$refs.属性值`获取相应子组件的引用
 
 ```html
 // 父组件
@@ -543,7 +543,7 @@ export default {
   - actions：类似于mutation，用于提交mutation来改变状态，而不直接变更状态，可以包含任意异步操作
   - modules：类似于命名空间，用于项目中将各个模块的状态分开定义和操作，便于维护
 
-```html
+```js
 // index.js store
 import Vue from "vue";
 import Vuex from "vuex";

@@ -5,12 +5,15 @@
 - 还有几个生命周期钩子：activated(组件激活后)、deactivated(组件停用后)这2个主要是在组件设置了keep-alive之后特有的生命周期。errorCaptured(当捕获一个来自子孙组件的错误时被调用)
 - 接下来分析每个阶段Vue所做的事情
 
-![生命周期](./img/8.png)
+![生命周期](./img/7.png)
 
 ## beforeCreate
 
+![beforeCreate](./img/8.png)
+
 - 当这个钩子触发前，vue会先初始化一些属性比如`$parent`,`$children`，对于根组件没有parent，且一开始的children为空数组，都没有挂载
 - 初始化事件initEvents，如_events等，用于事件操作对象
+- 初始化生命周期
 - 在初始化一些内部属性之后，就会调用beforeCreate钩子
 
 ```js js
@@ -24,8 +27,6 @@ const vm=new Vue({
   }
 })
 ```
-
-![beforeCreate](./img/9.png)
 
 可以看到此时el与data都没有初始化
 
@@ -45,7 +46,7 @@ const vm=new Vue({
 
 看看调用created之后的数据
 
-![created](./img/10.png)
+![created](./img/9.png)
 
 现在可以看到data数据已经监听了，这里就设置了数据的getter与setter了，具有响应式
 
@@ -57,7 +58,8 @@ const vm=new Vue({
 
 ## beforeMount
 
-![beforeMount](./img/11.png)
+![beforeMount](./img/10.png)
+
 
 可以看到已经获取了el元素，但是对于数据还未挂载到视图上，此时调用了render生成vnode，并且渲染成了DOM节点，组件挂载到了el元素上
 
@@ -67,7 +69,7 @@ const vm=new Vue({
 
 ## mounted
 
-![mounted](./img/12.png)
+![mounted](./img/11.png)
 
 执行mounted时，数据已经挂载到了DOM上
 
@@ -77,7 +79,7 @@ const vm=new Vue({
 
 ## beforeUpdate
 
-![update](./img/13.png)
+![beforeUpdate](./img/12.png)
 
 - 这时数据已经被修改了，但是视图还未被更新
 - 接下来就是更新视图，经过patch、diff之后计算出不同点以及一些操作，触发watcher的updated操作，这里的更新顺序是从最底层更新到外层，也就是最先更新的是子孙组件，类似冒泡触发
