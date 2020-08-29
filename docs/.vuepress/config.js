@@ -23,9 +23,9 @@ module.exports = {
   // number，指定 dev server 的端口di
   port: 8081,
   // string，指定客户端文件的临时目录
-  // temp: '/path/to/@vuepress/core/.temp',
+  // temp: '/path/to/@vuepress/core/.temp'
   // string，输出目录
-  dest: './dist',
+  dest: '../../dist',
   // { [path: string]: Object }，提供多语言支持的语言配置
   locales: localesConfig,
   // Function，用来控制对于哪些文件，是需要生成 <link rel="prefetch"> 资源提示的

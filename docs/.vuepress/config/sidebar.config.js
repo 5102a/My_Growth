@@ -36,7 +36,7 @@ module.exports = {
     'LeetCode-BO',
     'LeetCode-Sort',
   ],
-  '/browser/': ['', 'Browser', 'Process','BrowersPlus1'],
+  '/browser/': ['', 'Browser', 'Process', 'BrowersPlus1', 'BrowersPlus2'],
   '/data-structure/': [
     '',
     'ds',

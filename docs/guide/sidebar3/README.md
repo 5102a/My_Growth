@@ -10,6 +10,8 @@
 
 ### [深入浏览器工作原理(上)](../../browser/BrowersPlus1.html)
 
+### [深入浏览器工作原理(中)](../../browser/BrowersPlus2.html)
+
 ## [二、操作系统系列](../../operating-system/)
 
 - ### [操作系统常见词汇了解](../../operating-system/OS.html)
