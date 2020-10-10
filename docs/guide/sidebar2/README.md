@@ -6,8 +6,6 @@
 
 - ### [十大排序算法](../../algorithm/top10sort.html)
 
-- ### [二分法查找](../../algorithm/dichotomy.html)
-
 - ### [动态规划](../../algorithm/dp.html)
 
 - ### [贪心算法](../../algorithm/greedy.html)

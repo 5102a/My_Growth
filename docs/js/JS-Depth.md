@@ -121,7 +121,7 @@ a===b //false
 
 判断函数
 
-- 使用`func typeof function`判断func是否为函数
+- 使用`typeof func === 'function'`判断func是否为函数
 - 使用`func instanceof Function`判断func是否为函数
 - 通过`func.constructor === Function`判断是否为函数
 - 也可使用`Object.prototype.toString.call(func)`判断值是否为'[object Function]'来判断func
@@ -1411,7 +1411,7 @@ CMD推崇就近依赖，只有在用到某个模块的时候再去require
 ### 使用async属性
 
 - 如果script标签设置了这个值，则说明引入的js需要异步加载和执行，注意此属性只适用于外部引入的js
-- 在有async的情况下脚本异步加载和执行，并且不会阻塞页面加载，但是也并不会保证其加载的顺序，如果多个async优先执行，则先加载好的js文件，所以使用此方式加载的js文件最好不要包含其他依赖
+- 在有async的情况下脚本异步加载和执行，并且不会阻塞页面加载，但是也并不会保证其加载的顺序，如果多个async,则优先执行先加载好的js文件，所以使用此方式加载的js文件最好不要包含其他依赖
 
 ### 使用defer属性
 

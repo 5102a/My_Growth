@@ -69,8 +69,8 @@
 - img=>image 图片 单边标签
 
 1. src=>source 图片资源
-2. alt 属性 alternate 替代无图片时的文字
-3. title 当鼠标放在图片上面时，显示的文字
+2. **alt 属性 alternate 替代无图片时的文字**
+3. **title 当鼠标放在图片上面时，显示的文字**
 4. width 图片宽度
 5. height 图片高度
 6. 最好不要同时给图片设置高度和宽度，否则会拉伸图片

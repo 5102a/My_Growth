@@ -1,6 +1,6 @@
 # mete标签详解
 
-元素可提供有关页面的元信息（meta-information），比如针对搜索引擎和更新频度的描述和关键词
+元素可提供有关页面的**元信息**（meta-information），比如针对搜索引擎和更新频度的描述和关键词
 标签位于文档的头部，不包含任何内容。`<meta>` 标签的属性定义了与文档相关联的名称/值对
 
 ## 必选属性content
@@ -10,7 +10,7 @@
 - content 属性始终要和 name 属性或 http-equiv 属性一起使用
 - 但是所有服务器都至少要发送一个：`content-type:text/html`。这将告诉浏览器准备接受一个 HTML 文档
 
-```html content
+```html {6}
 <!-- 网页作者 -->
 <meta name="author" content="开源技术团队"/>
 <!-- 网页地址 -->

@@ -51,17 +51,17 @@
 - 属性选择器通过属性名和属性值来匹配元素
   - `[attr]` 匹配所有具有 attr 属性的元素 eg：`h1[align][size]{}`
   - `[attr="val"]` 匹配所有 attr 属性值为 val 的元素 eg：`h1[align="center"] {}`
-  - `[attr^="val"]` 匹配元素中 attr 属性以指定值开头的所有元素 eg：`font[color^="#ff"]`
-  - `[attr$="val"]` 匹配元素中 attr 属性以指定值结尾的所有元素 eg：`font[color$="00"]`
+  - `[attr^="val"]` 匹配元素中 attr 属性以**指定值开头**的所有元素 eg：`font[color^="#ff"]`
+  - `[attr$="val"]` 匹配元素中 attr 属性以**指定值结尾**的所有元素 eg：`font[color$="00"]`
   - `[attr*="val"]` 匹配元素中 attr 属性中**包含指定值**的所有元素 eg：`font[color*="00"]`
   - `[attr~="val"]` 匹配元素中 attr 属性中**指定值为一个整体**（一个单词独立整体）的所有元素 eg：`font[color~="00"]`
-  - `[attr|="val"]` 匹配元素中 attr 属性以**指定值开头（以及值后跟-）**所有元素 eg：`font[color|="#ff"]`
+  - `[attr|="val"]` 匹配元素中 attr 属性以**指定值开头**（**以及值后跟`-`**）所有元素 eg：`font[color|="#ff"]`
 
 ### 结构选择器
 
 - div span p{}，div的后代span的后代p,后代用空格
 - div>span{}，div的孩子span，父子级用>
-- **div h1~h2{}**，div的后代中h1的兄弟h2以及之后的
+- **div h1~h2{}**，div的后代中h1的兄弟h2以及之后的同级兄弟
 - div h1+h2{}，div的后代中紧挨h1的兄弟h2
 
 ## 尺寸样式属性
@@ -93,7 +93,7 @@
 - 定义字体
 ![img](./img/4.png)
 - 1em相当于100%宽度字体
-- %相对于父级
+- **%相对于父级**
 - 行高1.5em（倍数适应好）、px
 - **white-space:pre-line保留空格，nowrap不换行**
 - text-overflow：ellipsis溢出...
@@ -125,9 +125,9 @@
 - 标签选择器用 1 表示
 - 类选择器用 10 表示
 - id 选择器用 100 表示
-- 行内选择器用 1000 表示
+- **行内选择器用 1000 表示**
 - 上述数值表示权重，**权重值越高优先级越高**
-- !important 提升**属性**优先级，使用此关键字，权重无限大，为最高级；需写在值的后面不能有分号需要空格，不能提升继承过来的权重，即只增加自己属性的权重，不增加孩子的权重
+- !important 提升**属性**优先级，使用此关键字，权重无限大，为最高级；需写在值的后面不能有分号需要空格，**不能提升继承过来的权重，即只增加自己属性的权重，不增加孩子的权重**
 - 同权重谁后出现谁优先
 
 ## 一个标签可以有多个类名
@@ -248,7 +248,7 @@
    - **相对定位会覆盖标准流元素**
    - 定位坐标可为负值，则为反方向
 
-3. absolute 绝对定位 查找父元素的定位属性，如果有定位属性，会参照父元素来定位，层层冒泡寻找，如果都没有则已浏览器窗口为参照
+3. absolute 绝对定位 查找父元素的定位属性，如果有定位属性，会参照父元素来定位，层层冒泡寻找，如果都没有则以浏览器窗口为参照
    - 绝对定位脱离标准流
    - 绝对定位不占空间
    - 绝对定位会覆盖标准流元素
@@ -264,6 +264,27 @@
 - 固定导航条为最高层，则不会被覆盖
 
 ## CSS3=CSS2+新语法
+
+### 新增属性
+
+1. box-shadow（阴影效果）
+2. border-color（为边框设置多种颜色）
+3. border-image（图片边框）
+4. text-shadow（文本阴影）
+5. text-overflow（文本截断）
+6. word-wrap（自动换行）
+7. border-radius（圆角边框）
+8. opacity（透明度）
+9. box-sizing（控制盒模型的组成模式）
+10. resize（元素缩放）
+11. outline（外边框）
+12. background-size（指定背景图片尺寸）
+13. background-origin（指定背景图片从哪里开始显示）
+14. background-clip（指定背景图片从什么位置开始裁剪）
+15. background（为一个元素指定多个背景）
+16. hsl（通过色调、饱和度、亮度来指定颜色颜色值）
+17. hsla（在hsl的基础上增加透明度设置）
+18. rgba（基于rgb设置颜色，a设置透明度）
 
 ### 结构伪类选择器
 
@@ -330,11 +351,11 @@
 - 弹性盒子内放弹性元素
 - 弹性容器
   - flex-direction:row左到右、row-reverse右到左、column上到下、column-reverse下到上排列
-  - 默认往内挤（放不下变换情况）
+  - 默认往内挤（放不下则变形）
   - flex-wrap:wrap上到下换行、wrap-reverse下到上换行、nowrap不换行
   - **flex-flow:row wrap 同时设置排列和折行**
 - 主副轴(父元素设置)
-  - justify-content:flex-start、flex-start、center、space-between平均分布（左右靠齐）、space-around左右各有间距、space-evenly完全平均分布、内容对齐方向参照盒子的排列方向，只控制主轴
+  - justify-content:flex-start、flex-end、center、space-between平均分布（左右靠齐）、space-around左右各有间距、space-evenly完全平均分布、内容对齐方向参照盒子的排列方向，只控制主轴
   - align-items：副轴对齐方式（元素）同justify，stretch拉伸优先级低于高宽
   - align-content：副轴对齐方式（内容）同justify
 - 单个元素设置(子元素设置)
@@ -378,7 +399,7 @@
 - 父元素设置透视，子元素的透视效果不同，perspective值越小透视越严重
 - perspective：600px给子元素设置透视
 - perspective-origin:-100px 200px视角移动
-- backface-visibility:hidden背面不可见
+- **backface-visibility:hidden**背面不可见
 
 ### 过渡
 
@@ -387,26 +408,26 @@
 - transition-duration：2s，属性过渡改变时间，可独立设置每个属性过渡时间
 - transition-timing-function:ease、linear、（，，，）贝塞尔曲线，steps（3，end）分步过渡，step-end/start帧过渡、步进
 - transition-delay:1s延迟过渡（2s,3s）可分别设置属性过渡延迟，时间不够不显示
-- transition：过渡属性 过渡方式 过渡时间 延迟时间，组合设置过渡，也可每个属性独立设置
+- **transition：过渡属性 过渡方式 过渡时间 延迟时间**，组合设置过渡，也可每个属性独立设置
 
 ### 帧动画
 
 - 定义帧动画，定义顺序无关,不会覆盖过渡变换，多个动画可以同时作用
-- animation-name:帧动画名
-- animation-duration:2s帧动画过渡时间，动画时间
+- `animation-name:帧动画名`
+- `animation-duration:2s`帧动画过渡时间，动画时间
 - 属性重叠，后出现的优先级高，不管时间
 - 有中间值的 有过渡效果
-- **animation-iteration-count**:1,2执行次数、infinite无限循环
-- 动画方向animation-direction：reverse（从后往前）动画方向、normal、alternate、alternate-reverse
-- background：radial-gradient（at center，col，col）背景渐变
-- 延迟动画animation-delay：2s过2秒开始动画
-- animation-timing-function:动画过渡平滑模式，cubic-bezier（，，，）自定义参数
-- box-shadow：currentColor（获取文本颜色的阴影）盒子阴影
+- **`animation-iteration-count:1`执行次数、infinite无限循环
+- `animation-direction：reverse`（从后往前）动画方向、normal、alternate、alternate-reverse
+- **`background：radial-gradient（at center，col，col）`**背景渐变
+- `animation-delay：2s`过2秒开始动画
+- `animation-timing-function:动画过渡平滑模式`，cubic-bezier（，，，）自定义参数
+- `box-shadow：currentColor`（获取文本颜色的阴影）盒子阴影
 - 阴影作为动画。。。
-- 步进动画animation-timing-function:step(0,start)
-- animation-play-state:paused动画状态暂停，running运动
-- **animation-fill-mode:backwards**延迟的初始状态为起始帧，forwards定格结尾帧、both两者都、normal
-- 组合animation:动画名 模式 运行时间 延迟
+- `animation-timing-function:step(0,start)`步进动画
+- `animation-play-state:paused`动画暂停状态，running运行状态
+- **`animation-fill-mode:backwards`**延迟的初始状态为起始帧，forwards定格结尾帧、both两者都、normal
+- `animation:动画名 模式 运行时间 延迟`组合属性
 
 ```js  帧动画
 @keyframes 帧动画名{
@@ -431,7 +452,7 @@
 ### 响应式布局
 
 - 不同屏幕上有不同布局
-- media="screen"屏幕设备、print打印设备、all全部设备，link标签也可设置设备
+- `media="screen"`屏幕设备、print打印设备、all全部设备，link标签也可设置设备
 - **css中使用`@import url（print.css) print`、`@media screen and (max-width:600px){样式}`**
 - **link中使用`media="screen and (min-width:760px) and (max-width:1000px) and (orientation:landscape横屏),screen and (min-width:760px)"`**，用逗号表示或，逻辑非not写在最前面，only浏览器支持则使用
 

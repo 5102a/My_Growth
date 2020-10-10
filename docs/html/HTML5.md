@@ -11,7 +11,6 @@ HTML5 技术结合了 HTML4.01 的相关标准并革新，符合现代网络发�
 <!DOCTYPE html>
 <!--中文编码来解析-->
 <html lang="zh-CN">
-<html lang="en">
 <head>
     <!--utf-8编码来解析-->
     <meta charset="utf-8">
@@ -32,6 +31,29 @@ HTML5 技术结合了 HTML4.01 的相关标准并革新，符合现代网络发�
   - aside 侧边栏标签
   - footer 页脚标签
   - section 栏目标签
+
+### 新增属性
+
+CSS3新增属性用法整理：
+
+1. box-shadow（阴影效果）
+2. border-color（为边框设置多种颜色）
+3. border-image（图片边框）
+4. text-shadow（文本阴影）
+5. text-overflow（文本截断）
+6. word-wrap（自动换行）
+7. border-radius（圆角边框）
+8. opacity（透明度）
+9. box-sizing（控制盒模型的组成模式）
+10. resize（元素缩放）
+11. outline（外边框）
+12. background-size（指定背景图片尺寸）
+13. background-origin（指定背景图片从哪里开始显示）
+14. background-clip（指定背景图片从什么位置开始裁剪）
+15. background（为一个元素指定多个背景）
+16. hsl（通过色调. 饱和度. 亮度来指定颜色颜色值）
+17. hsla（在hsl的基础上增加透明度设置）
+18. rgba（基于rgb设置颜色，a设置透明度）
 
 ### 表单控件新增属性
 
@@ -101,11 +123,7 @@ HTML5 技术结合了 HTML4.01 的相关标准并革新，符合现代网络发�
 - HTML5的canvas元素可以实现画布功能，该元素通过自带的API结合使用JavaScript脚本语言在网页上绘制图形和处理，拥有实现绘制线条、弧线以及矩形
 - 用样式和颜色填充区域，书写样式化文本，以及添加图像的方法，且使用JavaScript可以控制其每一个像素
 - HTML5的canvas元素使得浏览器无需Flash或Silverlight等插件就能直接显示图形或动画图像
-- 通过canvas绘制图像
-- 通过canvas绘制路径
-- 通过canvas绘制文本
-- 通过canvas绘制渐变
-- 通过canvas绘制图像
+- 通过canvas**绘制图像、路径、文本、渐变**
 
 ### 地理位置
 
@@ -121,7 +139,7 @@ HTML5 技术结合了 HTML4.01 的相关标准并革新，符合现代网络发�
 ### WebWorker
 
 - WebWorker多线程，通过创建一个Web Worker对象就可以实现**多线程**操作
-- HTML5新增加了一个WebWorkerAPI，用户可以创建多个在后台的线程，将耗费较长时间的处理交给后台面不影响用户界面和响应速度，这些处理不会因用户交互而运行中断
+- HTML5新增加了一个WebWorkerAPI，用户可以创建多个在后台的线程，将耗费较长时间的处理交给后台面**不影响用户界面和响应速度**，这些处理不会因用户交互而运行中断
 - 大致步骤如下
   - ①先创建发送数据的子线程；
   - ②执行子线程任务，把要传递的数据发送给主线程；

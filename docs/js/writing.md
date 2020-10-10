@@ -566,7 +566,7 @@ Promise.myAll = function (iterable) {
 
 1. Promise.all是用来处理多个Promise返回的结果，如果有一个失败则返回这个失败，除非全部完成
 2. 迭代迭代器参数时需要对每次迭代的值做判断，只有promise才需要调用then方法，其他值直接返回
-3. 由于需要全部的promise完成才算完成，那么需要一个数组来记录已经完成的promise，当每格promise在执行完成回调时进行当前数组长度与最终长度做对比如果已经是最终长度，那么就resolve返回的promise，否则继续pending
+3. 由于需要全部的promise完成才算完成，那么需要一个数组来记录已经完成的promise，当每个promise在执行完成回调时进行当前数组长度与最终长度做对比如果已经是最终长度，那么就resolve返回的promise，否则继续pending
 4. 返回的数组存放的是按照迭代器迭代的顺序，所以这里需要一个局部变量来存放当前index，以便对号入座
 
 ## 手写Promise.race
@@ -577,7 +577,7 @@ Promise.myAll = function (iterable) {
 Promise.myRace = function (iterable) {
   let hasPromise = false
   return new Promise((resolve, reject) => {
-    if (iterable[Symbol.iterator]().next().done) return
+    if (iterable[Symbol.iterator]().next().done) return resolve()
     for (const iterator of iterable) {
       if (iterator instanceof Promise) {
         iterator.then(resolve, reject)

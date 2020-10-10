@@ -152,7 +152,7 @@ left与right强制设置为0，加上margin的auto，导致margin自动补全左
 </div>
 ```
 
-如下，同理**设置y轴为主轴，再设置`align-items:center`**对齐，效果一致
+如下，同理设置y轴为主轴，再设置`align-items:center`对齐，效果一致
 
 ```css 元素水平居中5-2
 .align1 {
@@ -227,7 +227,7 @@ fit-content只支持Chrome 和 Firefox浏览器
 <div class="align1">test</div>
 ```
 
-fit-content就是实现元素收缩效果的同时，保持原本的block水平状态，配合margin实现自动水平居中。如果width不设置，那么块级元素自动会拉满宽度，当设置fit-content后，宽度就由内容决定
+fit-content就是实现元素收缩效果的同时，保持原本的block水平状态，配合margin实现自动水平居中。如果width不设置，那么块级元素自动会拉满宽度，**当设置fit-content后，宽度就由内容决定**
 
 #### 手动定位，这个方法最无脑，给个定位，计算left距离写死
 
@@ -300,7 +300,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 ##### 先了解一下基线对齐
 
-当块级元素内的文字高度不一时，以文字最高的基线作为所有文字的基线，先看如下
+当块级元素内的文字高度不一时，以最高文字的基线作为所有文字的基线，先看如下
 
 ```css 行内块元素垂直居中
 .align1 {  /* 父元素只给高度 */
@@ -332,7 +332,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 基线画的不是很整齐，但是能看出test与1的底线对齐，即最高文字的基线对齐，这就是文字默认的基线对齐。加`display: inline-block;`的原因就是形成BFC，不让子元素与父元素的border重叠，如果去掉则边框会重叠，子元素会向上移动边框宽度
 
-再看下添加`vertical-align: middle;`效果，先说明这个属性是设置行内元素在其父元素内的垂直对齐方式
+再看下添加`vertical-align: middle;`效果，先说明这个属性是**设置行内元素在其父元素内的垂直对齐方式**
 
 ```css 行内块元素垂直居中1
 .align1::after {
@@ -357,13 +357,13 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 设置完之后，会发现，文字以其垂直方向上的中心线对齐，没错这就是设置`vertical-align: middle;`的效果。可以这么理解，块级元素中的基线(即默认`vertical-align: baseline;`)以行内元素中字体高度最高的那个文字的底线作为基线，所有的vertical-align属性都是以最高的那个文字作为参照
 
-> 行内元素默认高度是line-height 默认值为文字高度的1.0-1.2倍，img标签的底部与文字底部基线对齐，height可以触发hasLayout，line-height不会
+> 行内元素默认高度是line-height 默认值为文字高度的1.0-1.2倍，**img标签的底部与文字底部基线对齐**，height可以触发hasLayout，line-height不会
 
 [推荐文章](https://juejin.im/post/6844903507007553550)
 
 ##### 文字垂直中心线对齐
 
-这么一来就明白了其效果，那么可以设置一个伪元素，让其内容为''，且其高度为100%，再设置文字为`vertical-align: middle;`，这么一来就使所有的文字相对于父元素垂直居中，其实是基于最高行内元素的垂直中心线对齐
+这么一来就明白了其效果，那么可以设置一个伪元素，让其内容为`''`，且其高度为100%，再设置文字为`vertical-align: middle;`，这么一来就使所有的文字相对于父元素垂直居中，其实是基于最高行内元素的垂直中心线对齐
 
 ```css 行内块元素垂直居中2
 .align1 {
@@ -394,7 +394,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 </div>
 ```
 
-最终效果，此方法兼容性较好也适应IE7
+最终效果，**此方法兼容性较好也适应IE7**
 
 ![文字垂直居中2](./img/8.png)
 
@@ -402,7 +402,7 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
 这里讲的是块级元素垂直居中，行内元素上述已经说明
 
-#### 一、父元素:定宽+`display:flex`+`align-items:center`
+#### 一、父元素:定高+`display:flex`+`align-items:center`
 
 这个方法与水平居中类似，其子元素垂直居中，主副轴对调又是一种方法，不多赘述
 
@@ -466,6 +466,32 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
 
   border: 10px solid blue;
   background: yellow;
+}
+<div class="align1">
+  <div class="align2">test</div>
+</div>
+```
+
+#### 四、父元素:定高+定位+子元素:定宽高+`position:absolute`+`top:0`+`bottom:0`+`margin: auto 0;`
+
+与水平居中原理类似，使用margin自动填充外边距使其满足top与bottom为0，即可自动实现居中效果
+
+```css 元素垂直居中4
+.align1 {
+  height: 100px;
+  position: relative;
+
+  background-color: #999;
+}
+.align2{
+  height: 50px;
+  width: 50px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  position: absolute;
+
+  background-color: #eee;
 }
 <div class="align1">
   <div class="align2">test</div>
@@ -582,9 +608,10 @@ fit-content就是实现元素收缩效果的同时，保持原本的block水平�
   - **父元素:定高+`display:table`+子元素`display:table-cell`+`vertical-align:middel`**
   - **基于伪元素的垂直居中**
 - 块元素垂直居中:
-  - **父元素:定宽+`display:flex`+`align-items:center`**
+  - **父元素:定高+`display:flex`+`align-items:center`**
   - **父元素:定位+定高+子元素:`position:absolute`+`top:50%`+`margin-top:-50%高度`+定高**
   - **父元素:浮动+定高+子元素:`position:relative`+`top:50%`+`transform: translate3d(0,-50%,0)`**
+  - **父元素:定高+定位+子元素:定宽高+`position:absolute`+`top:0`+`bottom:0`+`margin: auto 0`**
   - 待补充
 
 ### 水平垂直都居中
