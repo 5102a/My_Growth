@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2020-08-17 00:10:20
- * @LastEditTime: 2021-03-09 21:01:55
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \My_Growth\docs\data-structure\hash.md
--->
 # 散列表
 
 - 散列表的英文叫“Hash Table”，我们平时也叫它“哈希表”或者“Hash 表”
@@ -91,7 +83,6 @@
 
 加盐加密
 
-
 ## 布隆过滤器
 
 - 布隆过滤器本身就是基于位图的，是对位图的一种改进
@@ -100,3 +91,4 @@
 - 降低冲突
 - 可以100%判断元素是否不存在集合
 - 判断元素是否存在集合中时有误判率，这取决于位阵列大小和数据量，删除操作也比较困难
+
