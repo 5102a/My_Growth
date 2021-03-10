@@ -670,7 +670,7 @@ function Kruskal(graph, dist = {}, selected = []) {
 }
 
 console.log(Kruskal(graph))
----------------------------------------------------------------------------
+--------------------------------------------------------------------
 // Prim(普里姆)算法
 function Prim(graph, selected = [], dist = {}, parent = {}) {
   // 初始化权值集合
