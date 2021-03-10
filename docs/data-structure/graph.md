@@ -616,7 +616,7 @@ function mst(graph) {
   return select.join(' ')
 }
 console.log(mst(graph));
--------------------------------------------------------------------------
+--------------------------------------------------------------------
 // Kruskal(克鲁斯卡尔)
 function Kruskal(graph, dist = {}, selected = []) {
   // 判断环
