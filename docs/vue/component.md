@@ -68,7 +68,7 @@ export default {
 - 简单说组件的props对象中设置的属性，就是自定义的标签属性，而只有使用这个组件的同时给指定标签属性传递值才会被此组件接收到
 - props是只读属性，也就是子组件只能获取不能修改props的属性，且props只能传递一级，从父组件传递到下一个子组件，不能跨级传，而且是单向传递
 
-#### 通过`$children`传数据
+#### 通过`$parent`传数据
 
 ```html
 // 父组件
@@ -665,7 +665,7 @@ export default {
 
 - vuex其实就是一个状态管理工具，其中也可以分成好几个仓库用于不同模块状态的管理，在vue根实例中注册store，则在所有的vue子组件中都能共享使用vuex
 - 通过vuex中的state保存状态数据、getters中设置计算属性(可缓存)、mutations中定义commit调用的同步方法用于直接修改state的数据、在actions中定义dispatch调用的异步方法，这些方法又可以调用commit修改state、modules可以定义各种模块，也可以使用命名空间来管理不同模块的作用域
-- 总之vuex就是一个全局的状态管理系统，可以把公共数据提交到vuex上，再通过mutatuin或者actives来执行同步或者异步更新操作
+- 总之vuex就是一个全局的状态管理系统，可以把公共数据提交到vuex上，再通过mutations或者actions来执行同步或者异步更新操作
 - 通过`$store.state`来获取vuex中的state数据，通过`$store.commit`来调用vuex中的mutations下的方法更新state数据、通过`$store.dispatch`来调用vuex中的actions下的方法，如果有需要可以在定义的方法中异步获取数据，进一步commit更新数据、如果需要管理不同的状态仓库，那么可以定义多个modules分开管理，当然也可以实现他们之间的数据交互
 
 ## WebStorage全局通讯

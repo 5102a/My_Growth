@@ -44,7 +44,7 @@
 
 - 对于上述注入，我们可以再对unicode的`\`进行转义如`\u003c`转成`\\u003c`，这样就没有那个效果了，不会当作unicode处理了
 - 还有一种通过url注入js代码，如果没有对url参数进行转义，直接渲染在页面上那么将会被攻击
-- 防止cookie被盗取，我们可以在服务端设置cookie的时候加个httpOnly标识，cokkie只允许http协议传输，不能由js读写
+- 防止cookie被盗取，我们可以在服务端设置cookie的时候加个httpOnly标识，cookie只允许http协议传输，不能由js读写
 
 ### XSS攻击包括以下三种类型
 
