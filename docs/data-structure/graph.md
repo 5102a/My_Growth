@@ -420,7 +420,7 @@ function printPath(prev, vertex) {
   return res
 }
 console.log(printPath(prev, 'A'));
-------------------------------------------------------------------------------
+--------------------------------------------------------------------
 // 基于贪心的迪杰斯特拉算法
 function Dijkstra(graph, vertex, visited = [], dist = {}) {
   // 初始化最短距离数组

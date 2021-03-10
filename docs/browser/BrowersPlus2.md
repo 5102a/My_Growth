@@ -269,7 +269,7 @@ Chromium 团队曾测试过这种情况，使用静态优先级策略，网页�
 
 当通过 JavaScript 调用 setTimeout 设置回调函数的时候，渲染进程将会创建一个回调任务，包含了回调函数 showName、当前发起时间、延迟执行时间，其模拟代码如下所示：
 
-```c++
+```cpp
 struct DelayTask{
   int64 id；
   CallBackFunction cbf;
@@ -284,7 +284,7 @@ timerTask.delay_time = 200;//设置延迟执行时间
 
 将创建好的回调任务添加到延时队列中
 
-```c++
+```cpp
 // 定义延时队列
 DelayedIncomingQueue delayed_incoming_queue;
 // 添加到延时队列中
@@ -293,7 +293,7 @@ delayed_incoming_queue.push(timerTask)；
 
 #### 触发定时器
 
-```c++
+```cpp
 void ProcessTimerTask(){
   //从delayed_incoming_queue中取出已经到期的定时器任务
   //依次执行这些任务
