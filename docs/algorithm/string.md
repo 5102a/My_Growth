@@ -27,30 +27,104 @@
 - KMP 算法是根据三位作者（D.E.Knuth，J.H.Morris 和 V.R.Pratt）的名字来命名的，算法的全称是 Knuth Morris Pratt 算法，简称为 KMP 算法
 - KMP 算法跟 BM 算法的本质是一样的
 
-## Sunday算法
-
 ```js
-String.prototype.myIndexOf = function myIndexOf(str, fromIndex = 0) {
-  if (str === '') return 0
-  if (str === null || str === undefined) return -1
-  var sIndex = 0, pos = fromIndex, flag = false
-  for (var i = fromIndex; i < this.length; i++) {
-    if (str[sIndex] !== this[i]) {
-      flag = false
-      sIndex = 0
-      while (this[pos + str.length] !== str[sIndex] && sIndex < str.length) {
-        sIndex++
+const str = 'abaabcac'
+const target = 'abca'
+
+// 匹配字符串
+String.prototype.myIndexOf = function myIndexOf(target) {
+  // 生成nextVal数组
+  const nextVal = ((target) => {
+    const next = [0, 1]
+    const nextVal = [0, target[0] === target[1] ? 0 : 1]
+    let pre = 1,
+      cur = 2
+    // 生成next数组
+    for (let cur = 2; cur < target.length; ) {
+      if (target[cur - 1] === target[next[pre] - 1]) {
+        next[cur] = next[pre] + 1
+        pre = cur++
+      } else {
+        // 继续寻找前一个
+        pre = next[pre] - 1
+        // 直到第一个
+        if (pre === 0) {
+          next[cur] = 1
+          pre = cur++
+        }
       }
-      var index = sIndex >= str.length ? -1 : sIndex
-      pos += str.length + (index === -1 ? 1 : -index)
-      sIndex = 0
-      i = pos - 1
-    } else {
-      flag = true
-      sIndex++
     }
-    if (sIndex >= str.length && flag) return pos >= this.length ? -1 : pos
+    // 生成nextVal数组
+    for (let cur = 2; cur < target.length; ) {
+      // 当前值与next指向的值相同
+      if (target[cur] === target[next[pre] - 1]) {
+        pre = next[pre] - 1
+        // 直到第一个
+        if (pre === 0) {
+          nextVal[cur] = 0
+          pre = ++cur
+        }
+      } else {
+        // 值不同
+        nextVal[cur] = next[pre]
+        pre = ++cur
+      }
+    }
+    return nextVal
+  })(target)
+
+  // matchEnd子串在主串中能够匹配的最后一个索引
+  let matchEnd = 0
+  for (let i = 0; i < this.length; i++) {
+    // 匹配,且未匹配完成
+    if (this[i] === target[matchEnd] && matchEnd < target.length) {
+      // 匹配成功
+      if (matchEnd + 1 >= target.length) return i - matchEnd
+      matchEnd++
+    } else if (matchEnd > 0) {
+      // 匹配过,调整移动
+      matchEnd = matchEnd - nextVal[matchEnd - 1]
+    }
   }
   return -1
 }
+
+console.log(str.myIndexOf(target))
+```
+
+## Sunday算法
+
+```js
+const str = 'bcababcaa'
+const target = 'abca'
+String.prototype.myIndexOf = function myIndexOf(str, fromIndex = 0) {
+  if (str === '') return 0
+  if (typeof str !== 'string') throw new TypeError('Argument must be a string')
+  let sIndex = 0,
+    pos = fromIndex
+  for (let i = fromIndex; i < this.length; i++) {
+    if (str[sIndex] !== this[i]) {
+      sIndex = str.length - 1
+      // 匹配失败时查找当前下一个未匹配字符是否存在于模式串，如果存在则于模式串对齐
+      while (this[pos + str.length] !== str[sIndex] && sIndex > 0) {
+        sIndex--
+      }
+      // 调整移动
+      if (sIndex <= 0) {
+        pos += str.length + 1
+      } else {
+        pos += str.length - sIndex
+      }
+      sIndex = 0
+      i = pos - 1
+    } else {
+      // 继续匹配
+      sIndex++
+    }
+    if (sIndex >= str.length) return pos >= this.length ? -1 : pos
+  }
+  return -1
+}
+
+console.log(str.myIndexOf(target))
 ```

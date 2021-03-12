@@ -30,7 +30,6 @@ module.exports = {
     'greedy',
     'ba',
     'dac',
-    'dichotomy',
     'string',
     'recursion',
     'LeetCode-BO',

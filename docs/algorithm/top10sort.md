@@ -520,7 +520,7 @@ console.log(array)
 代码实现
 
 ```js 归并排序
-// 归并排序
+// 归并排序，递归
 function mergeSort(arr, sort = 1, merge = null) {
   if (!merge) {
     // 声明合并函数
@@ -554,12 +554,8 @@ function mergeSort(arr, sort = 1, merge = null) {
   return merge(mergeSort(left, sort, merge), mergeSort(right, sort, merge))
 }
 console.log(mergeSort(array, 1))
-// 
-function mergeSort(array, l = 0, r = array.length - 1) {
-  if (l >= r) return array
-  let mid = (l + r)>>1
-  return merge(mergeSort(array.slice(l, mid + 1)), mergeSort(array.slice(mid + 1, r + 1)))
-}
+
+// 双指针合并
 function merge(l, r) {
   let indexL = 0, indexR = 0
   let arr = []
@@ -578,6 +574,56 @@ function merge(l, r) {
   while (indexR < r.length) arr.push(r[indexR++]);
   return arr
 }
+function mergeSort(array, l = 0, r = array.length - 1) {
+  if (l >= r) return array
+  let mid = (l + r)>>1
+  return merge(mergeSort(array.slice(l, mid + 1)), mergeSort(array.slice(mid + 1, r + 1)))
+}
+----------------------------------------------------------------------
+const arr = [8, 6, 10, 18, 16, 2, 4, 12, 14, 20]
+// 简化版递归
+function merge(arr1, arr2) {
+  const res = []
+  // 合并2个有序数组
+  while (arr1.length && arr2.length) {
+    while (arr1.length && arr1[0] < arr2[0]) {
+      res.push(arr1.shift())
+    }
+    while (arr1.length && arr2.length && arr2[0] < arr1[0]) {
+      res.push(arr2.shift())
+    }
+  }
+  // 剩余追加
+  while (arr1.length) res.push(arr1.shift())
+  while (arr2.length) res.push(arr2.shift())
+  return res
+}
+
+function sort(arr) {
+  // 取中间索引，向下取整
+  let mid = ~~(arr.length >> 1)
+  // 边界条件，对只有2项的数组，无需再分隔，直接开始合并
+  if (mid <= 0) return arr
+  // 先递归分割数组，直到无法分割再逐步合并
+  return merge(sort(arr.slice(0, mid)), sort(arr.slice(mid)))
+}
+console.log(sort(arr))
+
+// 迭代
+function sort(arr) {
+  // 2的指数倍为每次合并的数组长度
+  for (let i = 1; ; i *= 2) {
+    // 对实际区间的数组进行排序
+    for (let j = 0; j < arr.length; j += i) {
+      // 合并指定有序区间
+      const res = merge(arr.slice(j, j + i / 2), arr.slice(j + i / 2, j + i))
+      arr.splice(j, i, ...res)
+    }
+    if (i > arr.length) break
+  }
+  return arr
+}
+console.log(sort(arr))
 ```
 
 归并排序时间复杂度最好/最坏/平均O(nlogn)
@@ -654,21 +700,42 @@ function quick(arr, sort = 1, l = 0, r = arr.length - 1, getBase = null) {
 }
 quick(array, 1)
 console.log(array)
-
-function quick(arr, l = 0, r = arr.length - 1) {
+------------------------------------------------------
+// 递归简化
+function sort(arr, l = 0, r = arr.length - 1) {
   if (l >= r) return arr
-  let s = l, e = r, base = arr[s]
+  let s = l, e = r, base = arr[l]
   while (l < r) {
-    while (l < r && arr[r] > base) r--;
+    while (arr[r] > base && l < --r);
     arr[l] = arr[r]
-    while (l < r && arr[l] <= base) l++;
+    while (l < r && arr[++l] <= base);
     arr[r] = arr[l]
   }
   arr[l] = base
-  quick(arr, s, l - 1)
-  quick(arr, r + 1, e)
+  return sort(arr, s, l - 1) && sort(arr, r + 1, e)
+}
+console.log(sort(arr))
+
+// 迭代简化
+function sort(arr, stack = [0, arr.length - 1]) {
+  let s, e, l, r, base
+  while (stack.length) {
+    e = r = stack.pop()
+    s = l = stack.pop()
+    base = arr[s]
+    while (l < r) {
+      while (arr[r] > base && l < --r);
+      arr[l] = arr[r]
+      while (l < r && arr[++l] <= base);
+      arr[r] = arr[l]
+    }
+    arr[l] = base
+    s < l - 1 && stack.push(s, l - 1)
+    e > r + 1 && stack.push(r + 1, e)
+  }
   return arr
 }
+console.log(sort(arr))
 ```
 
 快速排序时间复杂度最好O(nlogn)、最坏O(n^2)、平均O(nlogn)
