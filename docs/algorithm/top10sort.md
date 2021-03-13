@@ -580,33 +580,25 @@ function mergeSort(array, l = 0, r = array.length - 1) {
   return merge(mergeSort(array.slice(l, mid + 1)), mergeSort(array.slice(mid + 1, r + 1)))
 }
 ----------------------------------------------------------------------
-const arr = [8, 6, 10, 18, 16, 2, 4, 12, 14, 20]
-// 简化版递归
+const arr = [3, 5, 4, 1, 2, 6, 9, 8, 7]
+// 简化版归并排序
 function merge(arr1, arr2) {
-  const res = []
-  // 合并2个有序数组
+  let res = []
   while (arr1.length && arr2.length) {
-    while (arr1.length && arr1[0] < arr2[0]) {
-      res.push(arr1.shift())
-    }
-    while (arr1.length && arr2.length && arr2[0] < arr1[0]) {
-      res.push(arr2.shift())
-    }
+    while (arr1.length && arr1[0] < arr2[0]) res.push(arr1.shift())
+    while (arr2.length && arr1[0] > arr2[0]) res.push(arr2.shift())
   }
-  // 剩余追加
-  while (arr1.length) res.push(arr1.shift())
-  while (arr2.length) res.push(arr2.shift())
+  if (arr1.length) res.push(...arr1)
+  if (arr2.length) res.push(...arr2)
   return res
 }
-
+// 归并
 function sort(arr) {
-  // 取中间索引，向下取整
-  let mid = ~~(arr.length >> 1)
-  // 边界条件，对只有2项的数组，无需再分隔，直接开始合并
+  let mid = ~~(arr.length / 2)
   if (mid <= 0) return arr
-  // 先递归分割数组，直到无法分割再逐步合并
   return merge(sort(arr.slice(0, mid)), sort(arr.slice(mid)))
 }
+
 console.log(sort(arr))
 
 // 迭代

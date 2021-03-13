@@ -20,16 +20,16 @@
 
 ```js
 const pack = [23, 12, 5, 2, 9]
-function maxWeight(pack, weight, sum = 0, n = 0) {
-  if (sum == weight || n >= pack.length) {  // 出口条件
-    return sum
-  }
-  let max1 = 0, max2 = 0
-  max1 = maxWeight(pack, weight, sum, n + 1)  // 不装
-  if (sum + pack[n] <= weight) {  // 装
-    max2 = maxWeight(pack, weight, sum + pack[n], n + 1)
-  }
-  return Math.max(max1, max2) // 返回不超过weight的最大值
+function maxWeight(pack, max, sum = 0, i = 0) {
+  // 已全部遍历
+  if (i >= pack.length) return sum
+  // 超出重量
+  if (sum + pack[i] > max) return sum
+  // 返回选与不选的最大重量
+  return Math.max(
+    maxWeight(pack, max, sum + pack[i], i + 1),
+    maxWeight(pack, max, sum, i + 1)
+  )
 }
 console.log(maxWeight(pack, 45))
 ```

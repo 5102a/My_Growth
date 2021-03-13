@@ -38,80 +38,66 @@
 // 纸币面值
 const coins = [1, 2, 5, 10, 20, 50, 100]
 // 支付找零
-function pay(money, coins, p = coins.length - 1, obj = {count:0}) {
-  if (money === 0) return obj
-  let min, residue = 0
-  // 计算当前最少使用纸币数
-  for (let i = p; i >= 0; i--) {
-    // 计算当前面值张数
-    const much = ~~(money / coins[i])
-    if (much < 0) continue // 不能多付
-    min = min || much
-    if (min >= much) {
-      // 更新最少张数
-      min = much
-      // 更新纸币使用面值区间
-      p = i
-      // 剩余支付
-      residue = money % coins[i]
-    }
+function pay(coins, money, i = coins.length - 1, arr = []) {
+  // 不符合
+  if (i < 0) {
+    arr.pop()
+    return 0
   }
-  // 记录使用的纸币
-  obj[coins[p]] = min
-  obj['count'] += min
-  return pay(residue, coins, p, obj)
+  if (money - coins[i] < 0) return 0
+  arr.push(coins[i])
+  // 符合
+  if (money - coins[i] === 0) return arr
+  money -= coins[i]
+  // 再选择本面值，不符合，选择下一个面值
+  while (!pay(coins, money, i--, arr));
+  return arr
 }
-console.log(pay(123, coins)) // {1: 1, 2: 1, 20: 1, 100: 1, count: 4}
+console.log(pay(coins, 123))
 ```
 
 ## 限制有限张纸币，求支付情况
 
 ```js 条件找零
-// 纸币面值以及张数
 const coins = [
   [1, 5],
   [2, 2],
-  [5, 8],
-  [10, 4],
-  [20, 5],
-  [50, 3],
-  [100, 2]
+  [5, 2],
+  [10, 2],
+  [20, 2],
+  [50, 2],
+  [100, 1],
 ]
-// 支付找零
-function pay(money, coins, p = coins.length - 1, obj = {
-  count: 0
-}) {
-  if (money === 0) return obj
-  let much, residue = 0
-  // 计算当前最少使用纸币数
-  for (let i = p; i >= 0; i--) {
-    // 计算当前面值张数
-    much = ~~(money / coins[i][0])
-    if (coins[i][1] <= 0) {
-      p = i - 1;
-      continue // 当前没有面值的纸币
-    }
-    if (much >= coins[i][1]) { // 当前面值的纸币张数不够
-      // 钱不够
-      if (coins[i][0] == coins[0][0]) return '钱不够'
-      obj[coins[i][0]] = coins[i][1] //记录
-      obj['count'] += coins[i][1]
-      // 当前不够，看看有没有其他小零钱凑一下
-      money -= coins[i][0] * coins[i][1] // 扣掉所有当前面值
-      continue
-    }
-    // 够
-    // 更新纸币使用面值区间
-    p = i
-    // 剩余支付
-    money = money % coins[i][0]
-    obj[coins[i][0]] = much //记录
-    obj['count'] += much
+
+function pay(
+  coins,
+  money,
+  i = coins.length - 1,
+  count = coins[i][1],
+  arr = []
+) {
+  // 纸张数总额度不够
+  if (count <= 0 && i <= 0) return -1
+  // 不符合
+  if (count <= 0 || money - coins[i][0] < 0) {
+    if (i < 0) arr.pop()
+    return 0
   }
-  return obj
+  // 符合，添加
+  arr.push(coins[i][0])
+  count--
+  // 刚好
+  if (money - coins[i][0] === 0) return arr
+  money -= coins[i][0]
+  // 再选择本面值，不符合
+  let res = 1
+  while (!(res = pay(coins, money, i, count, arr))) {
+    count = coins[--i][1]
+  }
+  return res === -1 ? -1 : arr
 }
-console.log(pay(328, coins)) // {1: 1, 2: 1, 5: 1, 10: 0, 20: 1, 50: 2, 100: 2, count: 8}
-console.log(pay(600, coins)) // 钱不够
+
+console.log(pay(coins, 236)) // [100, 50, 50, 20, 10, 5, 1]
 ```
 
 ## 求移除k个数，使剩下值最小
@@ -119,6 +105,7 @@ console.log(pay(600, coins)) // 钱不够
 - 在一个非负整数 a 中，我们希望从中移除 k 个数字，让剩下的数字值最小，如何选择移除哪 k 个数字呢？
 
 ```js
+// 迭代
 let num = 59513048
 function foo(num, s) {
   let arr = String(num).split('')
@@ -128,11 +115,32 @@ function foo(num, s) {
       s--
       i = -1  // 继续从最高位开始
       continue
-    }
+    } 
   }
   return arr.join('') * 1
 }
 console.log(foo(num, 2));
+-----------------------------------------------
+// 递归
+const num = 59513048
+// 移除k个元素使数值最小
+function remove(num, k, i = 0) {
+  if (typeof num === 'number') num = num.toString()
+  if (k <= 0) return num * 1
+  // 到最后一个,则没有比第一个小的数，就删除第一个
+  let pos
+  // 超过界限或最后一个
+  if (i >= num.length - 1) {
+    return remove(num.replace(new RegExp(num[0]), ''), --k, 0)
+  }
+  // 前一个大于后一个，则删除,再从最前面开始删除
+  if (num[i] > num[i + 1]) {
+    return remove(num.replace(new RegExp(num[i]), ''), --k, 0)
+  }
+  return remove(num, k, i + 1)
+}
+
+console.log(remove(num, 5))
 ```
 
 <Vssue title="算法 issue" />
