@@ -482,6 +482,22 @@ reverseLink() {
   }
   this.head.next = pre
 }
+// 迭代
+var reverseList = function(head) {
+  let cur = head, pre = null
+  while(cur){
+    [cur.next,cur,pre] = [pre,cur.next,cur]
+  }
+  return pre
+};
+// 递归
+var reverseList = function f(head, pre = null) {
+  if(!head||!head.next) return head
+  const node = f(head.next,head)
+  head.next.next = head
+  head.next = pre
+  return node
+};
 ```
 
 此时链表已经反转，此时原链表head指向null，所有只能使用返回的oldLast用作新head

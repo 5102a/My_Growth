@@ -170,6 +170,7 @@ console.log(sqrt(5))
 - 找到目标值后，往前继续查找，直到不等于目标值
 
 ```js
+// 递归
 const arr = [1, 3, 4, 6, 7, 7, 7, 7, 8, 9, 10]
            //0  1  2  3  4  5  6  7
 function searchStart(arr, target, l = 0, r = arr.length - 1) {
@@ -184,6 +185,26 @@ function searchStart(arr, target, l = 0, r = arr.length - 1) {
     : searchStart(arr, target, l, mid - 1)
 }
 console.log(searchStart(arr, 7))
+
+// 迭代
+const arr = [1, 3, 4, 6, 7, 7, 7, 7, 8, 9, 10]
+           //0  1  2  3  4  5  6  7
+function searchStart(arr, target) {
+  let mid, l = 0, r = arr.length - 1
+  while(l<=r){
+    mid = l + ((r - l)>>1)
+    if(arr[mid] === target){
+      r = mid - 1
+    }else if(arr[mid] > target){
+      r = mid - 1
+    }else if(arr[mid] < target){
+      l = mid + 1
+    }
+  }
+  if(l >= arr.length || arr[l] !== target) return -1
+  return l
+}
+console.log(searchStart(arr, 7))
 ```
 
 ## 查找最后一个值等于给定值的元素索引
@@ -192,6 +213,7 @@ console.log(searchStart(arr, 7))
 - 找到目标值后，往后继续查找，直到不等于目标值
 
 ```js
+// 递归
 const arr = [1, 3, 4, 6, 7, 7, 7, 7, 8, 9, 10]
            //0  1  2  3  4  5  6  7
 function searchEnd(arr, target, l = 0, r = arr.length - 1) {
@@ -207,6 +229,26 @@ function searchEnd(arr, target, l = 0, r = arr.length - 1) {
     : searchEnd(arr, target, l, mid - 1)
 }
 console.log(searchEnd(arr, 7))
+
+// 迭代
+const arr = [1, 3, 4, 6, 7, 7, 7, 7, 8, 9, 10]
+           //0  1  2  3  4  5  6  7
+function searchStart(arr, target) {
+  let mid, l = 0, r = arr.length - 1
+  while(l<=r){
+    mid = l + ((r - l)>>1)
+    if(arr[mid] === target){
+      l = mid + 1
+    }else if(arr[mid] > target){
+      r = mid - 1
+    }else if(arr[mid] < target){
+      l = mid + 1
+    }
+  }
+  if(r < 0 || arr[r] !== target) return -1
+  return r
+}
+console.log(searchStart(arr, 7))
 ```
 
 ## 查找最近一个大于等于给定值的元素
