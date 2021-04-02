@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2020-05-16 18:00:32
- * @LastEditTime: 2021-04-02 14:01:41
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \My_Growth\docs\js\JS-String.md
--->
 # JS字符串方法
 
 ## 字符串查找

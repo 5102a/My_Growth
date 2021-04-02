@@ -1,11 +1,3 @@
-<!--
- * @Author: your name
- * @Date: 2020-05-17 20:36:10
- * @LastEditTime: 2021-04-01 15:03:55
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \My_Growth\docs\html\meta.md
--->
 # meta标签详解
 
 元素可提供有关页面的**元信息**（meta-information），比如针对搜索引擎和更新频度的描述和关键词
