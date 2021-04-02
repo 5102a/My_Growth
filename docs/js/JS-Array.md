@@ -36,7 +36,7 @@
 7. `Array.from(arrayLike[,mapFn[,this.Arg]]) 返回新数组,浅拷贝`，将类数组对象或可迭代对象转化为数组,第二参数：用于对每个元素进行处理，放入数组的是处理后的元素。第三参数：用于指定第二参数执行时的this对象
 8. `arr.flat([depth])返回新数组`，depth维数组转一维
 9. `arr.flatMap(function callback(currentValue[, index[, array]])[, thisArg]))`对flat的转换有回调函数的处理
-10. `arr.toString(function callback(currentValue[, index[, array]])[, thisArg])返回字符串`，数组转字符串
+10. `arr.toString()返回字符串`，数组转字符串
 11. `arr.toLocaleString([locales[,options]])返回数组元素的字符串`，locales为带有BCp 47语言标记的字符串或者字符串数组，options为可配置对象，对于数字 Number.prototype.toLocaleString()，对于日期Date.prototype.toLocaleString()
 
 ## 属性方法

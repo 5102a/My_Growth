@@ -75,7 +75,7 @@
 
 ## 文本属性
 
-- color 设置文本颜色，十进制没有兼容性问题
+- color 设置文本颜色，十六进制没有兼容性问题
 - text-align 值 left、center、right 设置文本水平对齐方向
 - **text-decoration 设置文本修饰线** 值 none 去掉文本修饰线、underline 下划线、overline 上划线、line-through 删除线
 - **text-transform** 值 capitalize 首字母大写、uppercase 大写、lowercase 小写、small-caps小型大写
@@ -417,19 +417,19 @@
 - `animation-duration:2s`帧动画过渡时间，动画时间
 - 属性重叠，后出现的优先级高，不管时间
 - 有中间值的 有过渡效果
-- **`animation-iteration-count:1`执行次数、infinite无限循环
+- `animation-iteration-count:1`执行次数、infinite无限循环
 - `animation-direction：reverse`（从后往前）动画方向、normal、alternate、alternate-reverse
-- **`background：radial-gradient（at center，col，col）`**背景渐变
+- `background：radial-gradient（at center，col，col）`背景渐变
 - `animation-delay：2s`过2秒开始动画
 - `animation-timing-function:动画过渡平滑模式`，cubic-bezier（，，，）自定义参数
 - `box-shadow：currentColor`（获取文本颜色的阴影）盒子阴影
 - 阴影作为动画。。。
 - `animation-timing-function:step(0,start)`步进动画
 - `animation-play-state:paused`动画暂停状态，running运行状态
-- **`animation-fill-mode:backwards`**延迟的初始状态为起始帧，forwards定格结尾帧、both两者都、normal
+- `animation-fill-mode:backwards`延迟的初始状态为起始帧，forwards定格结尾帧、both两者都、normal
 - `animation:动画名 模式 运行时间 延迟`组合属性
 
-```js  帧动画
+```css  帧动画
 @keyframes 帧动画名{
   form{
     起始

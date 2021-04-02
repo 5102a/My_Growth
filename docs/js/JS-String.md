@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-05-16 18:00:32
+ * @LastEditTime: 2021-04-02 14:01:41
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \My_Growth\docs\js\JS-String.md
+-->
 # JS字符串方法
 
 ## 字符串查找
@@ -14,8 +22,7 @@
 10. `s.toString()返回一个表示调用对象的字符串`，该方法返回指定对象的字符串形式
 11. `str.valueOf()返回一个String对象的原始值`，该值等同String.prototype.toString()，通常在js内部调用
 12. `string[Symbol.iterator]返回一个新的迭代器对象`，它遍历字符串的代码点，返回每一个代码点的字符串值。
-13. `String.raw(callSite, ...substitutions)、
-String.raw\`templateString\`返回给定模板字符串的元素字符串\`，callSite：一个模板字符串的“调用点对象”，...substitutions：任意个可选的参数，表示任意个内插表达式对应的值，templateString：模板字符串，可包含占位符（${...}）
+13. `String.raw(callSite, ...substitutions)、String.raw'templateString'返回给定模板字符串的元素字符串`，callSite：一个模板字符串的“调用点对象”，...substitutions：任意个可选的参数，表示任意个内插表达式对应的值，templateString：模板字符串，可包含占位符（${...}）
 
 ## 字符串操作
 

@@ -66,7 +66,7 @@ HTML5 技术结合了 HTML4.01 的相关标准并革新，符合现代网络发�
 <!-- 默认占位文字 -->
 <input type="text" placeholder="your message" >
 <!-- 默认聚焦属性 -->
-<input type="text" autofacus="true" >
+<input type="text" autofocus="true" >
 ```
 
 ### 视频

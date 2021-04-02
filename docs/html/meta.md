@@ -1,4 +1,12 @@
-# mete标签详解
+<!--
+ * @Author: your name
+ * @Date: 2020-05-17 20:36:10
+ * @LastEditTime: 2021-04-01 15:03:55
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \My_Growth\docs\html\meta.md
+-->
+# meta标签详解
 
 元素可提供有关页面的**元信息**（meta-information），比如针对搜索引擎和更新频度的描述和关键词
 标签位于文档的头部，不包含任何内容。`<meta>` 标签的属性定义了与文档相关联的名称/值对
@@ -10,13 +18,13 @@
 - content 属性始终要和 name 属性或 http-equiv 属性一起使用
 - 但是所有服务器都至少要发送一个：`content-type:text/html`。这将告诉浏览器准备接受一个 HTML 文档
 
-```html {6}
+```html
 <!-- 网页作者 -->
 <meta name="author" content="开源技术团队"/>
 <!-- 网页地址 -->
 <meta name="website" content="https://baidu.com"/>
 <!-- 网页版权信息 -->
- <meta name="copyright" content="2018-2019 demo.com"/>
+<meta name="copyright" content="2018-2019 demo.com"/>
 <!-- 网页关键字, 用于SEO -->
 <meta name="keywords" content="meta,html"/>
 <!-- 网页描述 -->

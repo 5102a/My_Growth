@@ -89,7 +89,7 @@ function debounce(func, interval = 0, immediately = false) {
     if (immediately) {
       immediately = false
       return new Promise((resolve, reject) => {
-        setTimeout(() => resolve(func.call(thisArg, ...arguments)))
+        timeID = setTimeout(() => resolve(func.call(thisArg, ...arguments)))
       })
     } else {
       return new Promise((resolve, reject) => {
@@ -551,7 +551,7 @@ Promise.myAll = function (iterable) {
         hasPromise = true
         iterator.then((data) => {
           result[index] = data
-          if (result.length === count) resolve(result)
+          if (--count === 0) resolve(result)
         }, reject)
       } else {
         result[index] = iterator
