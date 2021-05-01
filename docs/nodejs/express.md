@@ -247,7 +247,7 @@ router.post('/pay', (req, res) => {
 module.exports = router
 ```
 
-相对于把一些特定的请求，使用模块路由的方式单独处理，最后在通过app来使用
+相当于把一些特定的请求，使用模块路由的方式单独处理，最后在通过app来使用
 
 ### 响应
 
@@ -411,7 +411,7 @@ app.get('/user/:id', (req, res) => {
 
 #### 错误处理中间件
 
-- 错误处理中间件与其他中间件不同的是，其处理函数必须含义4个形参，不管有没有用到都需要设置，这是因为express是根据形参个数来判断错误处理中间件
+- 错误处理中间件与其他中间件不同的是，其处理函数必须含有4个形参，不管有没有用到都需要设置，这是因为express是根据形参个数来判断错误处理中间件
 - 处理函数的第一个参数是err对象
 
 ```js
@@ -425,7 +425,7 @@ app.use(function (err, req, res, next) {
 
 Express具有以下内置的中间件功能：
 
-- express.static提供静态资产，例如HTML文件，图像等。
+- express.static提供静态资源，例如HTML文件，图像等。
 - express.json使用JSON解析传入的请求。注意：Express 4.16.0+中可用
 - express.urlencoded使用URL编码的有效内容解析传入的请求。 注意：Express 4.16.0+中可用
 

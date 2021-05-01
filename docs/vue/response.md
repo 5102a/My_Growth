@@ -804,7 +804,7 @@ const vm = new SelfVue({
 ## 基于ES6的proxy实现
 
 - ES6引入了proxy更加方便我们实现数据响应式，并且支持更多属性的劫持，包括in操作符、apply、new操作符等
-- js中还有一个很强大的内置对象Reflext，它提供拦截 JavaScript 操作的方法，它拦截了目标对象的操作，并且在某些情况下可以改变操作的this指向
+- js中还有一个很强大的内置对象Reflect，它提供拦截 JavaScript 操作的方法，它拦截了目标对象的操作，并且在某些情况下可以改变操作的this指向
 
 ```js js
 const data = {

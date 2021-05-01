@@ -39,7 +39,7 @@ const vm=new Vue({
   - 初始化 computed
   - 初始化 watch
 - 初始化 provide
-- 这里注意，data的初始化在props之后，所以dada中可以使用props中的属性，而props中则不能使用data中的属性
+- 这里注意，data的初始化在props之后，所以data中可以使用props中的属性，而props中则不能使用data中的属性
 - 之后就是调用created钩子
 
 ## created

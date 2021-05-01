@@ -180,7 +180,7 @@ export default {
 </script>
 ```
 
-- 此时二级子组件就通过inject获取到父组件provide中的数据了
+- 此时二级子组件就通过inject获取到祖先组件provide中的数据了
 
 #### 通过ref引用组件
 

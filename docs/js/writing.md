@@ -7,7 +7,7 @@
 /* 语法 func.apply(thisArg, [argsArray]) */
 Function.prototype.myApply = function (thisArg, args) {
   const fn = Symbol()
-  var result
+  const result
   thisArg = Object(thisArg) || window
   thisArg[fn] = this
   if (!args) {
@@ -17,6 +17,21 @@ Function.prototype.myApply = function (thisArg, args) {
       throw new Error('params must be array or iterator')
     result = thisArg[fn](...args)
   }
+  delete thisArg[fn]
+  return result
+}
+
+/* 改进 */
+Function.prototype.myApply = function (thisArg, args) {
+  if (thisArg === null || thisArg === undefined) {
+    thisArg = window
+  } else {
+    thisArg = Object(thisArg)
+  }
+  args = args || []
+  const fn = Symbol()
+  thisArg[fn] = this
+  const result = thisArg[fn](...args)
   delete thisArg[fn]
   return result
 }
@@ -44,6 +59,20 @@ Function.prototype.myCall = function (thisArg, ...args) {
   delete thisArg[fn]
   return result
 }
+
+/* 改进 */
+Function.prototype.myCall = function (thisArg, ...args) {
+  const fn = Symbol()
+  if (thisArg === null || thisArg === undefined) {
+    thisArg = window
+  } else {
+    thisArg = Object(thisArg)
+  }
+  thisArg[fn] = this
+  const result = thisArg[fn](...args)
+  delete thisArg[fn]
+  return result
+}
 ```
 
 分析思路(类似apply)：
@@ -66,6 +95,29 @@ Function.prototype.myBind = function (thisArg, ...args) {
     var isInstance = this instanceof Fn
     return isInstance ? new thatFn(...args, ...arguments) : thatFn.call(thisArg, ...args, ...arguments)
   }
+}
+
+/* 改进 */
+Function.prototype.myBind = function (thisArg, ...args) {
+  const thatFn = this
+  const bound = function bound() {
+    if (this instanceof bound && new.target === bound) {
+      const result = thatFn.call(this, ...args, ...arguments) // new 调用
+      return Object(result) === result ? result : this
+    } else {
+      return thatFn.call(thisArg, ...args, ...arguments) // 正常调用
+    }
+  }
+
+  // 原型继承
+  if (thatFn.prototype) {
+    const Empty = function () {}
+    Empty.prototype = thatFn.prototype
+    bound.prototype = new Empty()
+    Empty.prototype = null
+  }
+
+  return bound
 }
 ```
 
@@ -99,6 +151,21 @@ function debounce(func, interval = 0, immediately = false) {
         )
       })
     }
+  }
+}
+
+/* 简化版 */
+function debounce(func, wait = 0) {
+  let timerID = null
+  return function () {
+    if (timerID) clearTimeout(timerID)
+    const executer = (resolve) => {
+      timerID = setTimeout(() => {
+        timerID = null
+        resolve(func.call(this, ...arguments))
+      }, wait)
+    }
+    return new Promise(executer)
   }
 }
 ```
@@ -135,6 +202,22 @@ function throttle(func, interval = 0, immediately = true) {
         }, interval)
       })
     }
+  }
+}
+
+/* 简化版 */
+function throttle(func, wait = 0) {
+  let timerID = null, pending = null
+  return function () {
+    if (timerID) return pending
+    const executer = (resolve) => {
+      timerID = setTimeout(() => {
+        timerID = null
+        resolve(func.call(this, ...arguments))
+      }, wait)
+    }
+    pending = new Promise(executer)
+    return pending
   }
 }
 ```
@@ -474,6 +557,375 @@ MyPromise.prototype.finally = function (cb) {
 4. 由于在resolve和reject中改变了当前promise的状态，况且promise状态不可逆，所以在then的链式调用中需要做到几点
 5. then中处理fulfilled和rejected的promise，并且根据传入then的数据进行判断处理，有可能是数据有可能是新的promise都要处理，最终then返回的是一个新的promise，状态为处理之后的promise，这里的处理取决于你对then中传入的参数以及返回值
 6. 能够形成链式调用的前提是要返回promise实例
+   
+## 手写Promise/A+
+
+花了2天时间学习`promise-polyfill`源码和另一种常规的Promise实现，结合二者根据自己的理解实现Promise
+
+基于ES6的Promise/A+规范实现
+
+```js
+// 三种状态
+const PENDING = 'pending'
+const FULFILLED = 'fulfilled'
+const REJECTED = 'rejected'
+
+function isObjOrFunc(result) {
+  return result && (typeof result === 'object' || typeof result === 'function')
+}
+
+// 模拟微任务队列
+function _immediateFn(fn) {
+  if (typeof setImmediate === 'function') {
+    // nodejs环境下 setImmediate 模拟性能更高 
+    setImmediate(fn)
+  } else {
+    setTimeout(fn, 0)
+  }
+}
+
+// 错误抛出形式
+function _unhandledRejectionFn(err) {
+  if (typeof console !== 'undefined' && console) {
+    // 测试的时候需改为 console.warn
+    console.error('Possible Unhandled MyPromise Rejection:', err)
+  }
+}
+
+// 分析onFulfilled处理回调和onRejected处理回调的结果
+function _resolvePromise(result) {
+  const { newResolve, newReject, newPromise } = this
+  // 不能重复返回自身
+  if (newPromise === result) {
+    return newReject(new TypeError('A promise cannot be resolved with itself'))
+  }
+
+  try {
+    if (isObjOrFunc(result)) {
+      const then = result.then
+      // 返回的是MyPromise实例，则递归处理其结果
+      if (result instanceof MyPromise) {
+        result.then((res) => {
+          _resolvePromise.call(this, res)
+        }, newReject)
+        return
+      } else if (typeof then === 'function') {
+        // 如果传入的是Thenable的对象，即具有then方法的对象，则把它的结果做为下一个promise的结果
+        let called = false
+        try {
+          const resolve = (value) => {
+            if (called || ((called = true), false)) return
+            _resolvePromise.call(this, value)
+          }
+          const reject = (reason) => {
+            if (called || ((called = true), false)) return
+            newReject(reason)
+          }
+          then.call(result, resolve, reject)
+        } catch (error) {
+          if (called) return
+          newReject(error)
+        }
+        return
+      }
+    }
+  } catch (error) {
+    // 出现错误，则下一个promise变成rejected
+    newReject(error)
+  }
+  // 普通结果直接做为下一个promise的结果
+  newResolve(result)
+}
+
+// pending状态调用then，则添加handler到队列中
+function _handlePending(handler) {
+  this._handlers.push(handler)
+}
+
+// 处理fulfilled状态
+function _handleFulfilled(handler) {
+  const { onFulfilled, newResolve, newReject } = handler
+  // 没有fulfilled回调则链式传递到下一个promise
+  if (onFulfilled === null) {
+    newResolve(this['[[PromiseResult]]'])
+    return
+  }
+  // 存在fulfilled回调则传入结果，并将onFulfilled的结果进一步分析处理
+  try {
+    const res = onFulfilled(this['[[PromiseResult]]'])
+    _resolvePromise.call(handler, res)
+  } catch (error) {
+    newReject(error)
+  }
+}
+
+// 处理rejected状态
+function _handleRejected(handler) {
+  const { onRejected, newReject } = handler
+  // 没有onRejected回调则链式传递到下一个promise
+  if (onRejected === null) {
+    newReject(this['[[PromiseResult]]'])
+    return
+  }
+  // 存在onRejected回调则传入结果，并将onRejected的结果进一步分析处理
+  try {
+    const res = onRejected(this['[[PromiseResult]]'])
+    _resolvePromise.call(handler, res)
+  } catch (error) {
+    newReject(error)
+  }
+}
+
+// 根据当前状态进行结果处理
+function _handle(handler) {
+  if (this['[[PromiseState]]'] === FULFILLED) {
+    _handleFulfilled.call(this, handler)
+  } else if (this['[[PromiseState]]'] === REJECTED) {
+    _handleRejected.call(this, handler)
+  }
+}
+
+// 生成resolve和reject
+function _createHandler(state, cb) {
+  return (result) => {
+    _immediateFn(() => {
+      if (this['[[PromiseState]]'] === PENDING) {
+        // 改变状态
+        this['[[PromiseState]]'] = state
+        this['[[PromiseResult]]'] = result
+        cb && cb(result)
+        // 遍历pending状态下添加的所有handler，并根据当前状态执行fulfilled或者rejected操作
+        this._handlers.forEach((handler) => _handle.call(this, handler))
+        delete this._handlers
+      }
+    })
+  }
+}
+
+// Handler类用于保存当前promise的处理回调和下一个promise的resolve和reject
+class Handler {
+  constructor(onFulfilled, onRejected, resolve, reject, newPromise) {
+    this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null
+    this.onRejected = typeof onRejected === 'function' ? onRejected : null
+    this.newResolve = resolve
+    this.newReject = reject
+    this.newPromise = newPromise
+  }
+}
+
+class MyPromise {
+  constructor(executer) {
+    if (!(this instanceof MyPromise)) {
+      throw new TypeError('Promises must be constructed via new')
+    }
+
+    if (typeof executer !== 'function') {
+      throw new TypeError('not a function')
+    }
+
+    this['[[PromiseState]]'] = PENDING
+    this['[[PromiseResult]]'] = undefined
+    this._handlers = []
+
+    const resolve = _createHandler.call(this, FULFILLED)
+    const reject = _createHandler.call(this, REJECTED, (reason) => {
+      if (this._handlers.length === 0) {
+        _unhandledRejectionFn(reason)
+      }
+    })
+
+    try {
+      executer(resolve, reject)
+    } catch (error) {
+      reject(error)
+    }
+  }
+
+  then(onFulfilled, onRejected) {
+    let handler
+    // 创建新的promise，保持handler并返回
+    const newPromise = new MyPromise((resolve, reject) => {
+      handler = new Handler(onFulfilled, onRejected, resolve, reject)
+    })
+    handler.newPromise = newPromise
+    if (this['[[PromiseState]]'] === PENDING) {
+      // 同步执行，添加handler到队列中，等待之后resolve或者reject中进行回调处理
+      _handlePending.call(this, handler)
+    } else if (this['[[PromiseState]]'] === FULFILLED) {
+      // 异步fulfilled处理结果
+      _immediateFn(_handleFulfilled.bind(this, handler))
+    } else if (this['[[PromiseState]]'] === REJECTED) {
+      // 异步rejected处理结果
+      _immediateFn(_handleRejected.bind(this, handler))
+    }
+    return newPromise
+  }
+}
+```
+
+本实现已通过所有规范用例（只需实现then方法和构造函数即可测试）
+
+Promise/A+规范不包括以下额外实现的接口，完整的Promise接口实现如下
+
+```js
+class MyPromise {
+  constructor(executer) {
+    if (!(this instanceof MyPromise)) {
+      throw new TypeError('Promises must be constructed via new')
+    }
+
+    if (typeof executer !== 'function') {
+      throw new TypeError('not a function')
+    }
+
+    this['[[PromiseState]]'] = PENDING
+    this['[[PromiseResult]]'] = undefined
+    this._handlers = []
+
+    const resolve = _createHandler.call(this, FULFILLED)
+    const reject = _createHandler.call(this, REJECTED, (reason) => {
+      if (this._handlers.length === 0) {
+        _unhandledRejectionFn(reason)
+      }
+    })
+
+    try {
+      executer(resolve, reject)
+    } catch (error) {
+      reject(error)
+    }
+  }
+
+  then(onFulfilled, onRejected) {
+    let handler
+    const newPromise = new MyPromise((resolve, reject) => {
+      handler = new Handler(onFulfilled, onRejected, resolve, reject)
+    })
+    handler.newPromise = newPromise
+    if (this['[[PromiseState]]'] === PENDING) {
+      _handlePending.call(this, handler)
+    } else if (this['[[PromiseState]]'] === FULFILLED) {
+      _immediateFn(_handleFulfilled.bind(this, handler))
+    } else if (this['[[PromiseState]]'] === REJECTED) {
+      _immediateFn(_handleRejected.bind(this, handler))
+    }
+    return newPromise
+  }
+
+  catch(onRejected) {
+    return this.then(null, onRejected)
+  }
+
+  finally(fn) {
+    return this.then(
+      function (value) {
+        return MyPromise.resolve(fn()).then(function () {
+          return value
+        })
+      },
+      function (error) {
+        return MyPromise.resolve(fn()).then(function () {
+          return MyPromise.reject(error)
+        })
+      }
+    )
+  }
+
+  static resolve(result) {
+    if (result instanceof MyPromise) {
+      return result
+    }
+    return new MyPromise(function (resolve) {
+      resolve(result)
+    })
+  }
+
+  static reject(reason) {
+    return new MyPromise(function (resolve, reject) {
+      reject(reason)
+    })
+  }
+
+  static race(iterable) {
+    return new MyPromise(function (resolve, reject) {
+      if (typeof iterable[Symbol.iterator] !== 'function') {
+        throw new TypeError('MyPromise.race accepts an iterable')
+      }
+
+      for (const value of iterable) {
+        MyPromise.resolve(value).then(resolve, reject)
+      }
+    })
+  }
+
+  static all(iterable) {
+    return new MyPromise(function (resolve, reject) {
+      if (typeof iterable[Symbol.iterator] !== 'function') {
+        throw new TypeError('MyPromise.all accepts an iterable')
+      }
+
+      const result = []
+      let count = 0,
+        iterator = iterable[Symbol.iterator]()
+      for (let i = 0, res; (res = iterator.next()), res.done === false; i++) {
+        count++
+        MyPromise.resolve(res.value).then(function (value) {
+          result[i] = value
+          if (--count === 0) resolve(result)
+        }, reject)
+      }
+    })
+  }
+
+  static allSettled(iterable) {
+    return new MyPromise(function (resolve, reject) {
+      if (typeof iterable[Symbol.iterator] !== 'function') {
+        throw new TypeError('MyPromise.allSettled accepts an iterable')
+      }
+
+      const result = []
+      let count = 0,
+        iterator = iterable[Symbol.iterator]()
+      for (let i = 0, res; (res = iterator.next()), res.done === false; i++) {
+        count++
+        MyPromise.resolve(res.value).then(
+          function (value) {
+            result[i] = { status: 'fulfilled', value: value }
+            if (--count === 0) resolve(result)
+          },
+          function (reason) {
+            result[i] = { status: 'rejected', reason: reason }
+            if (--count === 0) resolve(result)
+          }
+        )
+      }
+    })
+  }
+}
+```
+
+官方测试工具`promises-aplus-tests`，下载安装后需要实现deferred静态方法
+
+```js
+/* ......省略其他代码 */
+
+static deferred() {
+  var result = {}
+  result.promise = new MyPromise(function (resolve, reject) {
+    result.resolve = resolve
+    result.reject = reject
+  })
+  return result
+}
+
+/* ......省略其他代码 */
+/* 最后导出这个类 */
+module.exports = MyPromise
+```
+
+测试指令`promises-aplus-tests 文件名`，目前有872个测试用例，全部通过则说明符合Promise/A+规范
+
+[Promise参考文章](https://blog.csdn.net/dennis_jiang/article/details/105389519)
 
 ## 手写currying
 
@@ -542,22 +994,22 @@ console.log(isArray([]))
 /* 手写Promise.all */
 /* 语法 Promise.all(iterable) */
 Promise.myAll = function (iterable) {
-  let result = [], hasPromise = false, count = 0
+  let result = [], hasPromise = false, count = 0, index = 0
   return new Promise((resolve, reject) => {
-    if (iterable[Symbol.iterator]().next().done) resolve([])
-    for (const iterator of iterable) {
-      let index = count++
-      if (iterator instanceof Promise) {
+    for (const value of iterable) {
+      const pos = index++
+      if (value instanceof Promise) {
+        count++
         hasPromise = true
-        iterator.then((data) => {
-          result[index] = data
-          if (--count === 0) resolve(result)
+        value.then((data) => {
+          result[pos] = data
+          if(--count === 0) resolve(result)
         }, reject)
       } else {
-        result[index] = iterator
+        result[pos] = value
       }
     }
-    if (!hasPromise) resolve()
+    if (!hasPromise) resolve(result)
   })
 }
 ```
@@ -575,14 +1027,12 @@ Promise.myAll = function (iterable) {
 /* 手写Promise.race */
 /* 语法 Promise.race(iterable) */
 Promise.myRace = function (iterable) {
-  let hasPromise = false
   return new Promise((resolve, reject) => {
-    if (iterable[Symbol.iterator]().next().done) return resolve()
-    for (const iterator of iterable) {
-      if (iterator instanceof Promise) {
-        iterator.then(resolve, reject)
+    for (const value of iterable) {
+      if (value instanceof Promise) {
+        value.then(resolve, reject)
       } else {
-        resolve(iterator)
+        resolve(value)
       }
     }
   })

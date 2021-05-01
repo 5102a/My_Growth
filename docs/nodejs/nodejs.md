@@ -32,7 +32,7 @@
 
 ## 读取环境变量
 
-- nodejs中通过`process.evn.NODE_ENV`读取当前nodejs运行的环境，默认为开发环境即`'development'`，设置为生产环境，则为`'production'`
+- nodejs中通过`process.env.NODE_ENV`读取当前nodejs运行的环境，默认为开发环境即`'development'`，设置为生产环境，则为`'production'`
 
 ## nodejs中的REPL
 
@@ -140,7 +140,7 @@ module.exports公开了它指向的对象，export公开了它指向的对象的
 ## npm包管理器
 
 - npm 是 Node.js 标准的软件包管理器，安装nodejs自带npm
-- 目前npm上已经托管了上百万格软件包，周下载量达数十亿次，这使其成为世界上最大的单一语言代码仓库，并且可以确定几乎有可用于一切的软件包
+- 目前npm上已经托管了上百万个软件包，周下载量达数十亿次，这使其成为世界上最大的单一语言代码仓库，并且可以确定几乎有可用于一切的软件包
 - 它起初是作为下载和管理 Node.js 包依赖的方式，但其现在也已成为前端 JavaScript 中使用的工具
 - Yarn 是 npm 的一个替代选择
 - npm可以管理项目中的依赖
@@ -447,7 +447,7 @@ eventEmitter.removeAllListeners(['start'])
 
 ## 创建HTTP服务器
 
-- 使用http模块，就可以创建应该简单的服务器
+- 使用http模块，就可以创建一个简单的服务器
 
 ```js
 const http = require('http')
@@ -550,7 +550,7 @@ axios
 ## Node.js中的文件操作
 
 - node给我们提供了操作文件的接口，使用fs模块就能对文件进行操作
-- 在操作文件前我们需要先获取文件操作符，这样我们才能进一步操作文件内容
+- 在操作文件前我们需要先获取文件描述符，这样我们才能进一步操作文件内容
 
 ### 打开文件方式
 

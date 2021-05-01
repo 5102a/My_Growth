@@ -116,7 +116,7 @@ module.exports = {
   - cheap-module-source-map:外部，错误代码信息，精确源码位置(只限行)
   - source-map:外部,错误代码信息，精确源码位置
 
-cheap只精确到行，内联为source-map信息包含在打包后的文件中，外部为单独生产的source-map文件，module为第三方模块中的错误信息
+cheap只精确到行，内联为source-map信息包含在打包后的文件中，外部为单独生成的source-map文件，module为第三方模块中的错误信息
 
 - 总结
   - 开发环境：构建速度/调试友好

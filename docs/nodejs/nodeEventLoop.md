@@ -271,7 +271,7 @@ io操作就是以流的形式，进行的操作，比如网络请求，文件读
 
 在调用阻塞io时，应用程序需要等待io完成才能返回结果。
 阻塞io的特点：调用之后一定要等到系统内核层面完成所有操作之后，调用才结束。
-阻塞io造成CUP等待IO，浪费等待时间，CPU的处理能力不能得到充分利用。
+阻塞io造成CPU等待IO，浪费等待时间，CPU的处理能力不能得到充分利用。
 
 **非阻塞IO**
 
@@ -608,7 +608,9 @@ nodejs v11之后，setTimeout包括setInterval与浏览器中的行为一致，�
 nodejs v11之前的所有定时器都是一次性执行完成才去执行微任务队列
 
 [nodejs v11修改](https://juejin.im/post/5c3e8d90f265da614274218a)
+
 [nodejs事件循环阶段之定时器](https://cloud.tencent.com/developer/article/1597285)
+
 [nodejs源码解析之事件循环](https://cloud.tencent.com/developer/article/1573956)
 
 ## 究极测试

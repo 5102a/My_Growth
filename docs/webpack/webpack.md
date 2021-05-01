@@ -1,7 +1,7 @@
 # Webpack配置
 
 - 本质上，webpack 是一个现代 JavaScript 应用程序的静态模块打包器(module bundler)。当 webpack 处理应用程序时，它会递归地构建一个依赖关系图(dependency graph)，其中包含应用程序需要的每个模块，然后将所有这些模块打包成一个或多个 bundle
-- webpack也是一个前端构建工具，把前端所有的资源文件作为模块处理，经过今天分析，打包生成静态资源bundle
+- webpack也是一个前端构建工具，把前端所有的资源文件作为模块处理，经过静态分析，打包生成静态资源bundle
 - webpack配置文件webpack.config.js使用commonjs模块导出一个配置对象
 - webpack基于node环境运行，node使用commonjs模块化
 
@@ -406,7 +406,7 @@ module.exports = {
           // base64图片优势：减少请求次数，劣势：图片略大1/3
           limit:8 * 1024,
           outputPath:'/img/', // 给输出的图片增加额外目录
-          publicPath:'http://localhost:8888' // 给所有图片资源增加公共目录前缀，用于形参绝对路径
+          publicPath:'http://localhost:8888' // 给所有图片资源增加公共目录前缀，用于形成绝对路径
         }
       }
     ],
@@ -736,7 +736,7 @@ module.exports = {
     "development": [  // 开发时的浏览器兼容设置
       // 只兼容chrome最近一个版本
       "last 1 chrome version",  
-      "last 1 firebox version",
+      "last 1 firefox version",
       "last 1 safari version"
     ],
     "production": [ // 生产环境浏览器兼容
@@ -946,7 +946,7 @@ html只能去除一些没用的字符，而不能进一步压缩,生产环境下
 
 ## 生产环境配置
 
-- 生产环境相对于开发环境而已，需要更高的要去，比如压缩代码，性能更好，源码安全，稳定性等问题
+- 生产环境相对于开发环境而言，需要更高的要求，比如压缩代码，性能更好，源码安全，稳定性等问题
 - 整合以上配置，生产环境基本配置如下
 
 package.json生产环境配置
@@ -995,7 +995,7 @@ package.json生产环境配置
   "browserslist": {
     "development": [
       "last 1 chrome version",
-      "last 1 firebox version",
+      "last 1 firefox version",
       "last 1 safari version"
     ],
     "production": [

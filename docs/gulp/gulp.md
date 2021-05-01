@@ -184,12 +184,12 @@ function Watch() {
 exports.default = Watch
 ```
 
-watch可以监听globs匹配的文件，当发生修改可即使调用任务，以便实时执行相应任务
+watch可以监听globs匹配的文件，当发生修改可及时调用任务，以便实时执行相应任务
 
 ### task()
 
 - 定义任务，可以在其他方法中使用，不同与直接导出
-- 此api现在不推荐使用，在4.0.0之前通过此api创建任务，4.0.0之后使用export导出任务，然后在主任务文件中导入其他任务即可，这样可以让`gulpfile.js`更加清晰
+- 此api现在不推荐使用，在4.0.0之前通过此api创建任务，4.0.0之后使用exports导出任务，然后在主任务文件中导入其他任务即可，这样可以让`gulpfile.js`更加清晰
 
 `task([taskName], taskFunction)`,taskName任务名字符串，taskFunction任务所需要执行的函数
 
@@ -203,7 +203,7 @@ task('Task',function(){
 exports.default = Task
 ```
 
-gulp建议我们使用export来创建和管理每个任务
+gulp建议我们使用exports来创建和管理每个任务
 
 ### 不常用api
 

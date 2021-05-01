@@ -194,7 +194,7 @@ for (const key of Object.keys(a)) {
 
 ### 深拷贝
 
-- `JSON.parse(JSON.stringify(obj))`通过**JSON的2次转换**深拷贝obj，不过无法拷贝**undefined**与**symbol**属性，无法拷贝**循环引用**对象
+- `JSON.parse(JSON.stringify(obj))`通过**JSON的2次转换**深拷贝obj，不过无法拷贝**undefined**与**symbol**属性，无法拷贝**循环引用**对象、函数
 - 自己实现深拷贝
 
 简单深拷贝
@@ -202,7 +202,7 @@ for (const key of Object.keys(a)) {
 ```js 简单深拷贝
 //简单版深拷贝，只能拷贝基本原始类型和普通对象与数组，无法拷贝循环引用
 function simpleDeepClone(a) {
-  const b=Array.isArray(a) ? [] : {}
+  const b = Array.isArray(a) ? [] : {}
   for (const key of Object.keys(a)) {
     const type = typeof a[key]
     if (type !== 'object' || a[key] === null) {
@@ -1813,7 +1813,7 @@ function ajax() {
 ### Web Socket
 
 - 为了解决http无状态，被动性，以及轮询问题，html5新推出了websocket协议，浏览器和服务器只需完成一次握手，两者即可建立持久性连接，并进行双向通信
-- 基于http进行握手，发生加密数据，保持连接不断开
+- 基于http进行握手，发送加密数据，保持连接不断开
 - 优点：
   - 较少的控制开销，在进行客户端与服务器的数据交换时，用于协议控制的数据包头较小
   - 更强的实时性，全双工通信，不必局限于一方发起的请求，服务器与客户端可以随时发送数据，延迟更少
