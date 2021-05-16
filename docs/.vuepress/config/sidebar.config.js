@@ -49,7 +49,7 @@ module.exports = {
   ],
   '/design-pattern/': ['', 'd-p'],
   '/network/': ['', 'net'],
-  '/vue/': ['', 'response', 'live', 'VDOM', 'important', 'component','source-live'],
+  '/vue/': ['', 'response', 'live', 'VDOM', 'important', 'component','source-live','source-computed','source-watch'],
   '/react/': [''],
   '/gulp/': ['', 'gulp', 'plugins'],
   '/webpack/': ['', 'webpack', 'webpackOptimize'],
