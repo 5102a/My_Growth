@@ -13,3 +13,11 @@
 - ### [vue重点知识](../../vue/important.html)
 
 - ### [组件通信](../../vue/component.html)
+
+- ### [Vue2源码分析:Vue生命周期](../../vue/source-live.html)
+
+- ### [Vue2源码分析:Computed计算属性](../../vue/source-computed.html)
+
+- ### [Vue2源码分析:Watch监视](../../vue/source-watch.html)
+
+- ### [Vue2源码分析:Patch](../../vue/source-patch.html)

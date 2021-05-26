@@ -1,4 +1,4 @@
-# 源码分析：Computed计算属性
+# Vue2源码分析：Computed计算属性
 
 此系列通过直接在vue源码中分析Computed计算属性的底层原理
 
