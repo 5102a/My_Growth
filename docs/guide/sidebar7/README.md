@@ -21,3 +21,5 @@
 - ### [Vue2源码分析:Watch监视](../../vue/source-watch.html)
 
 - ### [Vue2源码分析:Patch](../../vue/source-patch.html)
+
+- ### [Vuex3.x源码分析](../../vue/source-vuex.html)
