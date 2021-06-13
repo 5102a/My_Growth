@@ -1,7 +1,6 @@
 MyPress
 node_modules
 deploy.sh
-package.json
 CNAME
 dist
 .env

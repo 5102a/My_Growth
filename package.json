@@ -1,0 +1,40 @@
+{
+  "name": "my_growth",
+  "version": "1.0.0",
+  "description": "大型开源记录项目，从这里记录点滴，分享知识，共同进步，走向巅峰！",
+  "main": "config.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "deploy": "deploy.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vssue/api-github-v4": "^1.4.0",
+    "@vssue/vuepress-plugin-vssue": "^1.4.6",
+    "@vuepress/plugin-back-to-top": "^1.5.2",
+    "@vuepress/plugin-google-analytics": "^1.5.2",
+    "@vuepress/plugin-medium-zoom": "^1.5.2",
+    "@vuepress/plugin-nprogress": "^1.5.2",
+    "@vuepress/plugin-pwa": "^1.5.2",
+    "dotenv": "^8.2.0",
+    "gulp": "^4.0.2",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-qcloud-cos-upload": "^1.1.4",
+    "html-webpack-plugin": "^4.3.0",
+    "nodejs": "^0.0.0",
+    "vuepress": "^1.5.2",
+    "vuepress-plugin-baidu-autopush": "^1.0.1",
+    "vuepress-plugin-code-copy": "^1.0.6",
+    "vuepress-plugin-dehydrate": "^1.1.4",
+    "vuepress-plugin-export": "^0.2.0",
+    "vuepress-plugin-graysite": "^0.1.0",
+    "vuepress-plugin-img-lazy": "^1.0.4",
+    "vuepress-plugin-reading-progress": "^1.0.10",
+    "vuepress-plugin-reading-time": "^0.1.1",
+    "vuepress-plugin-seo": "^0.1.4",
+    "vuepress-plugin-smooth-scroll": "^0.0.9"
+  },
+  "dependencies": {}
+}
