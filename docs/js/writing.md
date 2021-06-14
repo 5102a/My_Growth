@@ -557,7 +557,7 @@ MyPromise.prototype.finally = function (cb) {
 4. 由于在resolve和reject中改变了当前promise的状态，况且promise状态不可逆，所以在then的链式调用中需要做到几点
 5. then中处理fulfilled和rejected的promise，并且根据传入then的数据进行判断处理，有可能是数据有可能是新的promise都要处理，最终then返回的是一个新的promise，状态为处理之后的promise，这里的处理取决于你对then中传入的参数以及返回值
 6. 能够形成链式调用的前提是要返回promise实例
-   
+
 ## 手写Promise/A+
 
 花了2天时间学习`promise-polyfill`源码和另一种常规的Promise实现，结合二者根据自己的理解实现Promise
@@ -1044,3 +1044,171 @@ Promise.myRace = function (iterable) {
 1. Promise.race方法返回一个 promise，一旦迭代器中的某个promise解决或拒绝，返回的 promise就会解决或拒绝
 2. 当迭代到一个不是promise时，将会直接返回这个值，而不会继续迭代下去，毕竟是同步返回结果当然最快
 3. 这里不需要像all那样统计完成的个数，每次调用then时，直接传入resolve和reject，这样一来只要第一个完成的promise都会直接改变返回的promise状态
+
+## 手写WorkerPool
+
+> 由于在红宝书中看到线程池调度的实现，写的很不错，记录下来理解原理
+
+```js
+/* 手写WorkerPool线程池 */
+/* 线程池 */
+class WorkerPool {
+  constructor(poolSize, ...workerArgs) {
+    this.taskQueue = []
+    this.workers = []
+
+    // 创建等量TaskWorker
+    for (let i = 0; i < poolSize; ++i) {
+      this.workers.push(
+        new TaskWorker(() => this.dispatchIfAvailable(), ...workerArgs)
+      )
+    }
+  }
+
+  // 任务入队
+  enqueue(...postMessageArgs) {
+    return new Promise((resolve, reject) => {
+      this.taskQueue.push({ resolve, reject, postMessageArgs })
+
+      this.dispatchIfAvailable()
+    })
+  }
+
+  // 任务派发到空闲worker中
+  dispatchIfAvailable() {
+    // 无任务
+    if (!this.taskQueue.length) {
+      return
+    }
+    for (const worker of this.workers) {
+      // 找到可用worker
+      if (worker.available) {
+        // 派发执行任务
+        worker.dispatch(this.taskQueue.shift())
+        break
+      }
+    }
+  }
+
+  // 关闭线程池
+  close() {
+    for (const worker of this.workers) {
+      worker.terminate()
+    }
+  }
+}
+
+/* 任务线程 */
+class TaskWorker extends Worker {
+  constructor(notifyAvailable, ...workerArgs) {
+    // 创建worker
+    super(...workerArgs)
+
+    // 初始化状态不可用
+    this.available = false
+    this.resolve = null
+    this.reject = null
+
+    // 派发下一个任务
+    this.notifyAvailable = notifyAvailable
+
+    // 监听TaskWorker准备完成，之后开始派发任务
+    this.onmessage = () => this.setAvailable()
+  }
+
+  // 派发任务数据到worker
+  dispatch({ resolve, reject, postMessageArgs }) {
+    this.available = false
+
+    // 重写接收
+    this.onmessage = ({ data }) => {
+      resolve(data)
+      this.setAvailable()
+    }
+
+    // 设置error handler
+    this.onerror = (e) => {
+      reject(e)
+      this.setAvailable()
+    }
+
+    // 发送数据体给TaskWorker，进行计算
+    this.postMessage(...postMessageArgs)
+  }
+
+  // 释放，重置TaskWorker可用
+  setAvailable() {
+    this.available = true
+    this.resolve = null
+    this.reject = null
+
+    // 派发下一个任务
+    this.notifyAvailable()
+  }
+}
+```
+
+使用示例
+
+`worker.js`
+
+```js
+// 接收计算数据
+self.onmessage = ({ data }) => {
+  let sum = 0
+  let view = new Float32Array(data.arrayBuffer)
+  for (let i = data.startIdx; i < data.endIdx; ++i) {
+    sum += view[i]
+  }
+
+  // 计算完成
+  self.postMessage(sum)
+}
+
+// 准备完成
+self.postMessage('ready')
+```
+
+`index.js`计算浮点数累加和
+
+```js
+const totalFloats = 1e8
+const numTasks = 20
+const floatsPerTask = totalFloats / numTasks
+const numWorkers = 4
+
+const pool = new WorkerPool(numWorkers, './worker.js')
+
+let arrayBuffer = new SharedArrayBuffer(4 * totalFloats)
+let view = new Float32Array(arrayBuffer)
+
+for (let i = 0; i < totalFloats; ++i) {
+  view[i] = Math.random()
+}
+
+let partialSumPromises = []
+for (let i = 0; i < totalFloats; i += floatsPerTask) {
+  partialSumPromises.push(
+    // 添加任务
+    pool.enqueue({
+      startIdx: i,
+      endIdx: i + floatsPerTask,
+      arrayBuffer: arrayBuffer,
+    })
+  )
+}
+
+// 等待任务全部执行完成
+Promise.all(partialSumPromises)
+  .then((partialSums) => partialSums.reduce((x, y) => x + y))
+  .then((data) => {
+    console.log(data)
+    pool.close()
+  })
+```
+
+分析思路：
+
+1. WorkerPool用于创建线程池、管理计算任务入队、派发任务到下一个空闲worker、关闭线程池
+2. TaskWorker用于创建任务线程实例、派发任务需要计算的数据到worker、释放worker并派发下一个任务
+3. 通过pool.enqueue添加任务，等待所有worker并发执行并resolve后得到最终数据，最后将数据整合起来
