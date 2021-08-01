@@ -63,7 +63,7 @@ module.exports = {
     'source-vuex',
     'source-router',
   ],
-  '/react/': [''],
+  '/react/': ['', 'source-router'],
   '/gulp/': ['', 'gulp', 'plugins'],
   '/webpack/': ['', 'webpack', 'webpackOptimize'],
   '/jest/': ['', 'jest'],
