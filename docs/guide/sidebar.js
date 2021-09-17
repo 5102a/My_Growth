@@ -75,7 +75,8 @@ module.exports = [{ // 目录导航
     collapsable: true,
     sidebarDepth: 3,
     children: [
-      '/nodejs/'
+      '/nodejs/',
+      '/docker/'
     ]
   },
   {

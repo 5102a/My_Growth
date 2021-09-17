@@ -66,6 +66,10 @@ module.exports = [ // 导航栏，导航
         link: '/nodejs/',
       },
       {
+        text: 'Docker',
+        link: '/docker/',
+      },
+      {
         text: '其他',
         link: '/others/',
       },
