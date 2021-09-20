@@ -43,5 +43,6 @@ function uploads(dir) {
     }
   })
 }
+
 exports.default = parallel(minifyHtml, ...uploads(['css', 'js', 'img']))
 // exports.default = minifyHtml
