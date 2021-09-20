@@ -1,56 +1,61 @@
 {
   "name": "5102的技术文档",
-  "categories": ["front-end", "technology", "document"],
+  "categories": [
+    "front-end",
+    "technology",
+    "document"
+  ],
   "scope": "https://docs.5102it.cn/",
   "short_name": "5102",
-  "start_url": "https://docs.5102it.cn/",
+  "start_url": "https://docs-1258613188.file.myqcloud.com/docs.5102it.cn/",
   "lang": "zh-CH",
   "display": "standalone",
   "theme_color": "#3367D6",
   "background_color": "#3367D6",
   "description": "5102的技术文档 - 个人技术文档、前端技术文档、自学前端、前端知识体系",
-  "icons": [{
-      "src": "/images/favicon.ico",
+  "icons": [
+    {
+      "src": "https://docs-1258613188.file.myqcloud.com/images/favicon.ico",
       "sizes": "16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "/images/touch/homescreen32.png",
+      "src": "https://docs-1258613188.file.myqcloud.com/images/touch/homescreen32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/images/touch/homescreen48.png",
+      "src": "https://docs-1258613188.file.myqcloud.com/images/touch/homescreen48.png",
       "sizes": "48x48",
       "type": "image/png"
     },
     {
-      "src": "/images/touch/homescreen72.png",
+      "src": "https://docs-1258613188.file.myqcloud.com/images/touch/homescreen72.png",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "/images/touch/homescreen96.png",
+      "src": "https://docs-1258613188.file.myqcloud.com/images/touch/homescreen96.png",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "/images/touch/homescreen144.png",
+      "src": "https://docs-1258613188.file.myqcloud.com/images/touch/homescreen144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "/images/touch/homescreen168.png",
+      "src": "https://docs-1258613188.file.myqcloud.com/images/touch/homescreen168.png",
       "sizes": "168x168",
       "type": "image/png"
     },
     {
-      "src": "/images/touch/homescreen192.png",
+      "src": "https://docs-1258613188.file.myqcloud.com/images/touch/homescreen192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/images/touch/homescreen512.png",
+      "src": "https://docs-1258613188.file.myqcloud.com/images/touch/homescreen512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
