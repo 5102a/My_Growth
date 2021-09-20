@@ -34,15 +34,13 @@ function minifyHtml() {
 }
 
 // 上传到腾讯云存储
-function uploads(dir) {
-  return dir.map((v, i) => {
-    return () => {
-      return src(`${v}/*`, {
-        cwd: 'dist/',
-      }).pipe(upload(cosConfig))
-    }
-  })
+function uploads() {
+  return () => {
+    return src(`**/*`, {
+      cwd: 'dist/',
+    }).pipe(upload(cosConfig))
+  }
 }
 
-// exports.default = parallel(minifyHtml, ...uploads(['css', 'js', 'img']))
+// exports.default = series(minifyHtml,uploads())
 exports.default = minifyHtml
