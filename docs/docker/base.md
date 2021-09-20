@@ -797,7 +797,7 @@ docker service create -p 8088:80 --name="nginx-1" nginx
 ```
 
 ```shell
-docker service create --name="site" -p 80:80 --replicas 6 --restart-condition=any site1.0
+docker service create --name="site" -p 80:80 --replicas 6 --restart-condition=any --mount source=site-volume,target=/usr/share/nginx/ site1.0
 ```
 
 查看 service 

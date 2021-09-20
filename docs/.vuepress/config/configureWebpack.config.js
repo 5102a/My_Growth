@@ -6,25 +6,25 @@ module.exports = (config) => {
   if (NODE_ENV === 'production') {
     return {
       output: {
-        publicPath: 'https://multer-1258613188.file.myqcloud.com/',
+        publicPath: 'https://docs.5102it.cn/',
       },
       resolve: {
         //配置路径别名
         alias: {
-          '@public': path.resolve(__dirname, '../public') ,
-          '@docs': path.resolve(__dirname, '../../')
-        }
-      }
+          '@public': path.resolve(__dirname, '../public'),
+          '@docs': path.resolve(__dirname, '../../'),
+        },
+      },
     }
   } else {
     return {
       resolve: {
         //配置路径别名
         alias: {
-          '@public': path.resolve(__dirname, '../public') ,
-          '@docs': path.resolve(__dirname, '../../') 
-        }
-      }
+          '@public': path.resolve(__dirname, '../public'),
+          '@docs': path.resolve(__dirname, '../../'),
+        },
+      },
     }
   }
 }
