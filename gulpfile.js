@@ -38,7 +38,7 @@ function uploads(dir) {
   return dir.map((v, i) => {
     return () => {
       return src(`${v}/*`, {
-        cwd: 'dist/assets/',
+        cwd: 'dist/',
       }).pipe(upload(cosConfig))
     }
   })
