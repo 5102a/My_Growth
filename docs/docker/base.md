@@ -839,7 +839,7 @@ overlay：不同网络负载均衡
 docker service rm nginx-1
 ```
 
-![img](./img/u=1916380254,3481616416&fm=26&fmt=auto&gp=0.jpg)
+![img](img/u=1916380254,3481616416&fm=26&fmt=auto&gp=0.jpg)
 
 概念
 
