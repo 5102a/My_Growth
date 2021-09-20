@@ -6,7 +6,7 @@ module.exports = (config) => {
   if (NODE_ENV === 'production') {
     return {
       output: {
-        publicPath: 'https://docs.5102it.cn/docs/',
+        publicPath: 'https://docs.5102it.cn/',
       },
       resolve: {
         //配置路径别名
