@@ -1,3 +1,7 @@
+---
+
+---
+
 # Docker 基础
 
 docker 官网：https://docs.docker.com/
@@ -733,7 +737,7 @@ networks:
 
 ![img](img/u=3303271561,3348384133&fm=26&fmt=auto&gp=0.jpg)
 
-![img](img/src=http%253A%252F%252Fimage.bubuko.com%252Finfo%252F201712%252F20171222224612781754.png&refer=http%253A%252F%252Fimage.bubuko.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg)
+![img](img/1.jpeg)
 
 manager 管理节点（3 >=）可使用管理命令
 
@@ -792,12 +796,23 @@ docker swarm leave -f
 docker service create -p 8088:80 --name="nginx-1" nginx
 ```
 
+```shell
+docker service create --name="site" -p 80:80 --replicas 6 --restart-condition=any site1.0
+```
+
 查看 service 
 
 ```shell
 docker service ls # 查看所有服务
 docker service ps nginx-1 # 查看指定服务
 docker ps # 查看所有运行容器
+docker service logs -f site # 查看日志
+```
+
+删除服务
+
+```shell
+docker service rm site
 ```
 
 更新服务（动态维持多副本）

@@ -58,6 +58,10 @@
 
 ## [其他](./sidebar6/)
 
+- ### [其他相关](../others/)
+
+- ### [Deploy系列](../deploy/)
+
 **总览**
 
 ![前端知识体系](/images/knowledge.png)

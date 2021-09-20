@@ -69,6 +69,7 @@ module.exports = {
   '/jest/': ['', 'jest'],
   '/nodejs/': ['', 'nodejs', 'nodeEventLoop', 'express'],
   '/docker/': ['', 'base'],
+  '/deploy/': ['', 'frp'],
   '/others/': ['', 'echart', 'mysql', 'PHP', 'git', 'certbot'],
   '/reading/': ['', 'advanced-programming/note'],
   '/security/': ['', 'secure'],

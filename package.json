@@ -23,6 +23,7 @@
     "gulp-htmlmin": "^5.0.1",
     "gulp-qcloud-cos-upload": "^1.1.4",
     "html-webpack-plugin": "^4.3.0",
+    "markdown-it-disable-url-encode": "^1.0.1",
     "nodejs": "^0.0.0",
     "vuepress": "^1.5.2",
     "vuepress-plugin-baidu-autopush": "^1.0.1",
