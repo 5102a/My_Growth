@@ -6,7 +6,8 @@
     "document"
   ],
   "short_name": "5102",
-  "start_url": "https://docs.5102it.cn/index.html",
+  "start_url": "https://docs-1258613188.file.myqcloud.com/index.html",
+  "scope": "https://docs-1258613188.file.myqcloud.com",
   "lang": "zh-CH",
   "display": "standalone",
   "theme_color": "#3367D6",
