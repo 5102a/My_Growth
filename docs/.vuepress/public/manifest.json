@@ -9,8 +9,8 @@
   "start_url": "https://docs-1258613188.file.myqcloud.com/index.html",
   "scope": "https://docs-1258613188.file.myqcloud.com",
   "lang": "zh-CH",
-  "display": "standalone",
   "theme_color": "#3367D6",
+  "display": "standalone",
   "background_color": "#3367D6",
   "description": "5102的技术文档 - 个人技术文档、前端技术文档、自学前端、前端知识体系",
   "icons": [
