@@ -1,9 +1,9 @@
 module.exports = [
-  ['link', { rel: 'icon', href: '/images/favicon.ico' }],
+  ['link', { rel: 'icon', href: 'https://docs-1258613188.file.myqcloud.com/images/favicon.ico' }],
   ['link', { rel: 'manifest', href: '/manifest.json' }],
   [
     'link',
-    { rel: 'apple-touch-icon', href: '/images/touch/apple-touch-icon.png' },
+    { rel: 'apple-touch-icon', href: 'https://docs-1258613188.file.myqcloud.com/images/touch/apple-touch-icon.png' },
   ],
   ['meta', { name: 'author', content: '5102a' }],
   ['meta', { name: 'copyright', content: '本网站版权归5102it所有' }],
@@ -14,7 +14,7 @@ module.exports = [
     'meta',
     {
       name: 'msapplication-TileImage',
-      content: '/images/touch/apple-touch-icon.png',
+      content: 'https://docs-1258613188.file.myqcloud.com/images/touch/apple-touch-icon.png',
     },
   ],
   ['meta', { name: 'msapplication-TileColor', content: '#000000' }],
