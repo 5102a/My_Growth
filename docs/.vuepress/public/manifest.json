@@ -5,9 +5,8 @@
     "technology",
     "document"
   ],
-  "scope": "https://docs.5102it.cn/",
   "short_name": "5102",
-  "start_url": "https://docs.5102it.cn/",
+  "start_url": "/index.html",
   "lang": "zh-CH",
   "display": "standalone",
   "theme_color": "#3367D6",
