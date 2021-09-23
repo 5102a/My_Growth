@@ -21,7 +21,7 @@ module.exports = [
         'https://docs-1258613188.file.myqcloud.com/images/touch/apple-touch-icon.png',
     },
   ],
-  ['meta', { name: 'charset', content: 'UTF-8' }],
+  ['meta', { charset: 'UTF-8' }],
   ['meta', { name: 'author', content: '5102a' }],
   ['meta', { name: 'copyright', content: '本网站版权归5102it所有' }],
   ['meta', { name: 'theme-color', content: '#ffffff' }],
