@@ -29,9 +29,9 @@ module.exports = {
     },
   },
   'vuepress-plugin-smooth-scroll': {}, // 顺滑
-  'vuepress-plugin-baidu-autopush': {},
-  'vuepress-plugin-code-copy':{},
-  'img-lazy':{},
+  // 'vuepress-plugin-baidu-autopush': {},
+  'vuepress-plugin-code-copy': {},
+  'img-lazy': {},
   // 'reading-progress': {
   //   readingDir: 'top',
   // },
