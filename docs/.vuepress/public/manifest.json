@@ -57,7 +57,8 @@
     {
       "src": "https://docs-1258613188.file.myqcloud.com/images/touch/homescreen512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
