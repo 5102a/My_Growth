@@ -27,6 +27,9 @@ module.exports = {
       message: '有内容更新！',
       buttonText: '刷新',
     },
+    generateSWConfig: {
+      modifyURLPrefix: 'https://docs-1258613188.file.myqcloud.com/',
+    },
   },
   'vuepress-plugin-smooth-scroll': {}, // 顺滑
   // 'vuepress-plugin-baidu-autopush': {},
