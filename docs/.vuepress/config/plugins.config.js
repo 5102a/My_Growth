@@ -28,7 +28,9 @@ module.exports = {
       buttonText: '刷新',
     },
     generateSWConfig: {
-      modifyURLPrefix: 'https://docs-1258613188.file.myqcloud.com/',
+      modifyURLPrefix: {
+        '': 'https://docs-1258613188.file.myqcloud.com/',
+      },
     },
   },
   'vuepress-plugin-smooth-scroll': {}, // 顺滑
