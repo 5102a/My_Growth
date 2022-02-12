@@ -6,6 +6,8 @@ rm -rf ./dist
 
 npm i
 
+npm i gulp -g
+
 gulp -v
 
 # 生成静态文件
