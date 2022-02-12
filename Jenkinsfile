@@ -14,6 +14,7 @@ pipeline {
         }
         stage('build') {
             steps {
+                sh 'npm i gulp -g'
                 sh './build.sh'
             }
         }

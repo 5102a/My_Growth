@@ -6,4 +6,6 @@ rm -rf ./dist
 
 npm i
 
+npm i gulp -g
+
 exit 0
