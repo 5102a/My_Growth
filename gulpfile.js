@@ -2,7 +2,7 @@ const { parallel, src, dest, series } = require('gulp')
 const htmlmin = require('gulp-htmlmin')
 const upload = require('gulp-qcloud-cos-upload')
 const fs = require('fs')
-require('dotenv').config()
+const envConfig = require('dotenv').config()
 
 const cosConfig = {
   // 日志是否呈现为cdn路径，默认为 ''，设为具体域名可以替换 cdn 域名。
@@ -14,17 +14,17 @@ const cosConfig = {
   // 是否允许文件覆盖，默认为 false
   overwrite: true,
   // 在腾讯云申请的 AppId
-  AppId: process.env.AppId,
+  AppId: process.env.AppId || envConfig.parsed.AppId,
   // 配置腾讯云 COS 服务所需的 SecretId
-  SecretId: process.env.SecretId,
+  SecretId: process.env.SecretId || envConfig.parsed.SecretId,
   // 配置腾讯云 COS 服务所需的 SecretKey
-  SecretKey: process.env.SecretKey,
+  SecretKey: process.env.SecretKey || envConfig.parsed.SecretKey,
   // COS服务配置的存储桶名称
-  Bucket: process.env.Bucket,
+  Bucket: process.env.Bucket || envConfig.parsed.Bucket,
   // 地域名称
-  Region: process.env.Region,
+  Region: process.env.Region || envConfig.parsed.Region,
   // 前缀路径，所有文件上传到这个路径下
-  prefix: process.env.prefix,
+  prefix: process.env.prefix || envConfig.parsed.prefix,
 }
 console.log('cosConfig', cosConfig)
 // 压缩html
