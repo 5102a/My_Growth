@@ -26,7 +26,7 @@ const cosConfig = {
   // 前缀路径，所有文件上传到这个路径下
   prefix: process.env.prefix,
 }
-
+console.log('cosConfig', cosConfig)
 // 压缩html
 function minifyHtml() {
   return src('dist/**/*.html')
