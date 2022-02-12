@@ -42,5 +42,5 @@ function uploads() {
   }
 }
 
-// exports.default = series(minifyHtml,uploads())
-exports.default = minifyHtml
+exports.default = series(minifyHtml,uploads())
+// exports.default = minifyHtml

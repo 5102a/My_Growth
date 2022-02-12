@@ -20,7 +20,6 @@
     "@vuepress/plugin-pwa": "^1.8.2",
     "dotenv": "^8.6.0",
     "gulp": "^4.0.2",
-    "gulp-cli": "^2.3.0",
     "gulp-htmlmin": "^5.0.1",
     "gulp-qcloud-cos-upload": "^1.1.4",
     "html-webpack-plugin": "^4.5.2",
