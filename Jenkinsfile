@@ -5,7 +5,7 @@ pipeline {
             steps {
                 sh 'npm --version'
                 sh 'node --version'
-                sh 'sudo ./build.sh'
+                sh './build.sh'
             }
         }
     }
