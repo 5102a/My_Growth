@@ -22,9 +22,9 @@ module.exports = {
   // Object|Array，配置 markdown-it插件
   // plugins:[],
   // Function，一个用于修改当前的 markdown-it 实例的默认配置，或者应用额外的插件的函数
-  extendMarkdown: (md) => {
-    md.use(require('markdown-it-disable-url-encode'))
-  },
+  // extendMarkdown: (md) => {
+  //   md.use(require('markdown-it-disable-url-encode'))
+  // },
   // Array，提取到this.$page.headers中的元素
   // extractHeaders: ['h2', 'h3']
 }
