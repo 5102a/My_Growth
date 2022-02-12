@@ -5,7 +5,8 @@ set -e
 rm -rf ./dist
 
 npm i
-
+ls node_modules/
+gulp -v
 # 生成静态文件
 npm run build
 

@@ -8,10 +8,7 @@ pipeline {
             steps {
                 sh 'npm --version'
                 sh 'node --version'
-                sh 'ls -f'
                 sh 'echo "$AN_ACCESS_KEY" >> .env'
-                sh 'ls -f'
-                sh 'cat .env'
             }
         }
         stage('build') {
