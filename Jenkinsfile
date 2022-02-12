@@ -5,6 +5,7 @@ pipeline {
             steps {
                 sh 'npm --version'
                 sh 'node --version'
+                sh 'ls -ll'
                 sh './build.sh'
             }
         }
