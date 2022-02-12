@@ -4,8 +4,12 @@ set -e
 
 rm -rf ./dist
 
+npm i
+
 # 生成静态文件
 npm run build
 
 # 压缩html
 gulp
+
+exit 0
