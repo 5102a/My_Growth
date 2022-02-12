@@ -1,6 +1,7 @@
 const { parallel, src, dest, series } = require('gulp')
 const htmlmin = require('gulp-htmlmin')
 const upload = require('gulp-qcloud-cos-upload')
+const fs = require('fs')
 require('dotenv').config()
 
 const cosConfig = {
@@ -34,13 +35,31 @@ function minifyHtml() {
 }
 
 // 上传到腾讯云存储
-function uploads() {
-  return () => {
-    return src(`**/*`, {
-      cwd: 'dist/',
-    }).pipe(upload(cosConfig))
+function uploads(path = 'dist') {
+  const files = fs.readdirSync(path, {
+    withFileTypes: true,
+  })
+  const hasDir = files.find((d) => d.isDirectory())
+  if (hasDir) {
+    return files
+      .map((dir) => {
+        const curPath = `${path}/${dir.name}`
+        if (dir.isDirectory()) {
+          return uploads(curPath)
+        }
+        return () =>
+          src(`${curPath.replace(/dist\//, '')}`, {
+            cwd: 'dist',
+          }).pipe(upload(cosConfig))
+      })
+      .flat(Number.MAX_VALUE)
+  } else {
+    return () =>
+      src(`${path.replace(/dist\//, '')}/*`, {
+        cwd: 'dist',
+      }).pipe(upload(cosConfig))
   }
 }
 
-exports.default = series(minifyHtml,uploads())
+exports.default = series(minifyHtml, parallel(...uploads()))
 // exports.default = minifyHtml
