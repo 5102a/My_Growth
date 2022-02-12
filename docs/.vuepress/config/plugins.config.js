@@ -1,5 +1,3 @@
-const mySecret = require('./my.secret.js')
-
 module.exports = {
   '@vssue/vuepress-plugin-vssue': {
     // 评论
@@ -9,13 +7,13 @@ module.exports = {
     // 其他的 Vssue 配置
     owner: '1015355299',
     repo: 'My_Growth',
-    clientId: mySecret.clientId,
-    clientSecret: mySecret.clientSecret,
+    clientId: process.env.clientId,
+    clientSecret: process.env.clientSecret,
     autoCreateIssue: true,
   },
   // google网站分析
   '@vuepress/google-analytics': {
-    ga: mySecret.ga,
+    ga: process.env.ga,
   },
   '@vuepress/nprogress': {}, // 进度条
   '@vuepress/medium-zoom': {}, // 图片放大
