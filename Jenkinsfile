@@ -4,16 +4,16 @@ pipeline {
         AN_ACCESS_KEY = credentials('envfile') 
     }
     stages {
-        stage('echo info') {
+        stage('pre-build') {
             steps {
-                sh 'npm --version'
-                sh 'node --version'
                 sh 'echo "$AN_ACCESS_KEY" >> .env'
+                sh 'chmod 755 ./pre-build.sh'
+                sh 'chmod 755 ./build.sh'
+                sh './pre-build.sh'
             }
         }
         stage('build') {
             steps {
-                sh 'chmod 777 ./build.sh'
                 sh './build.sh'
             }
         }

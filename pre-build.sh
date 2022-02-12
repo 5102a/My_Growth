@@ -2,10 +2,10 @@
 # 确保脚本抛出遇到的错误
 set -e
 
-# 生成静态文件
-npm run build
+rm -rf ./dist
 
-# 压缩html
-gulp
+npm i
+ls node_modules/
+gulp -v
 
 exit 0
