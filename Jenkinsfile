@@ -1,11 +1,15 @@
 pipeline {
     agent { docker 'node:16.14.0' }
     stages {
-        stage('build') {
+      stage('echo info') {
             steps {
                 sh 'npm --version'
                 sh 'node --version'
-                sh 'ls -ll'
+            }
+        }
+        stage('build') {
+            steps {
+                sh 'chmod 777 ./build.sh'
                 sh './build.sh'
             }
         }
