@@ -1,10 +1,13 @@
 pipeline {
-    agent { docker 'node:16.14.0' }
+    agent any
     stages {
         stage('build') {
             steps {
                 sh 'npm --version'
+                sh 'node --version'
+                sh './build.sh'
             }
         }
     }
 }
+
