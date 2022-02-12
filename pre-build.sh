@@ -5,7 +5,5 @@ set -e
 rm -rf ./dist
 
 npm i
-ls node_modules/
-gulp -v
 
 exit 0
