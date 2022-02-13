@@ -2,12 +2,15 @@ const { parallel, src, dest, series } = require('gulp')
 const htmlmin = require('gulp-htmlmin')
 const upload = require('gulp-qcloud-cos-upload')
 const fs = require('fs')
-const envConfig = require('dotenv').config()
-console.log(
-  'envConfig',
-  new TextDecoder().decode(Uint8Array.from([...fs.readFileSync('./.env'), 89]))
-)
+const envConfig = require('dotenv').config({
+  path: process.env.envfile,
+})
+// console.log(
+//   'envConfig',
+//   new TextDecoder().decode(Uint8Array.from([...fs.readFileSync('./.env'), 89]))
+// )
 
+console.log('envConfig', envConfig)
 console.log('envConfig1', process.env.envfile)
 const cosConfig = {
   // 日志是否呈现为cdn路径，默认为 ''，设为具体域名可以替换 cdn 域名。
