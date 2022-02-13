@@ -1,3 +1,7 @@
+const envConfig = require('dotenv').config({
+  path: process.env.envfile || '.env',
+})
+
 module.exports = {
   '@vssue/vuepress-plugin-vssue': {
     // 评论
@@ -7,13 +11,13 @@ module.exports = {
     // 其他的 Vssue 配置
     owner: '1015355299',
     repo: 'My_Growth',
-    clientId: process.env.clientId,
-    clientSecret: process.env.clientSecret,
+    clientId: process.env.clientId || envConfig.parsed.clientId,
+    clientSecret: process.env.clientSecret || envConfig.parsed.clientSecret,
     autoCreateIssue: true,
   },
   // google网站分析
   '@vuepress/google-analytics': {
-    ga: process.env.ga,
+    ga: process.env.clientId || envConfig.parsed.ga,
   },
   '@vuepress/nprogress': {}, // 进度条
   '@vuepress/medium-zoom': {}, // 图片放大

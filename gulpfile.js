@@ -3,7 +3,7 @@ const htmlmin = require('gulp-htmlmin')
 const upload = require('gulp-qcloud-cos-upload')
 const fs = require('fs')
 const envConfig = require('dotenv').config({
-  path: process.env.envfile,
+  path: process.env.envfile || '.env',
 })
 
 const cosConfig = {
