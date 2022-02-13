@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage('pre-build') {
             steps {
-                sh 'echo "$envfile" >> .env'
                 sh 'chmod 755 ./build.sh'
             }
         }

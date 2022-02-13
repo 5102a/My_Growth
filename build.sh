@@ -8,10 +8,10 @@ npm i
 
 npm i gulp -g
 
-# gulp -v
+gulp -v
 
 # # 生成静态文件
-# npm run build
+npm run build
 
 # 压缩html
 gulp

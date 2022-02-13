@@ -5,13 +5,7 @@ const fs = require('fs')
 const envConfig = require('dotenv').config({
   path: process.env.envfile,
 })
-// console.log(
-//   'envConfig',
-//   new TextDecoder().decode(Uint8Array.from([...fs.readFileSync('./.env'), 89]))
-// )
 
-console.log('envConfig', envConfig)
-console.log('envConfig1', process.env.envfile)
 const cosConfig = {
   // 日志是否呈现为cdn路径，默认为 ''，设为具体域名可以替换 cdn 域名。
   cdn: true,
@@ -34,7 +28,7 @@ const cosConfig = {
   // 前缀路径，所有文件上传到这个路径下
   prefix: process.env.prefix || envConfig.parsed.prefix,
 }
-console.log('cosConfig', cosConfig)
+
 // 压缩html
 function minifyHtml() {
   return src('dist/**/*.html')
