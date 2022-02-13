@@ -3,7 +3,8 @@ const htmlmin = require('gulp-htmlmin')
 const upload = require('gulp-qcloud-cos-upload')
 const fs = require('fs')
 const envConfig = require('dotenv').config()
-console.log('envConfig', envConfig)
+console.log('envConfig', fs.readFileSync('./.env', { encoding: 'utf8' }))
+
 const cosConfig = {
   // 日志是否呈现为cdn路径，默认为 ''，设为具体域名可以替换 cdn 域名。
   cdn: true,
