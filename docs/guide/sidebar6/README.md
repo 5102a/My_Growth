@@ -15,6 +15,8 @@
 
 - ### [SSL证书](../../others/certbot.html)
 
+- ### [基金技巧](../../others/investment.html)
+
 ## [二、部署](../../deploy/)
 
 - ### [Frp反向代理](../../deploy/frp.html)
