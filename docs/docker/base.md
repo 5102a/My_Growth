@@ -10,17 +10,17 @@ docker hub：https://hub.docker.com/
 
 命令大全
 
-![3897e595d1b96778119fb4cbc4a03237](img/3897e595d1b96778119fb4cbc4a03237.jpeg)
+![3897e595d1b96778119fb4cbc4a03237](./img/3897e595d1b96778119fb4cbc4a03237.jpeg)
 
 docker 架构
 
-![img](img/u=793314303,480081697&fm=26&fmt=auto&gp=0.jpg)
+![img](./img/u=793314303,480081697&fm=26&fmt=auto&gp=0.jpg)
 
-![img](img/u=3203744075,640969770&fm=26&fmt=auto&gp=0.jpg)
+![img](./img/u=3203744075,640969770&fm=26&fmt=auto&gp=0.jpg)
 
 docker 与虚拟机
 
-![img](img/u=3228263636,3385059830&fm=26&fmt=auto&gp=0.jpg)
+![img](./img/u=3228263636,3385059830&fm=26&fmt=auto&gp=0.jpg)
 
 ## Linux 安装 docker
 
@@ -355,13 +355,13 @@ docker run -it --name="centos-2" --volumes-form 数据卷容器 centos # 从数�
 
 构建过程
 
-![img](img/u=154294889,2458362410&fm=26&fmt=auto&gp=0.jpg)
+![img](./img/u=154294889,2458362410&fm=26&fmt=auto&gp=0.jpg)
 
 指令大全
 
-![img](img/u=4079674949,3803452519&fm=26&fmt=auto&gp=0.jpg)
+![img](./img/u=4079674949,3803452519&fm=26&fmt=auto&gp=0.jpg)
 
-![img](img/u=769446589,570851016&fm=26&fmt=auto&gp=0.jpg)
+![img](./img/u=769446589,570851016&fm=26&fmt=auto&gp=0.jpg)
 
 Dockerfile 文件内容，命令大写
 
@@ -401,7 +401,7 @@ CMD /bin/bash
 docker build -t 5102/centos-1:1.0 .
 ```
 
-![img](img/u=158836981,2597373737&fm=26&fmt=auto&gp=0.jpg)
+![img](./img/u=158836981,2597373737&fm=26&fmt=auto&gp=0.jpg)
 
 登录 docker hub
 
@@ -429,7 +429,7 @@ docker push [地址] user/images:tag # 标准命名规范
 
 ## docker 网络
 
-![img](img/u=3630699700,3656329070&fm=26&fmt=auto&gp=0.jpg)
+![img](./img/u=3630699700,3656329070&fm=26&fmt=auto&gp=0.jpg)
 
 查看 linux 网络
 
@@ -566,7 +566,7 @@ cluster nodes
 
 命令大全
 
-![img](img/u=2578426430,2552683020&fm=26&fmt=auto&gp=0.jpg)
+![img](./img/u=2578426430,2552683020&fm=26&fmt=auto&gp=0.jpg)
 
 步骤：
 
@@ -735,9 +735,9 @@ networks:
 
 ## Swarm 集群
 
-![img](img/u=3303271561,3348384133&fm=26&fmt=auto&gp=0.jpg)
+![img](./img/u=3303271561,3348384133&fm=26&fmt=auto&gp=0.jpg)
 
-![img](img/1.jpeg)
+![img](./img/1.jpeg)
 
 manager 管理节点（3 >=）可使用管理命令
 
