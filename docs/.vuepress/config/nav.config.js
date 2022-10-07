@@ -70,6 +70,10 @@ module.exports = [ // 导航栏，导航
         link: '/docker/',
       },
       {
+        text: 'Golang',
+        link: '/go/',
+      },
+      {
         text: '其他',
         link: '/others/',
       },

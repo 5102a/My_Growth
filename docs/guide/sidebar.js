@@ -58,7 +58,7 @@ module.exports = [
     path: '/guide/sidebar9/',
     collapsable: true,
     sidebarDepth: 3,
-    children: ['/nodejs/', '/docker/'],
+    children: ['/nodejs/', '/docker/', '/go/'],
   },
   {
     title: '其他',
